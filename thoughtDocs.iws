@@ -127,7 +127,7 @@
       <file leaf-file-name="repositoryList.xhtml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/view/repositoryList.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="2" selection-start="593" selection-end="593" vertical-scroll-proportion="0.17804155">
+            <state line="14" column="55" selection-start="590" selection-end="590" vertical-scroll-proportion="0.1661721">
               <folding />
             </state>
           </provider>
@@ -591,7 +591,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/repositoryList.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="2" selection-start="593" selection-end="593" vertical-scroll-proportion="0.17804155">
+        <state line="14" column="55" selection-start="590" selection-end="590" vertical-scroll-proportion="0.1661721">
           <folding />
         </state>
       </provider>
