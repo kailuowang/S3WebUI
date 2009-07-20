@@ -1,0 +1,16 @@
+#Wed Aug 06 19:35:32 BST 2008
+action.package=com.thoughtDocs.action
+action.sources=/thoughtDocs/src/hot
+eclipse.preferences.version=1
+model.package=com.thoughtDocs.model
+model.sources=/thoughtDocs/src/main
+seam.ejb.project=thoughtDocs
+seam.project.connection.profile=
+seam.project.deployment.type=war
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/thoughtDocs/view
+seam.runtime.name=
+seam.test.creating=true
+seam.test.project=thoughtDocs
+test.package=com.thoughtDocs.test
+test.sources=/thoughtDocs/src/test
