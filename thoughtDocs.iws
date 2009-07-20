@@ -59,29 +59,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Authenticator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hot/com/thoughtDocs/action/Authenticator.java">
+      <file leaf-file-name="AccountImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="13" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+            <state line="24" column="13" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RepositoryList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/RepositoryList.java">
+      <file leaf-file-name="S3LearningFixture.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/S3LearningFixture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="13" selection-start="500" selection-end="500" vertical-scroll-proportion="0.0">
+            <state line="12" column="13" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Account.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/Account.java">
+      <file leaf-file-name="SignedURLGenerator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/SignedURLGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="17" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="12" column="13" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,39 +97,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Repository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/Repository.java">
+      <file leaf-file-name="RepositoryImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
+            <state line="24" column="13" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountFixture.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/AccountFixture.java">
+      <file leaf-file-name="DocumentImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1295" selection-end="1295" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.xhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/layout/menu.xhtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="1079" selection-end="1079" vertical-scroll-proportion="-12.0">
+            <state line="11" column="13" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="repositoryList.xhtml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/view/repositoryList.xhtml">
+      <file leaf-file-name="documentList.xhtml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view/documentList.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="55" selection-start="590" selection-end="590" vertical-scroll-proportion="0.1661721">
+            <state line="27" column="70" selection-start="1381" selection-end="1381" vertical-scroll-proportion="-17.052631">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DocumentListAction.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/DocumentListAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="119" selection-start="931" selection-end="976" vertical-scroll-proportion="0.26796117">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RepositoryListAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/RepositoryListAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="13" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FacesManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/src/jboss-seam-sources.jar!/org/jboss/seam/faces/FacesManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="14" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -260,6 +278,138 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
+          <option name="myItemId" value="test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="model" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="model" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="s3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="action" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
           <option name="myItemId" value="main" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
@@ -285,14 +435,6 @@
           <option name="myItemId" value="src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="hot" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="action" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
       </PATH>
     </subPane>
   </component>
@@ -316,19 +458,19 @@
   <component name="PropertiesComponent">
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
   </component>
-  <component name="RunManager" selected="TestNG.&lt;default&gt;">
-    <tempConfiguration default="false" name="&lt;default&gt;" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
+  <component name="RunManager" selected="TestNG.com.thoughtDocs.test">
+    <tempConfiguration default="false" name="com.thoughtDocs.test" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
       <module name="thoughtDocs" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.thoughtDocs.test" />
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="GROUP_NAME" />
@@ -372,6 +514,11 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
       <module name="" />
@@ -432,7 +579,7 @@
       <envs />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="TestNG.&lt;default&gt;" />
+      <item index="0" class="java.lang.String" itemvalue="TestNG.com.thoughtDocs.test" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -496,7 +643,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32961932" sideWeight="0.5" order="2" side_tool="false" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39948454" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -538,23 +685,60 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/hot/com/thoughtDocs/action/Authenticator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+        <state line="17" column="13" selection-start="485" selection-end="485" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/RepositoryList.java">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/DataProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="500" selection-end="500" vertical-scroll-proportion="0.0">
+        <state line="27" column="70" selection-start="960" selection-end="960" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/Account.java">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/RepositoryListTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0">
+        <state line="5" column="13" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/RepositoryFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="0" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/AccountFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="18" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/DocumentFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="851" selection-end="851" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="13" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/S3LearningFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -566,32 +750,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/Repository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
+        <state line="24" column="13" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/AccountFixture.java">
+    <entry file="jar://$PROJECT_DIR$/lib/src/jboss-seam-sources.jar!/org/jboss/seam/faces/FacesManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1295" selection-end="1295" vertical-scroll-proportion="0.0">
+        <state line="47" column="14" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/RepositoryListAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/SignedURLGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/layout/menu.xhtml">
+    <entry file="file://$PROJECT_DIR$/view/documentList.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="1079" selection-end="1079" vertical-scroll-proportion="-12.0">
+        <state line="27" column="70" selection-start="1381" selection-end="1381" vertical-scroll-proportion="-17.052631">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/repositoryList.xhtml">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="55" selection-start="590" selection-end="590" vertical-scroll-proportion="0.1661721">
+        <state line="11" column="13" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/DocumentListAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="119" selection-start="931" selection-end="976" vertical-scroll-proportion="0.26796117">
           <folding />
         </state>
       </provider>

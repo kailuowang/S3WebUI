@@ -8,7 +8,6 @@ import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class RepositoryImpl implements Repository {
         return bucket.name;
     }
 
-    public Collection<Document> getDocuments() throws IOException {
+    public List<Document> getDocuments() throws IOException {
         List<Document> retVal = new ArrayList<Document>();
         ListBucketResponse response = getAWSAuthConnection().listBucket(getName(), null, null, null, null);
         for (Object be : response.getEntries()) {

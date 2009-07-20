@@ -1,6 +1,7 @@
 package com.thoughtDocs.model;
 
 import java.util.Collection;
+import java.util.List;
 import java.io.IOException;
 
 /**
@@ -11,7 +12,7 @@ import java.io.IOException;
 public interface Repository {
     String getName();
 
-    Collection<Document> getDocuments() throws IOException;
+    List<Document> getDocuments() throws IOException;
 
     Account getAccount();
 

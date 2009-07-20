@@ -13,4 +13,7 @@ public interface Document {
      * @return the name of the document that is unique under one repository
      */
     public String getName();
+    void delete();
+
+    String getSignedURL();
 }

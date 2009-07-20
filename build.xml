@@ -55,7 +55,10 @@
         <taskdef name="groovyc"
             classname ="org.codehaus.groovy.ant.Groovyc"
             classpathref="build.classpath"/> <!-- really only the groovy jar is necessary -->
+        <delete dir="${basedir}/dist"/>
 
+              <delete dir="${basedir}/exploded-archives"/>
+                
         <mkdir dir="${classes.model.dir}" />
         <mkdir dir="${classes.action.dir}" />
         <mkdir dir="${dist.dir}" />

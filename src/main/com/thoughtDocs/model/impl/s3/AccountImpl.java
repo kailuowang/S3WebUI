@@ -2,10 +2,12 @@ package com.thoughtDocs.model.impl.s3;
 
 import com.amazon.s3.AWSAuthConnection;
 import com.amazon.s3.Bucket;
+import com.amazon.s3.QueryStringAuthGenerator;
 import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Repository;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +22,17 @@ import static org.jboss.seam.ScopeType.SESSION;
  */
 @Scope(SESSION)
 @Name("account")
-public class AccountImpl implements Account {
+public class AccountImpl implements Account, Serializable {
+
     private AWSAuthConnection awsAuthConnection;
+    SignedURLGenerator generator;
+
 
     private AccountImpl() {}
 
-    public AccountImpl(AWSAuthConnection awsAuthConnection) {
+    public AccountImpl(AWSAuthConnection awsAuthConnection, SignedURLGenerator generator) {
         this.awsAuthConnection = awsAuthConnection;
+        this.generator = generator;
     }
 
     public List<Repository> getRepositories() throws IOException {
@@ -36,6 +42,10 @@ public class AccountImpl implements Account {
             retVal.add(repo);
         }
         return retVal;
+    }
+
+    public SignedURLGenerator getSignedURLGenerator() {
+        return generator;
     }
 
     public AWSAuthConnection getAwsAuthConnection() {

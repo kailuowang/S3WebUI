@@ -5,6 +5,7 @@ import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.ScopeType;
 import com.thoughtDocs.model.Account;
 import com.amazon.s3.AWSAuthConnection;
+import com.amazon.s3.QueryStringAuthGenerator;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,8 +20,12 @@ public class AccountFactory {
     static final String awsSecretAccessKey = "Ki+4ts1cG/R3F2eqgc/sIwGSz/C3hz1Pzt/TqxRv";
 
     @Factory(value = "account", scope = ScopeType.SESSION, autoCreate = true)
-    public Account loadAccount(){
+    public Account loadAccount() {
         AWSAuthConnection connection = new AWSAuthConnection(awsAccessKeyId, awsSecretAccessKey);
-        return new AccountImpl(connection);
+
+        QueryStringAuthGenerator generator =
+                new QueryStringAuthGenerator(awsAccessKeyId, awsSecretAccessKey);
+        SignedURLGenerator signedURLGenerator = new SignedURLGenerator(generator);
+        return new AccountImpl(connection, signedURLGenerator);
     }
 }
