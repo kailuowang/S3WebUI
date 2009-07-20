@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="thoughtDocs" failures="0" tests="2" time="0.412" errors="0">
-  <properties/>
-  <testcase name="getRespositories" time="0.347" classname="com.thoughtDocs.test.AccountFixture"/>
-  <testcase name="getDocumentsTest" time="0.047" classname="com.thoughtDocs.test.RepositoryFixture"/>
-</testsuite>

@@ -1,2 +1,5 @@
 test-build/*
-test-out/*
+test-output/*
+test-build
+test-output
+
