@@ -74,10 +74,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DocumentImpl.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DocumentImpl.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="63" selection-start="3044" selection-end="3044" vertical-scroll-proportion="0.0">
+            <state line="95" column="16" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.52272725">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,10 +163,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocumentFixture.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DocumentFixture.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/DocumentFixture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="34" selection-start="2110" selection-end="2110" vertical-scroll-proportion="1.1086475">
+            <state line="68" column="13" selection-start="2243" selection-end="2243" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -790,7 +790,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -807,7 +807,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32756326" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39948454" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3981358" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -956,18 +956,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/DocumentFixture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="63" selection-start="3044" selection-end="3044" vertical-scroll-proportion="0.0">
+        <state line="68" column="13" selection-start="2243" selection-end="2243" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/DocumentFixture.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="34" selection-start="2110" selection-end="2110" vertical-scroll-proportion="1.1086475">
+        <state line="95" column="16" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.52272725">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

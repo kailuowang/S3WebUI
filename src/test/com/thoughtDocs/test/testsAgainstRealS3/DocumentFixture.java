@@ -69,6 +69,11 @@ public class DocumentFixture extends FixtureBase {
         doc.setPassword(pass);
         Assert.assertEquals(doc.getPassword(), pass);
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+        pass = "pass2";
+        doc.setPassword(pass);
+        Assert.assertEquals(doc.getPassword(), pass);
+        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+
 
     }
 }
