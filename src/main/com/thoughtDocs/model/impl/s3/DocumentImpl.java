@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.net.MalformedURLException;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -30,6 +31,7 @@ public class DocumentImpl implements Document, Serializable {
     private String contentType;
     private final String AMAZON_HEADER_PREFIX = "x-amz-";
     private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
+
 
 
     public String getContentType() {
@@ -96,8 +98,13 @@ public class DocumentImpl implements Document, Serializable {
         meta.put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(new String[]{password}));
         Response response = connection.put(getRepository().getName(), getName(), new S3Object(null, meta), null);
         response.assertSuccess();
-
     }
+
+    public void refresh() throws IOException {
+        S3Object object = connection.get(getRepository().getName(), getName(), null).object;
+        data = object.data;
+    }
+
 
     public void setSize(long size) {
         this.listEntry.size = size;

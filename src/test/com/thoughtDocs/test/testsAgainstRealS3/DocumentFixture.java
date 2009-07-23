@@ -1,22 +1,13 @@
 package com.thoughtDocs.test.testsAgainstRealS3;
 
-import org.mockito.Mockito;
-import org.testng.annotations.Test;
+import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import org.testng.Assert;
-import com.amazon.s3.Bucket;
-import com.amazon.s3.AWSAuthConnection;
-import com.amazon.s3.ListBucketResponse;
-import com.amazon.s3.ListEntry;
-import com.thoughtDocs.model.Account;
-import com.thoughtDocs.model.Repository;
-import com.thoughtDocs.model.Document;
-import com.thoughtDocs.model.impl.s3.*;
+import org.testng.annotations.Test;
 
-import java.util.Date;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Calendar;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Calendar;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,6 +17,8 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class DocumentFixture extends FixtureBase {
+    private static final String TEST_DATA = "testData";
+
 
     public DocumentFixture() throws IOException {
     }
@@ -34,17 +27,32 @@ public class DocumentFixture extends FixtureBase {
     public void testAddDocumentTest() throws IOException {
         int oldSize = defaultRepository.getDocuments().size();
         DocumentImpl doc = new DocumentImpl();
-        doc.setName(Calendar.getInstance().toString());
-        doc.setData("testData".getBytes());
+        String randomString = randomString();
+        doc.setName(randomString);
+        doc.setData(TEST_DATA.getBytes());
         defaultRepository.addDocument(doc);
         Assert.assertEquals(defaultRepository.getDocuments().size(), oldSize + 1);
+        doc.refresh();
+        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+    }
+
+    private String randomString()  {
+        SecureRandom random = null;
+        try {
+            random = SecureRandom.getInstance("SHA1PRNG");
+        } catch (NoSuchAlgorithmException e) {
+            throw new UnknownError(e.getMessage());
+        }
+        random.setSeed(10);
+        String randomString = String.valueOf(random.nextLong());
+        return randomString;
     }
 
     @Test
     public void testDeleteDocument() throws IOException {
         DocumentImpl doc = new DocumentImpl();
-        doc.setName(Calendar.getInstance().toString());
-        doc.setData("testData".getBytes());
+        doc.setName(randomString());
+        doc.setData(TEST_DATA.getBytes());
         defaultRepository.addDocument(doc);
         int oldSize = defaultRepository.getDocuments().size();
         doc.delete();
@@ -54,12 +62,13 @@ public class DocumentFixture extends FixtureBase {
     @Test
     public void testDocumentPassword() throws IOException {
         DocumentImpl doc = new DocumentImpl();
-        doc.setName(Calendar.getInstance().toString());
-        doc.setData("testData".getBytes());
+        doc.setName(randomString());
+        doc.setData(TEST_DATA.getBytes());
         defaultRepository.addDocument(doc);
         String pass = "pass";
         doc.setPassword(pass);
         Assert.assertEquals(doc.getPassword(), pass);
+        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
 
     }
 }

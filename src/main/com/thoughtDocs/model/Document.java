@@ -30,4 +30,7 @@ public interface Document {
 
     void setContentType(String contentType);
 
+    String getPassword() throws IOException;
+
+    void setPassword(String password) throws IOException;
 }
