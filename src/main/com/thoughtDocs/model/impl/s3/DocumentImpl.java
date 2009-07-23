@@ -1,18 +1,19 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.amazon.s3.*;
+import com.amazon.s3.AWSAuthConnection;
+import com.amazon.s3.ListEntry;
+import com.amazon.s3.Response;
+import com.amazon.s3.S3Object;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import org.jboss.seam.annotations.Name;
-import org.drools.concurrent.UpdateObject;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.Arrays;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -28,7 +29,8 @@ public class DocumentImpl implements Document, Serializable {
     private byte[] data;
     private String contentType;
     private final String AMAZON_HEADER_PREFIX = "x-amz-";
-    
+    private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
+
 
     public String getContentType() {
         return contentType;
@@ -83,19 +85,16 @@ public class DocumentImpl implements Document, Serializable {
         response.assertSuccess();
     }
 
-    public String getPassword(){
-        return "";
+    public String getPassword() throws IOException {
+        List list = (List) connection.head(getRepository().getName(), getName(), null).object.metadata.get(PUBLIC_PASSWORD_META_KEY);
+
+        return (String) list.get(0);
     }
 
     public void setPassword(String password) throws IOException {
-        Map headers = new TreeMap();
-        headers.put("x-amz-public-password", Arrays.asList(new String[] { password }));
-
-        GetResponse getResponse = connection.getACL(getRepository().getName(), getName(), null);
-                byte[] acl = getResponse.object.data;
-
-        Response response = connection.putACL(getRepository().getName(), getName(), new String(acl), headers);
-
+        Map meta = new TreeMap();
+        meta.put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(new String[]{password}));
+        Response response = connection.put(getRepository().getName(), getName(), new S3Object(null, meta), null);
         response.assertSuccess();
 
     }

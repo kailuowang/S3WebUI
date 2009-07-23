@@ -74,10 +74,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DocumentImpl.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DocumentImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="33" selection-start="2688" selection-end="2688" vertical-scroll-proportion="0.72727275">
+            <state line="99" column="50" selection-start="2791" selection-end="2791" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,10 +85,30 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FixtureBase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/FixtureBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="13" selection-start="447" selection-end="447" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="S3Object.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/S3Object.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="15" selection-start="791" selection-end="791" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AWSAuthConnection.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/AWSAuthConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="13" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.0">
+            <state line="539" column="67" selection-start="23213" selection-end="23213" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,7 +146,7 @@
       <file leaf-file-name="S3Test.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/S3Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="271" column="8" selection-start="12433" selection-end="12920" vertical-scroll-proportion="-15.384615">
+            <state line="190" column="12" selection-start="9356" selection-end="9360" vertical-scroll-proportion="-0.46153846">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,19 +154,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocumentFixture.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DocumentFixture.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/DocumentFixture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="20" selection-start="2007" selection-end="2007" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RepositoryFixture.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/RepositoryFixture.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="32" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0">
+            <state line="61" column="37" selection-start="2055" selection-end="2055" vertical-scroll-proportion="0.76704544">
               <folding />
             </state>
           </provider>
@@ -156,15 +167,6 @@
         <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/AccountFixture.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="24" column="21" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Response.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/Response.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="44" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -613,6 +615,11 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
   </component>
+  <component name="RecentsManager">
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="com.thoughtDocs.model.impl.s3.DocumentImpl" />
+    </key>
+  </component>
   <component name="RunManager" selected="TestNG.com.thoughtDocs.test">
     <tempConfiguration default="false" name="com.thoughtDocs.test" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
       <module name="thoughtDocs" />
@@ -834,13 +841,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="13" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
@@ -852,15 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="13" selection-start="1128" selection-end="1128" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/FixtureBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="447" selection-end="447" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -901,22 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/DocumentFixture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="20" selection-start="2007" selection-end="2007" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/S3Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="271" column="8" selection-start="12433" selection-end="12920" vertical-scroll-proportion="-15.384615">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/../Classes/classes.jar!/java/net/MalformedURLException.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="13" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
@@ -931,13 +906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/AWSAuthConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="13" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="8" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0">
@@ -947,12 +915,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/S3Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="33" selection-start="2688" selection-end="2688" vertical-scroll-proportion="0.72727275">
+        <state line="23" column="15" selection-start="791" selection-end="791" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/S3Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="190" column="12" selection-start="9356" selection-end="9360" vertical-scroll-proportion="-0.46153846">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/AWSAuthConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="539" column="67" selection-start="23213" selection-end="23213" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="50" selection-start="2791" selection-end="2791" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/FixtureBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="447" selection-end="447" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/test/testsAgainstRealS3/DocumentFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="37" selection-start="2055" selection-end="2055" vertical-scroll-proportion="0.76704544">
+          <folding />
         </state>
       </provider>
     </entry>
