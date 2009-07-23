@@ -18,11 +18,22 @@ import java.io.IOException;
  * Time: 4:57:18 PM
  */
 public class DataProvider {
+    AWSAuthConnection connection;
+    SignedURLGenerator generator;
+
+
+    public AWSAuthConnection getConnection() {
+        return connection;
+    }
+
+    public SignedURLGenerator getGenerator() {
+        return generator;
+    }
 
     public Account createMockAccount(Bucket... buckets) throws IOException {
-        AWSAuthConnection connection = Mockito.mock(AWSAuthConnection.class);
+        connection = Mockito.mock(AWSAuthConnection.class);
         ListAllMyBucketsResponse response = Mockito.mock(ListAllMyBucketsResponse.class);
-        SignedURLGenerator generator = Mockito.mock(SignedURLGenerator.class);
+        generator = Mockito.mock(SignedURLGenerator.class);
 
         Mockito.when(connection.listAllMyBuckets(null)).thenReturn(response);
         Mockito.when(response.getEntries()).thenReturn(Arrays.asList(buckets));

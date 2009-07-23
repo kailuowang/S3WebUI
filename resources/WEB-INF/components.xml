@@ -27,7 +27,12 @@
 
    <!-- Make sure this URL pattern is the same as that used by the Faces Servlet -->
    <web:hot-deploy-filter url-pattern="*.seam"/>
-
+   <web:multipart-filter create-temp-files="true" url-pattern="*.seam"/> 
+    <component class="org.jboss.seam.web.MultipartFilter">
+      <property name="createTempFiles">true</property>
+      <property name="maxRequestSize">1000000</property>
+    </component>
+    
    <persistence:entity-manager-factory name="entityManagerFactory"
                       persistence-unit-name="thoughtDocs"
                                   installed="@seamBootstrapsPu@"/>

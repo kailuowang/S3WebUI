@@ -2,18 +2,16 @@ package com.thoughtDocs.model.impl.s3;
 
 import com.amazon.s3.AWSAuthConnection;
 import com.amazon.s3.Bucket;
-import com.amazon.s3.QueryStringAuthGenerator;
 import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Repository;
+import static org.jboss.seam.ScopeType.SESSION;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Scope;
-import static org.jboss.seam.ScopeType.SESSION;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -28,7 +26,8 @@ public class AccountImpl implements Account, Serializable {
     SignedURLGenerator generator;
 
 
-    private AccountImpl() {}
+    private AccountImpl() {
+    }
 
     public AccountImpl(AWSAuthConnection awsAuthConnection, SignedURLGenerator generator) {
         this.awsAuthConnection = awsAuthConnection;

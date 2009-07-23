@@ -22,4 +22,10 @@ public class Response {
     public Response(HttpURLConnection connection) throws IOException {
         this.connection = connection;
     }
+
+    public void assertSuccess() throws IOException {
+        if ( connection.getResponseCode() >= 400 )
+                throw new IOException(String.valueOf(connection.getResponseCode())
+                                      + connection.getResponseMessage());
+    }
 }

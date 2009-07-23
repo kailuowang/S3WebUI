@@ -302,6 +302,13 @@ public class AWSAuthConnection {
         return new GetResponse(makeRequest("GET", bucket, Utils.urlencode(key), null, headers));
     }
 
+    public GetResponse head(String bucket, String key, Map headers)
+        throws MalformedURLException, IOException
+    {
+        return new GetResponse(makeRequest("HEAD", bucket, Utils.urlencode(key), null, headers));
+
+    }
+
     /**
      * Deletes an object from S3.
      * @param bucket The name of the bucket where the object lives.

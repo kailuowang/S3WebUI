@@ -12,14 +12,13 @@ import com.thoughtDocs.model.Document;
  */
 public class SignedURLGenerator {
     QueryStringAuthGenerator generator;
-    public SignedURLGenerator(QueryStringAuthGenerator generator)
-    {
+
+    public SignedURLGenerator(QueryStringAuthGenerator generator) {
         this.generator = generator;
         generator.setExpiresIn(10000);
-   }
+    }
 
-    public String getSignedURL(Document document)
-    {
+    public String getSignedURL(Document document) {
         return generator.get(document.getRepository().getName(), document.getName(), null);
     }
 

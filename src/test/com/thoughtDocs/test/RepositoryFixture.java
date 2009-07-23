@@ -22,7 +22,7 @@ import java.io.IOException;
 public class RepositoryFixture {
 
     @Test
-    public void getDocumentsTest() throws IOException {
+    public void testGetDocuments() throws IOException {
         DataProvider dp = new DataProvider();
         final String mockBucketName = "mockBucket";
         final String documentKey = "someMockDocument.txt";
@@ -40,9 +40,6 @@ public class RepositoryFixture {
         Repository repo = account.getRepositories().iterator().next();
 
         Assert.assertEquals(repo.getName(), bucket.name);
-
-        
-
 
         Collection<Document> documents = repo.getDocuments();
         Assert.assertEquals(1, documents.size());

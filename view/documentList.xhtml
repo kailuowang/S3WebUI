@@ -10,9 +10,8 @@
                 template="layout/template.xhtml">
 
     <ui:define name="body">
-
         <rich:panel>
-            <f:facet name="header">repositoryList</f:facet>
+            <f:facet name="header">Documents</f:facet>
             <h:dataTable id="documents" value="#{documents}"
                          var="doc" rendered="#{documents != null and documents.size>0}">
                 <h:column id="column1">
@@ -22,17 +21,37 @@
 
                 <h:column id="column5">
                     <f:facet id="ActionFacet" name="header">Action</f:facet>
-                    <s:link id="delete" value="Delete" action="#{doc.delete}"/>
-                    <span>&nbsp;</span>
                     <s:link id="download" value="Download"
                             action="#{documentListAction.download(doc)}"/>
-                   
+                    <span>&nbsp;</span>
+                    <s:link id="delete" value="Delete" action="#{documentListAction.delete(doc)}"/>
                 </h:column>
             </h:dataTable>
-
-
         </rich:panel>
+        <rich:panel>
+            <f:facet name="header">upload new file</f:facet>
 
+<h:form id="registration-form" enctype="multipart/form-data">
+    <span class="error"><h:messages globalOnly="true"/></span>
+    <s:validateAll>
+    <fieldset>
+    <legend>Enter file to upload</legend>
+    <div>
+        <s:fileUpload id="newFile"
+            data="#{uploadingDocument.data}" accept="image/*"
+            contentType="#{uploadingDocument.contentType}"
+            fileName="#{uploadingDocument.name}" fileSize="#{uploadingDocument.size}"
+            size="40" maxlength="40" required="true"/>
+    </div>
+    <div>
+        <h:commandButton value="Upload"
+            action="#{defaultRepository.addDocument(uploadingDocument)}" id="registerButton"/>
+    </div>
+    </fieldset>
+
+
+    </s:validateAll>
+</h:form>
+        </rich:panel>
     </ui:define>
-
 </ui:composition>

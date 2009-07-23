@@ -1,19 +1,33 @@
 package com.thoughtDocs.model;
 
+import com.thoughtDocs.model.impl.s3.RepositoryImpl;
+
+import java.net.MalformedURLException;
+import java.io.IOException;
+
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 9, 2009
  * Time: 10:50:33 PM
  */
 public interface Document {
-    public Repository getRepository();
+    Repository getRepository();
 
     /**
-     *
      * @return the name of the document that is unique under one repository
      */
-    public String getName();
-    void delete();
+    String getName();
+
+    void delete() throws IOException;
 
     String getSignedURL();
+
+    byte[] getData();
+
+    void setData(byte[] data);
+
+    String getContentType();
+
+    void setContentType(String contentType);
+
 }

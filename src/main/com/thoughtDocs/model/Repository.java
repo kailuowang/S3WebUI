@@ -3,6 +3,7 @@ package com.thoughtDocs.model;
 import java.util.Collection;
 import java.util.List;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -14,7 +15,9 @@ public interface Repository {
 
     List<Document> getDocuments() throws IOException;
 
+    void addDocument(Document doc) throws IOException;
+    
     Account getAccount();
 
-    void delete();
+    void delete() throws IOException;
 }

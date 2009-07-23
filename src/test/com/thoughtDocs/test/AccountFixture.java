@@ -22,7 +22,7 @@ import java.util.Collection;
 public class AccountFixture {
 
     @Test
-    public void getRespositories() throws Exception {
+    public void testGetRespositories() throws Exception {
 
         final String repoName = "mockBucket";
         final String repo2Name = "mockBucket2";
