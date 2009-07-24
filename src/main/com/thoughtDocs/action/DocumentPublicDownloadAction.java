@@ -67,7 +67,7 @@ public class DocumentPublicDownloadAction {
 
         if(password == null || !password.equals( doc.getPassword()) )
         {
-            statusMessages.add("Inccrrect password, please try again");
+            statusMessages.add("Inccrrect password#{doc.password}, please try again");
             return;
         }
 

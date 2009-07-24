@@ -14,11 +14,12 @@
         <rich:panel>
             <f:facet name="header">ThoughtDocs File Download</f:facet>
             <h:form id="download-form">
-                <span class="error"><h:messages globalOnly="true"/></span>
-
+                <span class="error"></span>
+                <br />
                 <div>
                     <h:outputLabel for="password">
-                     You are trying to download #{documentPublicDownloadAction.filename}, please enter password
+                     You are trying to download <b>#{documentPublicDownloadAction.filename}</b>,
+                        please enter password
                     </h:outputLabel>
                     <h:outputLabel for="password">Password:</h:outputLabel>
                     <h:inputSecret id="password" value="#{documentPublicDownloadAction.password}"/>

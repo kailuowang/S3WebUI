@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,7 +31,7 @@ public class DocumentFixture extends FixtureBase {
         String randomString = randomString();
         doc.setName(randomString);
         doc.setData(TEST_DATA.getBytes());
-        defaultRepository.addDocument(doc);
+        doc.upload( defaultRepository);
         Assert.assertEquals(defaultRepository.getDocuments().size(), oldSize + 1);
         doc.refresh();
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
@@ -43,7 +44,7 @@ public class DocumentFixture extends FixtureBase {
         } catch (NoSuchAlgorithmException e) {
             throw new UnknownError(e.getMessage());
         }
-        random.setSeed(10);
+        random.setSeed(new Date().getTime());
         String randomString = String.valueOf(random.nextLong());
         return randomString;
     }
@@ -53,7 +54,7 @@ public class DocumentFixture extends FixtureBase {
         DocumentImpl doc = new DocumentImpl();
         doc.setName(randomString());
         doc.setData(TEST_DATA.getBytes());
-        defaultRepository.addDocument(doc);
+        doc.upload( defaultRepository);
         int oldSize = defaultRepository.getDocuments().size();
         doc.delete();
         Assert.assertEquals(defaultRepository.getDocuments().size(), oldSize - 1);
@@ -64,17 +65,14 @@ public class DocumentFixture extends FixtureBase {
         DocumentImpl doc = new DocumentImpl();
         doc.setName(randomString());
         doc.setData(TEST_DATA.getBytes());
-        defaultRepository.addDocument(doc);
         String pass = "pass";
         doc.setPassword(pass);
+        doc.upload(defaultRepository);
+        doc.setPassword("");
+        doc.refresh();
         Assert.assertEquals(doc.getPassword(), pass);
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
-        pass = "pass2";
-        doc.setPassword(pass);
-        Assert.assertEquals(doc.getPassword(), pass);
-        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
-
-
+       // doc.delete();
     }
 }
 

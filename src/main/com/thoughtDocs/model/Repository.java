@@ -15,8 +15,7 @@ public interface Repository {
 
     List<Document> getDocuments() throws IOException;
 
-    void addDocument(Document doc) throws IOException;
-    
+      
     Account getAccount();
 
     void delete() throws IOException;

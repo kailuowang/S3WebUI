@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.net.MalformedURLException;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -31,8 +30,7 @@ public class DocumentImpl implements Document, Serializable {
     private String contentType;
     private final String AMAZON_HEADER_PREFIX = "x-amz-";
     private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
-
-
+    private String password;
 
     public String getContentType() {
         return contentType;
@@ -88,21 +86,39 @@ public class DocumentImpl implements Document, Serializable {
     }
 
     public String getPassword() throws IOException {
-        List list = (List) connection.head(getRepository().getName(), getName(), null).object.metadata.get(PUBLIC_PASSWORD_META_KEY);
+        if (password == null && repository != null) {
+            password = getPasswordFrom(connection.head(getRepository().getName(),getName(),null).object);
 
-        return (String) list.get(0);
+        }
+
+        return password;
     }
 
+
     public void setPassword(String password) throws IOException {
-        Map meta = new TreeMap();
-        meta.put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(new String[]{password}));
-        Response response = connection.put(getRepository().getName(), getName(), new S3Object(null, meta), null);
+        this.password = password;
+    }
+
+    public void upload(Repository repo) throws IOException {
+        setRepository(repo);
+        S3Object object = createObject();
+        Response response = connection.put(getRepository().getName(), getName(), object, null);
         response.assertSuccess();
+    }
+
+    private S3Object createObject() {
+        Map meta = null;
+        if (password != null) {
+            meta = new TreeMap();
+            meta.put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(new String[]{password}));
+        }
+        return new S3Object(getData(), meta);
     }
 
     public void refresh() throws IOException {
         S3Object object = connection.get(getRepository().getName(), getName(), null).object;
         data = object.data;
+        password = getPasswordFrom(object);
     }
 
 
@@ -112,6 +128,13 @@ public class DocumentImpl implements Document, Serializable {
 
     public long getSize() {
         return listEntry.size;
+    }
+
+    private String getPasswordFrom(S3Object object) {
+        Object passwords = object.metadata.get(PUBLIC_PASSWORD_META_KEY);
+        if (passwords == null)
+            return null;
+        return (String) ((List) passwords).get(0);
     }
 
 }

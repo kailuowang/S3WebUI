@@ -33,4 +33,6 @@ public interface Document {
     String getPassword() throws IOException;
 
     void setPassword(String password) throws IOException;
+
+    void upload(Repository repo) throws IOException;
 }

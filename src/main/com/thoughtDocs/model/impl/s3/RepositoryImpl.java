@@ -53,12 +53,7 @@ public class RepositoryImpl implements Repository, Serializable {
         getAWSAuthConnection().deleteBucket(getName(), null);
     }
 
-    public void addDocument(Document doc) throws IOException {
-        S3Object object = new S3Object(doc.getData(), null);
-        Response response = getAWSAuthConnection().put(this.getName(), doc.getName(), object, null);
-        ((DocumentImpl)doc).setRepository(this);
-        response.assertSuccess();((DocumentImpl)doc).setRepository(this);
-    }
+ 
 
     public boolean equals(Object o) {
         if (this == o) return true;

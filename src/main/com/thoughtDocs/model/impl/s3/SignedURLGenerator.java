@@ -15,10 +15,11 @@ public class SignedURLGenerator {
 
     public SignedURLGenerator(QueryStringAuthGenerator generator) {
         this.generator = generator;
-        generator.setExpiresIn(10000);
+
     }
 
     public String getSignedURL(Document document) {
+        generator.setExpiresIn(60000);
         return generator.get(document.getRepository().getName(), document.getName(), null);
     }
 

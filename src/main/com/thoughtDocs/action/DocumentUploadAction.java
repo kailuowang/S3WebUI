@@ -6,6 +6,7 @@ import com.thoughtDocs.model.Repository;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Out;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
@@ -28,12 +29,13 @@ public class DocumentUploadAction implements Serializable {
 
     @In
     private Repository defaultRepository;
+
     private String password;
 
 
     public void upload(Document doc) throws IOException {
-        defaultRepository.addDocument(doc);
         doc.setPassword(password);
+        doc.upload(defaultRepository);
         documentListAction.getDocuments();
     }
 
