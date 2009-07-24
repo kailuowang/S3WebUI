@@ -22,7 +22,7 @@ import java.util.List;
  * Time: 3:19:13 PM
  * To change this template use File | Settings | File Templates.
  */
-@Scope(ScopeType.SESSION)
+@Scope(ScopeType.CONVERSATION)
 @Name("documentListAction")
 public class DocumentListAction implements Serializable {
 
@@ -55,7 +55,7 @@ public class DocumentListAction implements Serializable {
 
     public void delete(Document doc) throws IOException {
        doc.delete();
-        getDocuments();
+       getDocuments();
     }
 
 }

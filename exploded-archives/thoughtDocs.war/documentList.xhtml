@@ -10,7 +10,7 @@
                 template="layout/template.xhtml">
 
     <ui:define name="body">
-        <rich:panel>
+        <rich:panel id="documentsPanel">
             <f:facet name="header">Documents</f:facet>
             <h:dataTable id="documents" value="#{documents}"
                          var="doc" rendered="#{documents != null and documents.size>0}">
@@ -18,7 +18,6 @@
                     <f:facet id="NameFacet" name="header">Name</f:facet>
                     #{doc.name}
                 </h:column>
-
                 <h:column id="column5">
                     <f:facet id="ActionFacet" name="header">Action</f:facet>
                     <s:link id="download" value="Download"
@@ -30,28 +29,28 @@
         </rich:panel>
         <rich:panel>
             <f:facet name="header">upload new file</f:facet>
-
-<h:form id="registration-form" enctype="multipart/form-data">
-    <span class="error"><h:messages globalOnly="true"/></span>
-    <s:validateAll>
-    <fieldset>
-    <legend>Enter file to upload</legend>
-    <div>
-        <s:fileUpload id="newFile"
-            data="#{uploadingDocument.data}" accept="image/*"
-            contentType="#{uploadingDocument.contentType}"
-            fileName="#{uploadingDocument.name}" fileSize="#{uploadingDocument.size}"
-            size="40" maxlength="40" required="true"/>
-    </div>
-    <div>
-        <h:commandButton value="Upload"
-            action="#{defaultRepository.addDocument(uploadingDocument)}" id="registerButton"/>
-    </div>
-    </fieldset>
-
-
-    </s:validateAll>
-</h:form>
+            <h:form id="uploadForm" enctype="multipart/form-data">
+                <span class="error"><h:messages globalOnly="true"/></span>
+                <s:validateAll>
+                    <fieldset>
+                        <legend>Enter file to upload</legend>
+                        <div>
+                            <s:fileUpload id="newFile"
+                                          data="#{uploadingDocument.data}" accept="image/*"
+                                          contentType="#{uploadingDocument.contentType}"
+                                          fileName="#{uploadingDocument.name}" fileSize="#{uploadingDocument.size}"
+                                          size="40" maxlength="40" required="true"/>
+                            <h:outputLabel for="username">Password:</h:outputLabel>
+                            <h:inputSecret id="password" value="#{documentUploadAction.password}"/>
+                        </div>
+                        <div>
+                            <h:commandButton value="Upload"
+                                             action="#{documentUploadAction.upload(uploadingDocument)}"
+                                             reRender="documentsPanel" id="uploadButton"/>
+                        </div>
+                    </fieldset>
+                </s:validateAll>
+            </h:form>
         </rich:panel>
     </ui:define>
 </ui:composition>
