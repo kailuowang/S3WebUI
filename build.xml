@@ -211,7 +211,7 @@
             <filterset refid="profile"/>
         </copy>
 
-        <copy tofile="${war.dir}/WEB-INF/classes/META-INF/persistence.xml" 
+        <copy tofile="${war.dir}/WEB-INF/classes/META-INF/persistence.xml"
               file="${basedir}/resources/META-INF/persistence-${profile}.xml">
             <filterset refid="persistence"/>
         </copy>
