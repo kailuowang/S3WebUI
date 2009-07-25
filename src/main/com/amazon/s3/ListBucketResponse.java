@@ -9,6 +9,12 @@
 
 package com.amazon.s3;
 
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.text.ParseException;
@@ -16,12 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SimpleTimeZone;
-
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-import org.xml.sax.SAXException;
 
 
 /**
@@ -63,19 +63,21 @@ public class ListBucketResponse extends Response {
 
     /**
      * Indicates what to use as a marker for subsequent list requests in the event
-     * that the results are truncated.  Present only when a delimiter is specified.  
+     * that the results are truncated.  Present only when a delimiter is specified.
      * Null if request fails.
      */
     public String nextMarker = null;
 
     /**
-     * A List of ListEntry objects representing the objects in the given bucket.  
+     * A List of ListEntry objects representing the objects in the given bucket.
      * Null if the request fails.
      */
     public List entries = null;
-    public List getEntries(){
+
+    public List getEntries() {
         return entries;
     }
+
     /**
      * A List of CommonPrefixEntry objects representing the common prefixes of the
      * keys that matched up to the delimiter.  Null if the request fails.
@@ -148,7 +150,7 @@ public class ListBucketResponse extends Response {
                 this.keyEntry = new ListEntry();
             } else if (name.equals("Owner")) {
                 this.keyEntry.owner = new Owner();
-            } else if (name.equals("CommonPrefixes")){
+            } else if (name.equals("CommonPrefixes")) {
                 this.commonPrefixEntry = new CommonPrefixEntry();
             }
         }
@@ -156,7 +158,7 @@ public class ListBucketResponse extends Response {
         public void endElement(String uri, String name, String qName) {
             if (name.equals("Name")) {
                 this.name = this.currText.toString();
-            } 
+            }
             // this prefix is the one we echo back from the request
             else if (name.equals("Prefix") && this.isEchoedPrefix) {
                 this.prefix = this.currText.toString();
@@ -198,7 +200,7 @@ public class ListBucketResponse extends Response {
             else if (name.equals("Prefix")) {
                 this.commonPrefixEntry.prefix = this.currText.toString();
             }
-            if(this.currText.length() != 0)
+            if (this.currText.length() != 0)
                 this.currText = new StringBuffer();
         }
 
@@ -222,7 +224,7 @@ public class ListBucketResponse extends Response {
             return this.delimiter;
         }
 
-        public int getMaxKeys(){
+        public int getMaxKeys() {
             return this.maxKeys;
         }
 

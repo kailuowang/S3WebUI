@@ -1,10 +1,11 @@
 package com.thoughtDocs.action;
 
-import com.thoughtDocs.model.Account;
-import com.thoughtDocs.model.Repository;
-import com.thoughtDocs.model.Document;
-import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import com.amazon.s3.ListEntry;
+import com.thoughtDocs.model.Account;
+import com.thoughtDocs.model.Document;
+import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.impl.s3.DocumentImpl;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
@@ -12,7 +13,6 @@ import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.web.RequestParameter;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
-import org.jboss.seam.ScopeType;
 
 import java.io.IOException;
 
@@ -40,9 +40,9 @@ public class DocumentPublicDownloadAction {
     private Repository defaultRepository;
 
     @RequestParameter
-    void setKey(String newkey){
-      if(newkey != null)
-          key = newkey;
+    void setKey(String newkey) {
+        if (newkey != null)
+            key = newkey;
     }
 
     private String password;
@@ -54,8 +54,8 @@ public class DocumentPublicDownloadAction {
     public String getPassword() {
         return password;
     }
-    
-    public String getFilename(){
+
+    public String getFilename() {
         return key;
     }
 
@@ -65,8 +65,7 @@ public class DocumentPublicDownloadAction {
         listEntry.key = key;
         Document doc = new DocumentImpl(defaultRepository, listEntry);
 
-        if(password == null || !password.equals( doc.getPassword()) )
-        {
+        if (password == null || !password.equals(doc.getPassword())) {
             statusMessages.add("Inccrrect password#{doc.password}, please try again");
             return;
         }

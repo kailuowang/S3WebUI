@@ -6,7 +6,6 @@ import com.thoughtDocs.model.Repository;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Out;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
@@ -23,7 +22,7 @@ public class DocumentUploadAction implements Serializable {
     private StatusMessages statusMessages;
     @In
     DocumentListAction documentListAction;
-    
+
     @In
     private Account account;
 

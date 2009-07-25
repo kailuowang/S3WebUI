@@ -17,7 +17,12 @@
                 <h:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
                     #{doc.name}
-                </h:column><h:column id="column11">
+                </h:column>
+                <h:column id="column6">
+                    <f:facet id="publicurl" name="header">Public URL</f:facet>
+                    #{doc.publicUrl}
+                </h:column>
+                <h:column id="column11">
                     <f:facet id="PasswordFacet" name="header">Password</f:facet>
                     #{doc.password}
                 </h:column>
@@ -28,12 +33,12 @@
                     <span>&nbsp;</span>
                     <s:link id="delete" value="Delete" action="#{documentListAction.delete(doc)}"/>
                 </h:column>
+
             </h:dataTable>
         </rich:panel>
         <rich:panel>
             <f:facet name="header">upload new file</f:facet>
             <h:form id="uploadForm" enctype="multipart/form-data">
-                <span class="error"><h:messages globalOnly="true"/></span>
                 <s:validateAll>
                     <fieldset>
                         <legend>Enter file to upload</legend>

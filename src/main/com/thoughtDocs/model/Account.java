@@ -1,7 +1,7 @@
 package com.thoughtDocs.model;
 
-import java.util.List;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Kailuo "Kai" Wang

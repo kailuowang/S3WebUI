@@ -87,7 +87,7 @@ public class DocumentImpl implements Document, Serializable {
 
     public String getPassword() throws IOException {
         if (password == null && repository != null) {
-            password = getPasswordFrom(connection.head(getRepository().getName(),getName(),null).object);
+            password = getPasswordFrom(connection.head(getRepository().getName(), getName(), null).object);
 
         }
 
@@ -135,6 +135,18 @@ public class DocumentImpl implements Document, Serializable {
         if (passwords == null)
             return null;
         return (String) ((List) passwords).get(0);
+    }
+
+    /**
+     *
+     * @return public url for external user to download (password needed)
+     */
+    public String getPublicUrl(){
+         return "http://thoughtfiles.com/" + getName() ;
+    }
+
+    public void setPublicUrl(String url){
+        //this is readonly
     }
 
 }

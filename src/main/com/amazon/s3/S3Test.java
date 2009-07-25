@@ -7,32 +7,18 @@
 //  this software code. (c) 2006-2007 Amazon Digital Services, Inc. or its
 //  affiliates.
 
+import com.amazon.s3.*;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import com.amazon.s3.AWSAuthConnection;
-import com.amazon.s3.CallingFormat;
-import com.amazon.s3.GetResponse;
-import com.amazon.s3.ListAllMyBucketsResponse;
-import com.amazon.s3.ListBucketResponse;
-import com.amazon.s3.ListEntry;
-import com.amazon.s3.QueryStringAuthGenerator;
-import com.amazon.s3.Response;
-import com.amazon.s3.S3Object;
-import com.amazon.s3.Utils;
+import java.util.*;
 
 public class S3Test {
     static final String awsAccessKeyId = "<INSERT YOUR AWS ACCESS KEY ID HERE>";
     static final String awsSecretAccessKey = "<INSERT YOUR AWS SECRET ACCESS KEY HERE>";
-    
+
     // for subdomains (bucket.s3.amazonaws.com), 
     // the bucket name must be lowercase since DNS is case-insensitive
     static final String bucketName = awsAccessKeyId.toLowerCase() + "-test-bucket";
@@ -45,7 +31,7 @@ public class S3Test {
             System.err.println("Please examine S3Test.java and update it with your credentials");
             System.exit(-1);
         }
-        
+
         // test all operation for both regular and vanity domains
         // regular: http://s3.amazonaws.com/key
         // subdomain: http://bucket.s3.amazonaws.com/key
@@ -56,8 +42,7 @@ public class S3Test {
         test(CallingFormat.getSubdomainCallingFormat(), AWSAuthConnection.LOCATION_EU, true, Utils.DEFAULT_HOST);
     }
 
-    private static void test(CallingFormat format, String location, boolean secure, String server) throws Exception
-    {
+    private static void test(CallingFormat format, String location, boolean secure, String server) throws Exception {
         assertionCount = 0;
         System.out.println((secure ? "http" : "https") + " / " + server + " / " +
                 ((location == null) ? "<no-location>" : location) + " / " +
@@ -65,8 +50,8 @@ public class S3Test {
 
         AWSAuthConnection conn = new AWSAuthConnection(awsAccessKeyId, awsSecretAccessKey, secure, server, format);
         QueryStringAuthGenerator generator =
-            new QueryStringAuthGenerator(awsAccessKeyId, awsSecretAccessKey, secure, server, format);
-        
+                new QueryStringAuthGenerator(awsAccessKeyId, awsSecretAccessKey, secure, server, format);
+
         Response response = conn.createBucket(bucketName, location, null);
         assertEquals(
                 "couldn't create bucket",
@@ -127,7 +112,7 @@ public class S3Test {
         verifyBucketResponseParameters(listBucketResponse, bucketName, "", "", UnspecifiedMaxKeys, "/", false, null);
 
         // root "directory" with a max-keys of "1"
-        listBucketResponse = conn.listBucket(bucketName, null, null, new Integer( 1 ), "/", null);
+        listBucketResponse = conn.listBucket(bucketName, null, null, new Integer(1), "/", null);
         assertEquals(
                 "couldn't get list",
                 HttpURLConnection.HTTP_OK,
@@ -137,7 +122,7 @@ public class S3Test {
         verifyBucketResponseParameters(listBucketResponse, bucketName, "", "", 1, "/", true, "example.txt");
 
         // root "directory" with a max-keys of "2"
-        listBucketResponse = conn.listBucket(bucketName, null, null, new Integer( 2 ), "/", null);
+        listBucketResponse = conn.listBucket(bucketName, null, null, new Integer(2), "/", null);
         assertEquals(
                 "couldn't get list",
                 HttpURLConnection.HTTP_OK,
@@ -146,7 +131,7 @@ public class S3Test {
         assertEquals("Unexpected common prefix size", 1, listBucketResponse.commonPrefixEntries.size());
         verifyBucketResponseParameters(listBucketResponse, bucketName, "", "", 2, "/", true, "test/");
         String marker = listBucketResponse.nextMarker;
-        listBucketResponse = conn.listBucket(bucketName, null, marker, new Integer( 2 ), "/", null);
+        listBucketResponse = conn.listBucket(bucketName, null, marker, new Integer(2), "/", null);
         assertEquals(
                 "couldn't get list",
                 HttpURLConnection.HTTP_OK,
@@ -189,7 +174,7 @@ public class S3Test {
                 response.connection.getResponseCode());
 
         Map metadata = new HashMap();
-        metadata.put("title", Arrays.asList(new String[] { "title" }));
+        metadata.put("title", Arrays.asList(new String[]{"title"}));
         response = conn.put(bucketName, key, new S3Object(text.getBytes(), metadata), null);
         assertEquals(
                 "couldn't put complex object",
@@ -206,20 +191,20 @@ public class S3Test {
         assertEquals(
                 "didn't get the right metadata back",
                 1,
-                ((List)getResponse.object.metadata.get("title")).size());
+                ((List) getResponse.object.metadata.get("title")).size());
         assertEquals(
                 "didn't get the right metadata back",
                 "title",
-                ((List)getResponse.object.metadata.get("title")).get(0));
+                ((List) getResponse.object.metadata.get("title")).get(0));
         assertEquals(
                 "didn't get the right content-length",
-                ""+text.length(),
+                "" + text.length(),
                 getResponse.connection.getHeaderField("Content-Length"));
 
 
         Map metadataWithSpaces = new HashMap();
         String titleWithSpaces = " \t  title with leading and trailing spaces    ";
-        metadataWithSpaces.put("title", Arrays.asList(new String[] { titleWithSpaces }));
+        metadataWithSpaces.put("title", Arrays.asList(new String[]{titleWithSpaces}));
         response = conn.put(bucketName, key, new S3Object(text.getBytes(), metadataWithSpaces), null);
         assertEquals(
                 "couldn't put metadata with leading and trailing spaces",
@@ -235,11 +220,11 @@ public class S3Test {
         assertEquals(
                 "didn't get the right metadata back",
                 1,
-                ((List)getResponse.object.metadata.get("title")).size());
+                ((List) getResponse.object.metadata.get("title")).size());
         assertEquals(
                 "didn't get the right metadata back",
                 titleWithSpaces.trim(),
-                ((List)getResponse.object.metadata.get("title")).get(0));
+                ((List) getResponse.object.metadata.get("title")).get(0));
 
         String weirdKey = "&=//%# ++++";
         response = conn.put(bucketName, weirdKey, new S3Object(text.getBytes(), null), null);
@@ -290,7 +275,7 @@ public class S3Test {
         getResponse = conn.getBucketLogging(bucketName, null);
         assertEquals(
                 "couldn't get bucket logging config",
-                HttpURLConnection.HTTP_OK, 
+                HttpURLConnection.HTTP_OK,
                 getResponse.connection.getResponseCode());
 
         byte[] bucketLogging = getResponse.object.data;
@@ -302,18 +287,18 @@ public class S3Test {
                 response.connection.getResponseCode());
 
         // end bucket logging tests
-        
+
         // bucket request payment tests
         getResponse = conn.getBucketRequestPayment(bucketName, null);
         assertEquals(
                 "couldn't get bucket request payment config",
-                HttpURLConnection.HTTP_OK, 
+                HttpURLConnection.HTTP_OK,
                 getResponse.connection.getResponseCode());
 
         byte[] bucketRequestPayment = getResponse.object.data;
 
         String originalRequestPaymentString = new String(bucketRequestPayment);
-        String requestPaymentString = originalRequestPaymentString.replaceFirst("BucketOwner", "Requester"); 
+        String requestPaymentString = originalRequestPaymentString.replaceFirst("BucketOwner", "Requester");
 
         // Change the request payment to requester
         response = conn.putBucketRequestPayment(bucketName, requestPaymentString, null);
@@ -321,25 +306,25 @@ public class S3Test {
                 "couldn't put bucket request payment config",
                 HttpURLConnection.HTTP_OK,
                 response.connection.getResponseCode());
-        
+
 
         Map headers = new TreeMap();
-        headers.put("x-amz-request-payer", Arrays.asList(new String[] { "requester" }));
-        
+        headers.put("x-amz-request-payer", Arrays.asList(new String[]{"requester"}));
+
         // put a simple object in request pays bucket
         response = conn.put(bucketName, key, new S3Object(text.getBytes(), null), headers);
         assertEquals(
                 "couldn't put simple object in a requester paid bucket",
                 HttpURLConnection.HTTP_OK,
                 response.connection.getResponseCode());
-        
+
         // Change back requestPayment to bucket owner
         response = conn.putBucketRequestPayment(bucketName, originalRequestPaymentString, null);
         assertEquals(
                 "couldn't put bucket request payment config",
                 HttpURLConnection.HTTP_OK,
                 response.connection.getResponseCode());
-        
+
         // end bucket request payment tests
 
         listBucketResponse = conn.listBucket(bucketName, null, null, null, null);
@@ -350,8 +335,8 @@ public class S3Test {
         List entries = listBucketResponse.entries;
         assertEquals("didn't get back the right number of entries", 2, entries.size());
         // depends on weirdKey < $key
-        assertEquals("first key isn't right", weirdKey, ((ListEntry)entries.get(0)).key);
-        assertEquals("second key isn't right", key, ((ListEntry)entries.get(1)).key);
+        assertEquals("first key isn't right", weirdKey, ((ListEntry) entries.get(0)).key);
+        assertEquals("second key isn't right", key, ((ListEntry) entries.get(1)).key);
         verifyBucketResponseParameters(listBucketResponse, bucketName, "", "", UnspecifiedMaxKeys, null, false, null);
 
         listBucketResponse = conn.listBucket(bucketName, null, null, new Integer(1), null);
@@ -365,8 +350,8 @@ public class S3Test {
                 listBucketResponse.entries.size());
         verifyBucketResponseParameters(listBucketResponse, bucketName, "", "", 1, null, true, null);
 
-        for (Iterator it = entries.iterator(); it.hasNext(); ) {
-            ListEntry entry = (ListEntry)it.next();
+        for (Iterator it = entries.iterator(); it.hasNext();) {
+            ListEntry entry = (ListEntry) it.next();
             response = conn.delete(bucketName, entry.key, null);
             assertEquals(
                     "couldn't delete entry",
@@ -470,15 +455,15 @@ public class S3Test {
         System.out.println("OK (" + assertionCount + " tests passed)");
     }
 
-    private static void verifyBucketResponseParameters( ListBucketResponse listBucketResponse,
-                                                           String bucketName, String prefix, String marker,
-                                                           int maxKeys, String delimiter, boolean isTruncated,
-                                                           String nextMarker ) {
+    private static void verifyBucketResponseParameters(ListBucketResponse listBucketResponse,
+                                                       String bucketName, String prefix, String marker,
+                                                       int maxKeys, String delimiter, boolean isTruncated,
+                                                       String nextMarker) {
         assertEquals("Bucket name should match.", bucketName, listBucketResponse.name);
         assertEquals("Bucket prefix should match.", prefix, listBucketResponse.prefix);
         assertEquals("Bucket marker should match.", marker, listBucketResponse.marker);
         assertEquals("Bucket delimiter should match.", delimiter, listBucketResponse.delimiter);
-        if ( UnspecifiedMaxKeys != maxKeys ) {
+        if (UnspecifiedMaxKeys != maxKeys) {
             assertEquals("Bucket max-keys should match.", maxKeys, listBucketResponse.maxKeys);
         }
         assertEquals("Bucket should not be truncated.", isTruncated, listBucketResponse.isTruncated);
@@ -492,22 +477,22 @@ public class S3Test {
             throw new RuntimeException(message + ": expected " + expected + " but got " + actual);
         }
     }
-    
+
     private static void assertEquals(String message, byte[] expected, byte[] actual) {
         assertionCount++;
-        if (! Arrays.equals(expected, actual)) {
+        if (!Arrays.equals(expected, actual)) {
             throw new RuntimeException(
                     message +
-                    ": expected " +
-                    new String(expected) +
-                    " but got " +
-                    new String(actual));
+                            ": expected " +
+                            new String(expected) +
+                            " but got " +
+                            new String(actual));
         }
     }
 
     private static void assertEquals(String message, Object expected, Object actual) {
         assertionCount++;
-        if (expected != actual && (actual == null || ! actual.equals(expected))) {
+        if (expected != actual && (actual == null || !actual.equals(expected))) {
             throw new RuntimeException(message + ": expected " + expected + " but got " + actual);
         }
     }
@@ -520,20 +505,18 @@ public class S3Test {
     }
 
     private static void checkURL(String url, String method, int code, String message)
-        throws MalformedURLException, IOException
-    {
+            throws MalformedURLException, IOException {
         checkURL(url, method, code, message, null);
     }
 
     private static void checkURL(String url, String method, int code, String message, String data)
-        throws MalformedURLException, IOException
-    {
+            throws MalformedURLException, IOException {
         if (data == null) data = "";
 
-        HttpURLConnection connection = (HttpURLConnection)new URL(url).openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod(method);
         if ("PUT".equals(method)) {
-            connection.setRequestProperty("Content-Length", ""+data.getBytes().length);
+            connection.setRequestProperty("Content-Length", "" + data.getBytes().length);
             connection.setDoOutput(true);
             connection.getOutputStream().write(data.getBytes());
         } else {

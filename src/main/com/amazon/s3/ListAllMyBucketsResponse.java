@@ -9,6 +9,12 @@
 
 package com.amazon.s3;
 
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.text.ParseException;
@@ -16,12 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SimpleTimeZone;
-
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 
 /**
  * Returned by AWSAuthConnection.listAllMyBuckets().
@@ -37,7 +37,8 @@ public class ListAllMyBucketsResponse extends Response {
         super(connection);
         if (connection.getResponseCode() < 400) {
             try {
-                XMLReader xr = Utils.createXMLReader();;
+                XMLReader xr = Utils.createXMLReader();
+                ;
                 ListAllMyBucketsHandler handler = new ListAllMyBucketsHandler();
                 xr.setContentHandler(handler);
                 xr.setErrorHandler(handler);
@@ -50,7 +51,7 @@ public class ListAllMyBucketsResponse extends Response {
         }
     }
 
-    public List getEntries(){
+    public List getEntries() {
         return entries;
     }
 

@@ -9,8 +9,8 @@
 
 package com.amazon.s3;
 
-import java.net.HttpURLConnection;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 
 /**
  * The parent class of all other Responses.  This class keeps track of the
@@ -24,8 +24,8 @@ public class Response {
     }
 
     public void assertSuccess() throws IOException {
-        if ( connection.getResponseCode() >= 400 )
-                throw new IOException(String.valueOf(connection.getResponseCode())
-                                      + connection.getResponseMessage());
+        if (connection.getResponseCode() >= 400)
+            throw new IOException(String.valueOf(connection.getResponseCode())
+                    + connection.getResponseMessage());
     }
 }

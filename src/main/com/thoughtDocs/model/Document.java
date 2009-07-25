@@ -1,8 +1,5 @@
 package com.thoughtDocs.model;
 
-import com.thoughtDocs.model.impl.s3.RepositoryImpl;
-
-import java.net.MalformedURLException;
 import java.io.IOException;
 
 /**

@@ -27,7 +27,7 @@
     <property name="jboss.domain" value="default"/>
     <property name="deploy.dir" value="${jboss.home}/server/${jboss.domain}/deploy" />
     <property name="war.deploy.dir" value="${deploy.dir}/${project.name}.war" />
-    <property name="packaged.archive" value="${dist.dir}/${project.name}.war"/>
+    <property name="packaged.archive" value="${dist.dir}/ROOT.war"/>
     <property name="testng.jar" value="${basedir}/lib/testng.jar" />
     <property name="javac.debug" value="true" />
     <property name="javac.deprecation" value="false" />
@@ -55,9 +55,7 @@
         <taskdef name="groovyc"
             classname ="org.codehaus.groovy.ant.Groovyc"
             classpathref="build.classpath"/> <!-- really only the groovy jar is necessary -->
-        <delete dir="${basedir}/dist"/>
-
-              <delete dir="${basedir}/exploded-archives"/>
+        
                 
         <mkdir dir="${classes.model.dir}" />
         <mkdir dir="${classes.action.dir}" />

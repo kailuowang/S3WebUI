@@ -35,6 +35,11 @@ public class DocumentFixture extends FixtureBase {
         Assert.assertEquals(defaultRepository.getDocuments().size(), oldSize + 1);
         doc.refresh();
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+        try{
+            doc.delete();
+        }catch( Exception e) {
+           //delete is not tested here.
+        }
     }
 
     private String randomString()  {
@@ -72,7 +77,7 @@ public class DocumentFixture extends FixtureBase {
         doc.refresh();
         Assert.assertEquals(doc.getPassword(), pass);
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
-       // doc.delete();
+        doc.delete();
     }
 }
 

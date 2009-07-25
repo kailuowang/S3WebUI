@@ -12,6 +12,11 @@
                 <redirect view-id="/home.xhtml"/>
             </rule>
         </navigation>
+
+        
+    </page>
+    <page view-id="/documentList.xhtml">
+        <restrict>#{s:hasRole('admin')}</restrict>
     </page>
 
     <exception class="org.jboss.seam.framework.EntityNotFoundException">

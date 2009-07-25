@@ -7,21 +7,16 @@ package com.amazon.s3;//  This software code is made available "AS IS" without w
 //  this software code. (c) 2006-2007 Amazon Digital Services, Inc. or its
 //  affiliates.
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.Arrays;
-
-import com.amazon.s3.AWSAuthConnection;
-import com.amazon.s3.CallingFormat;
-import com.amazon.s3.QueryStringAuthGenerator;
-import com.amazon.s3.S3Object;
 
 public class S3Driver {
 
     static final String awsAccessKeyId = "<INSERT YOUR AWS ACCESS KEY ID HERE>";
     static final String awsSecretAccessKey = "<INSERT YOUR AWS SECRET ACCESS KEY HERE>";
-    
-    
+
+
     // convert the bucket to lowercase for vanity domains
     // the bucket name must be lowercase since DNS is case-insensitive
     static final String bucketName = awsAccessKeyId.toLowerCase() + "-test-bucket";
@@ -35,9 +30,9 @@ public class S3Driver {
         }
 
         AWSAuthConnection conn =
-            new AWSAuthConnection(awsAccessKeyId, awsSecretAccessKey);
+                new AWSAuthConnection(awsAccessKeyId, awsSecretAccessKey);
         QueryStringAuthGenerator generator =
-            new QueryStringAuthGenerator(awsAccessKeyId, awsSecretAccessKey);
+                new QueryStringAuthGenerator(awsAccessKeyId, awsSecretAccessKey);
 
         // Check if the bucket exists.  The high availability engineering of 
         // Amazon S3 is focused on get, put, list, and delete operations. 
@@ -46,8 +41,7 @@ public class S3Driver {
         // delete calls on the high availability code path of your application.
         // It is better to create or delete buckets in a separate initialization
         // or setup routine that you run less often.
-        if (!conn.checkBucketExists(bucketName))
-        {
+        if (!conn.checkBucketExists(bucketName)) {
             System.out.println("----- creating bucket -----");
             System.out.println(conn.createBucket(bucketName, AWSAuthConnection.LOCATION_DEFAULT, null).connection.getResponseMessage());
             // sample creating an EU located bucket.
@@ -64,19 +58,19 @@ public class S3Driver {
         System.out.println("----- putting object -----");
         S3Object object = new S3Object("this is a test".getBytes(), null);
         Map headers = new TreeMap();
-        headers.put("Content-Type", Arrays.asList(new String[] { "text/plain" }));
+        headers.put("Content-Type", Arrays.asList(new String[]{"text/plain"}));
         System.out.println(
                 conn.put(bucketName, keyName, object, headers).connection.getResponseMessage()
-            );
+        );
 
         System.out.println("----- copying object -----");
         // Straight Copy; destination key will be private.
-        conn.copy( bucketName, keyName, bucketName, copiedKeyName, null );
+        conn.copy(bucketName, keyName, bucketName, copiedKeyName, null);
         {
             // Update the metadata; destination key will be private.
             Map updateMetadata = new TreeMap();
             updateMetadata.put("metadata-key", Arrays.asList("this will be the metadata in the copied key"));
-            conn.copy( bucketName, copiedKeyName, bucketName, copiedKeyName, updateMetadata, null );
+            conn.copy(bucketName, copiedKeyName, bucketName, copiedKeyName, updateMetadata, null);
         }
 
         System.out.println("----- listing bucket -----");
@@ -85,7 +79,7 @@ public class S3Driver {
         System.out.println("----- getting object -----");
         System.out.println(
                 new String(conn.get(bucketName, keyName, null).object.data)
-            );
+        );
 
         System.out.println("----- query string auth example -----");
         generator.setExpiresIn(60 * 1000);
@@ -103,23 +97,23 @@ public class S3Driver {
         System.out.println("----- putting object with metadata and public read acl -----");
 
         Map metadata = new TreeMap();
-        metadata.put("blah", Arrays.asList(new String[] { "foo" }));
+        metadata.put("blah", Arrays.asList(new String[]{"foo"}));
         object = new S3Object("this is a publicly readable test".getBytes(), metadata);
 
         headers = new TreeMap();
-        headers.put("x-amz-acl", Arrays.asList(new String[] { "public-read" }));
-        headers.put("Content-Type", Arrays.asList(new String[] { "text/plain" }));
+        headers.put("x-amz-acl", Arrays.asList(new String[]{"public-read"}));
+        headers.put("Content-Type", Arrays.asList(new String[]{"text/plain"}));
 
         System.out.println(
                 conn.put(bucketName, keyName + "-public", object, headers).connection.getResponseMessage()
-            );
+        );
 
         System.out.println("----- anonymous read test -----");
         System.out.println("\nYou should be able to try this in your browser\n");
         System.out.println(generator.makeBareURL(bucketName, keyName + "-public"));
         System.out.print("\npress enter> ");
         System.in.read();
-        
+
         System.out.println("----- path style url example -----");
         System.out.println("\nNon-location-constrained buckets can also be specified as part of the url path.  (This was the original url style supported by S3.)");
         System.out.println("\nTry this url out in your browser (it will only be valid for 60 seconds)\n");
@@ -137,13 +131,13 @@ public class S3Driver {
         System.out.println("----- deleting objects -----");
         System.out.println(
                 conn.delete(bucketName, copiedKeyName, null).connection.getResponseMessage()
-            );
+        );
         System.out.println(
                 conn.delete(bucketName, keyName, null).connection.getResponseMessage()
-            );
+        );
         System.out.println(
                 conn.delete(bucketName, keyName + "-public", null).connection.getResponseMessage()
-            );
+        );
 
         System.out.println("----- listing bucket -----");
         System.out.println(conn.listBucket(bucketName, null, null, null, null).entries);
@@ -154,6 +148,6 @@ public class S3Driver {
         System.out.println("----- deleting bucket -----");
         System.out.println(
                 conn.deleteBucket(bucketName, null).connection.getResponseMessage()
-            );
+        );
     }
 }

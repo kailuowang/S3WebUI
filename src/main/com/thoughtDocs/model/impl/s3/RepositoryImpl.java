@@ -1,6 +1,9 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.amazon.s3.*;
+import com.amazon.s3.AWSAuthConnection;
+import com.amazon.s3.Bucket;
+import com.amazon.s3.ListBucketResponse;
+import com.amazon.s3.ListEntry;
 import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
@@ -53,7 +56,6 @@ public class RepositoryImpl implements Repository, Serializable {
         getAWSAuthConnection().deleteBucket(getName(), null);
     }
 
- 
 
     public boolean equals(Object o) {
         if (this == o) return true;

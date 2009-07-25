@@ -11,6 +11,7 @@ import org.jboss.seam.faces.FacesManager;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
+import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -44,6 +45,7 @@ public class DocumentListAction implements Serializable {
     @DataModelSelection
     private Document doc;
 
+
     @Factory
     public void getDocuments() throws IOException {
         documents = defaultRepository.getDocuments();
@@ -54,8 +56,9 @@ public class DocumentListAction implements Serializable {
     }
 
     public void delete(Document doc) throws IOException {
-       doc.delete();
-       getDocuments();
+        doc.delete();
+        getDocuments();
     }
 
+    
 }

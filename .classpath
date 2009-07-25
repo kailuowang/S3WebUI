@@ -40,5 +40,6 @@
     <classpathentry kind="lib" path="lib/richfaces-api.jar" />
     <classpathentry kind="lib" path="lib/hsqldb.jar"/>
     <classpathentry kind="lib" path="lib/lucene-core.jar" />
+    <classpathentry kind="lib" path="lib/urlrewritefilter.jar" />
     <classpathentry kind="output" path="test-build"/>
 </classpath>
