@@ -30,3 +30,24 @@ darkX.jar
 glassX.jar
 laguna.jar
 urlrewritefilter.jar
+
+#for tomcat deployment
+antlr.jar
+asm.jar
+cglib.jar
+commons-collections.jar
+commons-lang.jar
+commons-logging.jar
+javassist.jar
+jsf-api.jar
+jsf-impl.jar
+jstl.jar
+jta.jar
+dom4j.jar
+hibernate.jar
+hibernate-commons-annotations.jar
+hibernate-annotations.jar
+hibernate-entitymanager.jar
+hibernate-validator.jar
+persistence-api.jar
+
