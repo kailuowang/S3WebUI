@@ -15,6 +15,7 @@ import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,7 +26,7 @@ import java.io.IOException;
  */
 @Scope(ScopeType.SESSION)
 @Name("documentPublicDownloadAction")
-public class DocumentPublicDownloadAction {
+public class DocumentPublicDownloadAction  implements Serializable {
     private String key;
     @Logger
     private Log log;

@@ -9,57 +9,68 @@
             xmlns:web="http://jboss.com/products/seam/web"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation=
-                "http://jboss.com/products/seam/core http://jboss.com/products/seam/core-2.2.xsd
+                    "http://jboss.com/products/seam/core http://jboss.com/products/seam/core-2.2.xsd
                  http://jboss.com/products/seam/persistence http://jboss.com/products/seam/persistence-2.2.xsd
                  http://jboss.com/products/seam/drools http://jboss.com/products/seam/drools-2.2.xsd
                  http://jboss.com/products/seam/bpm http://jboss.com/products/seam/bpm-2.2.xsd
                  http://jboss.com/products/seam/security http://jboss.com/products/seam/security-2.2.xsd
                  http://jboss.com/products/seam/mail http://jboss.com/products/seam/mail-2.2.xsd
                  http://jboss.com/products/seam/web http://jboss.com/products/seam/web-2.2.xsd
-                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.2.xsd">
+                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.2.xsd"
+            xmlns:transaction="http://jboss.com/products/seam/transaction">
 
-   <core:init debug="@debug@" jndi-pattern="@jndiPattern@"/>
+    <!--<core:init debug="@debug@" jndi-pattern="@jndiPattern@"/>-->
 
-   <core:manager concurrent-request-timeout="500"
-                 conversation-timeout="120000"
-                 conversation-id-parameter="cid"
-                 parent-conversation-id-parameter="pid"/>
+    <core:manager concurrent-request-timeout="500"
+                  conversation-timeout="120000"
+                  conversation-id-parameter="cid"
+                  parent-conversation-id-parameter="pid"/>
 
-   <!-- Make sure this URL pattern is the same as that used by the Faces Servlet -->
-   <web:hot-deploy-filter url-pattern="*.seam"/>
-   <web:multipart-filter create-temp-files="true" url-pattern="*.seam"/> 
+    <!-- Make sure this URL pattern is the same as that used by the Faces Servlet -->
+    <!--<web:hot-deploy-filter url-pattern="*.seam"/>-->
+    <web:multipart-filter create-temp-files="true" url-pattern="*.seam"/>
     <component class="org.jboss.seam.web.MultipartFilter">
-      <property name="createTempFiles">true</property>
-      <property name="maxRequestSize">1000000</property>
+        <property name="createTempFiles">true</property>
+        <property name="maxRequestSize">1000000</property>
     </component>
-    
-   <persistence:entity-manager-factory name="entityManagerFactory"
-                      persistence-unit-name="thoughtDocs"
-                                  installed="@seamBootstrapsPu@"/>
 
-   <persistence:managed-persistence-context name="entityManager" auto-create="true"
-                          entity-manager-factory="@seamEmfRef@"
-                      persistence-unit-jndi-name="@puJndiName@"/>
+    <!--<persistence:entity-manager-factory name="entityManagerFactory"-->
+    <!--persistence-unit-name="thoughtDocs"-->
+    <!--installed="@seamBootstrapsPu@"/>-->
 
-   <drools:rule-base name="securityRules">
-      <drools:rule-files><value>/security.drl</value></drools:rule-files>
-   </drools:rule-base>
+    <!--<persistence:managed-persistence-context name="entityManager" auto-create="true"-->
+    <!--entity-manager-factory="@seamEmfRef@"-->
+    <!--persistence-unit-jndi-name="@puJndiName@"/>-->
 
-   <security:rule-based-permission-resolver security-rules="#{securityRules}"/>
+    <!--<drools:rule-base name="securityRules">-->
+         <!--<drools:rule-files>-->
+             <!--<value>/security.drl</value>-->
+         <!--</drools:rule-files>-->
+     <!--</drools:rule-base>-->
 
-   <security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true"/>
+     <!--<security:rule-based-permission-resolver security-rules="#{securityRules}"/>-->
+    <!---->
+    <!--<event type="org.jboss.seam.security.notLoggedIn">-->
+        <!--<action execute="#{redirect.captureCurrentView}"/>-->
+    <!--</event>-->
+    <!--<event type="org.jboss.seam.security.loginSuccessful">-->
+        <!--<action execute="#{redirect.returnToCapturedView}"/>-->
+    <!--</event>-->
 
-   <event type="org.jboss.seam.security.notLoggedIn">
-      <action execute="#{redirect.captureCurrentView}"/>
-   </event>
-   <event type="org.jboss.seam.security.loginSuccessful">
-      <action execute="#{redirect.returnToCapturedView}"/>
-   </event>
+    <!--<mail:mail-session host="localhost" port="25"/>-->
+    <transaction:entity-transaction entity-manager="#{em}"/>
 
-   <mail:mail-session host="localhost" port="25"/>
+    <persistence:entity-manager-factory name="thoughtDocs"/>
 
-   <!-- For use with jBPM pageflow or process management -->
-   <!--
+    <persistence:managed-persistence-context name="em"
+                                             auto-create="true"
+                                             entity-manager-factory="#{thoughtDocs}"/>
+
+    <security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true"/>
+
+
+    <!-- For use with jBPM pageflow or process management -->
+    <!--
    <bpm:jbpm>
       <bpm:process-definitions></bpm:process-definitions>
       <bpm:pageflow-definitions></bpm:pageflow-definitions>

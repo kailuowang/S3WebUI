@@ -3,6 +3,8 @@ package com.thoughtDocs.model.impl.s3;
 import com.amazon.s3.QueryStringAuthGenerator;
 import com.thoughtDocs.model.Document;
 
+import java.io.Serializable;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ThoughtWorks
@@ -10,7 +12,7 @@ import com.thoughtDocs.model.Document;
  * Time: 4:29:52 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SignedURLGenerator {
+public class SignedURLGenerator implements Serializable {
     QueryStringAuthGenerator generator;
 
     public SignedURLGenerator(QueryStringAuthGenerator generator) {

@@ -7,6 +7,7 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Name("repositoryFactory")
-public class RepositoryFactory {
+public class RepositoryFactory implements Serializable {
 
     @In
     private Account account;

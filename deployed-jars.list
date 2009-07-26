@@ -1,7 +1,7 @@
 antlr-runtime.jar
 commons-beanutils.jar
 commons-digester.jar
-core.jar
+#core.jar
 drools-decisiontables.jar
 drools-api.jar
 drools-compiler.jar
@@ -32,21 +32,23 @@ laguna.jar
 urlrewritefilter.jar
 
 #for tomcat config
+antlr.jar
+asm.jar
 commons-collections.jar
 commons-lang.jar
 commons-logging.jar
+concurrent.jar
+cglib.jar
+javassist.jar
 jsf-api.jar
 jsf-impl.jar
 jstl.jar
+jta.jar
+jboss-common-core.jar
 dom4j.jar
 hibernate.jar
 hibernate-commons-annotations.jar
 hibernate-annotations.jar
 hibernate-entitymanager.jar
 hibernate-validator.jar
-javassist.jar
 persistence-api.jar
-cglib.jar
-jta.jar
-antlr.jar
-asm.jar
