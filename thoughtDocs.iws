@@ -74,21 +74,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="components.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="components.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/WEB-INF/components.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="55" selection-start="3158" selection-end="3158" vertical-scroll-proportion="0.0">
+            <state line="26" column="84" selection-start="1727" selection-end="1727" vertical-scroll-proportion="0.43153527">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deployed-jars.list" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="deployed-jars.list" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deployed-jars.list">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="581" selection-end="581" vertical-scroll-proportion="0.53112036">
+            <state line="31" column="25" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0">
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="18" selection-start="1582" selection-end="1582" vertical-scroll-proportion="-22.571428">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+            <state />
           </provider>
         </entry>
       </file>
@@ -549,8 +567,8 @@
   <component name="PropertiesComponent">
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -722,7 +740,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -730,7 +748,7 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288948" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30387932" sideWeight="0.6644474" order="0" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30387932" sideWeight="0.6644474" order="0" side_tool="false" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262317" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6617843" order="1" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" />
@@ -824,22 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="18" selection-start="1582" selection-end="1582" vertical-scroll-proportion="-29.714285">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/WEB-INF/pages.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="18" selection-start="645" selection-end="645" vertical-scroll-proportion="-11.428572">
@@ -878,13 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/WEB-INF/components.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="55" selection-start="3158" selection-end="3158" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/debug-jboss-thoughtDocs.launch">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -894,7 +889,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deployed-jars.list">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="581" selection-end="581" vertical-scroll-proportion="0.53112036">
+        <state line="31" column="25" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="18" selection-start="1582" selection-end="1582" vertical-scroll-proportion="-22.571428">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/WEB-INF/components.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="84" selection-start="1727" selection-end="1727" vertical-scroll-proportion="0.43153527">
           <folding />
         </state>
       </provider>
