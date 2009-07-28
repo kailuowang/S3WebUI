@@ -1,4 +1,4 @@
-package com.thoughtDocs.test;
+package com.thoughtDocs.model.impl.s3;
 
 import org.testng.annotations.Test;
 import org.jboss.seam.mock.SeamTest;

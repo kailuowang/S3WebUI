@@ -1,4 +1,4 @@
-package com.thoughtDocs.test;
+package com.thoughtDocs.model.impl.s3;
 
 import com.amazon.s3.Bucket;
 import com.amazon.s3.AWSAuthConnection;

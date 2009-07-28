@@ -1,4 +1,4 @@
-package com.thoughtDocs.test.testsAgainstRealS3;
+package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Repository;
@@ -6,6 +6,8 @@ import com.thoughtDocs.model.impl.s3.AccountFactory;
 import com.thoughtDocs.model.impl.s3.RepositoryFactory;
 
 import java.io.IOException;
+
+
 
 /**
  * Created by IntelliJ IDEA.

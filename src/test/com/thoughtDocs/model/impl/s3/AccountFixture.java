@@ -1,17 +1,11 @@
-package com.thoughtDocs.test;
+package com.thoughtDocs.model.impl.s3;
 
-import com.amazon.s3.AWSAuthConnection;
 import com.amazon.s3.Bucket;
-import com.amazon.s3.ListAllMyBucketsResponse;
-import com.thoughtDocs.model.impl.s3.*;
 import com.thoughtDocs.model.*;
-import org.mockito.Mockito;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.Collection;
 
 /**

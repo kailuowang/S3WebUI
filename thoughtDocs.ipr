@@ -33,24 +33,6 @@
   <component name="CopyrightManager" default="">
     <module2copyright />
   </component>
-  <component name="DataSourceManagerImpl">
-    <DataSource DataSourceSourceName="LOCAL">
-      <option name="DRIVER_CLASS" value="org.hsqldb.jdbcDriver" />
-      <option name="DATABASE_URL" value="jdbc:hsqldb:." />
-      <option name="DRIVER_PATH" />
-      <option name="DATBASE_USERNAME" value="sa" />
-      <option name="ENCODED_DATABASE_PASSWORD" value="df9bdf98df99df9e" />
-      <option name="DEFAULT_SCHEMA_NAME" />
-      <option name="TABLE_PATTERN" value="" />
-      <option name="UUID" value="c70ea471-9af8-4b36-a9e0-15d5791938ce" />
-      <option name="NAME" value="thoughtDocsDatasource" />
-      <libraries>
-        <library>
-          <url>jar://$PROJECT_DIR$/lib/hsqldb.jar!/</url>
-        </library>
-      </libraries>
-    </DataSource>
-  </component>
   <component name="DependenciesAnalyzeManager">
     <option name="myForwardDirection" value="false" />
   </component>

@@ -1,13 +1,13 @@
-package com.thoughtDocs.test.testsAgainstRealS3;
+package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
+import com.thoughtDocs.model.impl.s3.FixtureBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Calendar;
 import java.util.Date;
 
 /**

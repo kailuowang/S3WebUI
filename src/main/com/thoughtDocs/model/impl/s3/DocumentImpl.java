@@ -101,18 +101,14 @@ public class DocumentImpl implements Document, Serializable {
 
     public void upload(Repository repo) throws IOException {
         setRepository(repo);
-        S3Object object = createObject();
-        Response response = connection.put(getRepository().getName(), getName(), object, null);
-        response.assertSuccess();
-    }
-
-    private S3Object createObject() {
         Map meta = null;
         if (password != null) {
             meta = new TreeMap();
             meta.put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(new String[]{password}));
         }
-        return new S3Object(getData(), meta);
+        S3Object object = new S3Object(getData(), meta);
+        Response response = connection.put(getRepository().getName(), getName(), object, null);
+        response.assertSuccess();
     }
 
     public void refresh() throws IOException {
