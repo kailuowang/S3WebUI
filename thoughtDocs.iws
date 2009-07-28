@@ -74,55 +74,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="S3Bucket.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Bucket.java">
+      <file leaf-file-name="RepositoryFixture.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/RepositoryFixture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="621" selection-end="621" vertical-scroll-proportion="0.4090909">
+            <state line="21" column="13" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocumentFixture.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/DocumentFixture.java">
+      <file leaf-file-name="S3ServicesFixture.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/S3ServicesFixture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="13" selection-start="517" selection-end="517" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="S3BucketImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="6" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemoryBucketImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/MemoryBucketImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="13" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AWSAuthConnection.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/amazon/s3/AWSAuthConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="30" selection-start="6766" selection-end="6766" vertical-scroll-proportion="0.0">
+            <state line="8" column="124" selection-start="250" selection-end="250" vertical-scroll-proportion="0.20425531">
               <folding />
             </state>
           </provider>
@@ -131,36 +95,25 @@
       <file leaf-file-name="S3Object.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Object.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="6" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
+            <state line="41" column="45" selection-start="1018" selection-end="1018" vertical-scroll-proportion="4.4615383">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="S3ServicesFixture.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/S3ServicesFixture.java">
+      <file leaf-file-name="S3Bucket.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Bucket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="69" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="S3Config.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/util/S3Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="25" selection-start="1763" selection-end="1763" vertical-scroll-proportion="0.0">
+            <state line="13" column="17" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RepositoryFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryFactory.java">
+      <file leaf-file-name="S3BucketImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="55" selection-start="794" selection-end="811" vertical-scroll-proportion="0.0">
+            <state line="59" column="18" selection-start="2057" selection-end="2057" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -522,17 +475,17 @@
       <recent name="com.thoughtDocs.model.impl.s3.DocumentImpl" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.S3ServicesFixture">
-    <tempConfiguration default="false" name="S3ServicesFixture" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
+  <component name="RunManager" selected="TestNG.&lt;default&gt;">
+    <tempConfiguration default="false" name="&lt;default&gt;" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
       <module name="thoughtDocs" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="com.thoughtDocs.model.impl.s3" />
-      <option name="MAIN_CLASS_NAME" value="com.thoughtDocs.model.impl.s3.S3ServicesFixture" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="TEST_OBJECT" value="PACKAGE" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -637,7 +590,7 @@
       <envs />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="TestNG.S3ServicesFixture" />
+      <item index="0" class="java.lang.String" itemvalue="TestNG.&lt;default&gt;" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -684,7 +637,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -701,7 +654,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32756326" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39948454" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3981358" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -744,20 +697,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/FixtureBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/DataProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="480" selection-end="480" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/AccountFixture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="13" selection-start="312" selection-end="312" vertical-scroll-proportion="0.0">
@@ -765,30 +704,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/RepositoryListTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="13" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/RepositoryFixture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="55" selection-start="794" selection-end="811" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -807,13 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/DocumentFixture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="517" selection-end="517" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/MemoryBucketImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="13" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0">
@@ -828,32 +739,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/S3ServicesFixture.java">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/DocumentFixture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="69" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="6" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
+        <state line="19" column="13" selection-start="517" selection-end="517" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="6" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0">
+        <state line="20" column="13" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="13" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="13" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/RepositoryFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="13" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Bucket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="621" selection-end="621" vertical-scroll-proportion="0.4090909">
+        <state line="13" column="17" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="18" selection-start="2057" selection-end="2057" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="45" selection-start="1018" selection-end="1018" vertical-scroll-proportion="4.4615383">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/S3ServicesFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="124" selection-start="250" selection-end="250" vertical-scroll-proportion="0.20425531">
           <folding />
         </state>
       </provider>
