@@ -45,5 +45,9 @@ public class MemoryBucketImpl implements S3Bucket {
         }
     }
 
-   
+    public String getSignedUrl(S3Object object) {
+        return "http://memoryBucketGeneratedSignedUrl/" + name + "/" + object.getKey();
+    }
+
+
 }

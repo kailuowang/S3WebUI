@@ -22,4 +22,5 @@ public interface S3Bucket {
 
     void update(S3Object object) throws IOException;
 
+    String getSignedUrl(S3Object object);
 }

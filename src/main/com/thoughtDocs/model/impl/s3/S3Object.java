@@ -99,5 +99,9 @@ class S3Object {
         isTransient = true;
     }
 
+    public String getSignedUrl(){
+         return bucket.getSignedUrl(this);
+    }
+
     
 }

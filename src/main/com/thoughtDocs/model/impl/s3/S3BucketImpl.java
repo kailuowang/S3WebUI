@@ -1,12 +1,10 @@
 package com.thoughtDocs.model.impl.s3;
 
 import com.amazon.s3.*;
-import com.thoughtDocs.model.Document;
 
-import java.net.MalformedURLException;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -38,24 +36,25 @@ class S3BucketImpl implements S3Bucket {
         response.assertSuccess();
     }
 
-    public void removeObject(S3Object obj) throws IOException{
+    public void removeObject(S3Object obj) throws IOException {
         Response response = awsAuthConnection.delete(name, obj.getKey(), null);
         response.assertSuccess();
     }
 
     public List<S3Object> getObjects() throws IOException {
-          List<S3Object> retVal = new ArrayList<S3Object>();
-          ListBucketResponse response = awsAuthConnection.listBucket(name, null, null, null, null);
-          for (Object be : response.getEntries()) {
-              ListEntry le = (ListEntry) be;
-              retVal.add( S3Object.loadedFromServer(this, le.key));
-          }
-          return retVal;
-      }
+        List<S3Object> retVal = new ArrayList<S3Object>();
+        ListBucketResponse response = awsAuthConnection.listBucket(name, null, null, null, null);
+        for (Object be : response.getEntries()) {
+            ListEntry le = (ListEntry) be;
+            retVal.add(S3Object.loadedFromServer(this, le.key));
+        }
+        return retVal;
+    }
 
 
     /**
      * update data for the object
+     *
      * @param object
      * @throws IOException
      */
@@ -65,7 +64,10 @@ class S3BucketImpl implements S3Bucket {
         object.setMeta(obj.metadata);
     }
 
+    public String getSignedUrl(S3Object object) {
+        queryStringGenerator.setExpiresIn(60000);
+        return queryStringGenerator.get(name, object.getKey(), null);
+    }
 
-    
 
 }
