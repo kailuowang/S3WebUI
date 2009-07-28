@@ -53,6 +53,16 @@ class S3BucketImpl implements S3Bucket {
           return retVal;
       }
 
+    public void update(S3Object object) throws IOException {
+        com.amazon.s3.S3Object obj = awsAuthConnection.get(name, object.getKey(), null).object;
+        object.setData(obj.data);
+        object.setMeta(obj.metadata);
+    }
 
-    
+    public void remove(S3Object object) throws IOException {
+        Response response = awsAuthConnection.delete(name, object.getKey(), null);
+        response.assertSuccess();
+    }
+
+
 }

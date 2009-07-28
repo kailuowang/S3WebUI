@@ -2,6 +2,7 @@ package com.thoughtDocs.model.impl.s3;
 
 import java.io.IOException;
 import java.util.List;
+import java.net.MalformedURLException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +19,8 @@ public interface S3Bucket {
     void removeObject(S3Object obj) throws IOException;
 
     List<S3Object> getObjects() throws IOException;
+
+    void update(S3Object object) throws IOException;
+
+    void remove(S3Object object) throws IOException;
 }

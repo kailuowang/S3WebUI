@@ -2,6 +2,7 @@ package com.thoughtDocs.model.impl.s3;
 
 import java.util.Map;
 import java.util.List;
+import java.io.IOException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,6 +31,9 @@ class S3Object {
         this.bucket = bucket;
     }
 
+    public S3Object() {
+    }
+
     public byte[] getData() {
         return data;
     }
@@ -54,5 +58,12 @@ class S3Object {
         this.key = key;
     }
 
-    
+
+    public void update() throws IOException {
+        bucket.update(this);
+    }
+
+    public void delete() throws IOException {
+        bucket.remove(this);
+    }
 }
