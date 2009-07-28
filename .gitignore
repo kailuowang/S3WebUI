@@ -6,5 +6,4 @@ test-build
 test-output
 dist
 exploded-archives
-src/main/com/thoughtDocs/model/impl/s3/AccountFactory.java
 resources/s3.properties

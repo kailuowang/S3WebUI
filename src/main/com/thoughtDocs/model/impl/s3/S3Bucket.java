@@ -22,5 +22,4 @@ public interface S3Bucket {
 
     void update(S3Object object) throws IOException;
 
-    void remove(S3Object object) throws IOException;
 }

@@ -32,7 +32,7 @@ class S3Object {
 
     public static S3Object loadedFromServer(S3Bucket bucket,String key){
         S3Object retVal = new S3Object(bucket, key);
-        retVal.isTransient = true;
+        retVal.isTransient = false;
         return retVal;
     }
 
@@ -95,7 +95,7 @@ class S3Object {
     }
 
     public void delete() throws IOException {
-        bucket.remove(this);
+        bucket.removeObject(this);
         isTransient = true;
     }
 
