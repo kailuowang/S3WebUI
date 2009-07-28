@@ -1,4 +1,6 @@
 test-build/*
+classes
+classes/*
 test-output/*
 test-build
 test-output
