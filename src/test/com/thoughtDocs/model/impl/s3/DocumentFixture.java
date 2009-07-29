@@ -20,7 +20,6 @@ public class DocumentFixture extends FixtureBase {
     @Test
     public void testDocumentPassword() throws IOException {
         RepositoryFactory rf = new RepositoryFactory(testBucket());
-
         Document doc = DocumentImpl.createTransientDocument(rf.getDefaultRepository(), randomString());
         doc.setData(TEST_DATA.getBytes());
         String pass = "pass";
