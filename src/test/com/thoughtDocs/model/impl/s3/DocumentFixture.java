@@ -18,7 +18,7 @@ public class DocumentFixture extends FixtureBase {
 
 
     @Test
-    public void testDocumentPassword() throws IOException {
+    public void testNormalDocumentPassword() throws IOException {
         RepositoryFactory rf = new RepositoryFactory(createBucket());
 
         Document doc = DocumentImpl.createTransientDocument(rf.getDefaultRepository(), randomString());
@@ -28,6 +28,32 @@ public class DocumentFixture extends FixtureBase {
         doc.save();
         doc = DocumentImpl.loadedFromRepository(rf.getDefaultRepository(), doc.getName());
         Assert.assertEquals(doc.getPassword(), pass);
+        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+        doc.delete();
+    }
+
+    public void testBlankDocumentPassword() throws IOException {
+        RepositoryFactory rf = new RepositoryFactory(createBucket());
+
+        Document doc = DocumentImpl.createTransientDocument(rf.getDefaultRepository(), randomString());
+        doc.setData(TEST_DATA.getBytes());
+        String pass = "";
+        doc.setPassword(pass);
+        doc.save();
+        doc = DocumentImpl.loadedFromRepository(rf.getDefaultRepository(), doc.getName());
+        Assert.assertEquals(doc.getPassword(), pass);
+        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+        doc.delete();
+    }
+
+    public void testDefaultDocumentPassword() throws IOException {
+        RepositoryFactory rf = new RepositoryFactory(createBucket());
+
+        Document doc = DocumentImpl.createTransientDocument(rf.getDefaultRepository(), randomString());
+        doc.setData(TEST_DATA.getBytes());
+        doc.save();
+        doc = DocumentImpl.loadedFromRepository(rf.getDefaultRepository(), doc.getName());
+        Assert.assertEquals(doc.getPassword(), "@twthoughts");
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
         doc.delete();
     }

@@ -45,6 +45,7 @@ class S3BucketImpl implements S3Bucket {
     public List<S3Object> getObjects() throws IOException {
         List<S3Object> retVal = new ArrayList<S3Object>();
         ListBucketResponse response = awsAuthConnection.listBucket(name, null, null, null, null);
+		response.assertSuccess();
         for (Object be : response.getEntries()) {
             ListEntry le = (ListEntry) be;
             retVal.add(S3Object.loadedFromServer(this, le.key));

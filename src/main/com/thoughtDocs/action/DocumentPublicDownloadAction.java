@@ -42,6 +42,7 @@ public class DocumentPublicDownloadAction {
             key = newkey;
     }
 
+
     private String password;
 
     public void setPassword(String password) {
@@ -58,7 +59,7 @@ public class DocumentPublicDownloadAction {
 
     public void download() throws IOException {
 
-        Document doc = DocumentImpl.loadedFromRepository(defaultRepository, key);
+        Document doc = getDocument();
         if (doc == null || password == null || !password.equals(doc.getPassword())) {
             statusMessages.add("File and password does not match, please try again");
             return;
@@ -67,4 +68,9 @@ public class DocumentPublicDownloadAction {
         new DocumentListAction().download(doc);
         //test url http://localhost:8080/thoughtDocs/documentPublicDownload.seam?key=restws.pdf
     }
+
+	private Document getDocument() throws IOException
+	{
+		return DocumentImpl.loadedFromRepository(defaultRepository, key);
+	}
 }

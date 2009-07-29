@@ -2,6 +2,7 @@ package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.util.CredentialsConfig;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,10 +17,14 @@ import java.util.List;
 public class DocumentImpl implements Document, Serializable {
 
     private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
+    private static final String REAL_BLANK_PASSWORD = "<blank>";
+
+	private String defaultPassword;
     private S3Object s3Object;
 
     public DocumentImpl(S3Object obj) {
        this.s3Object = obj;
+	   this.defaultPassword = CredentialsConfig.getDefaultDocumentPassword();
     }
 
     public boolean isTransient(){
@@ -84,14 +89,24 @@ public class DocumentImpl implements Document, Serializable {
     public String getPassword() throws IOException {
         Object passwordsMeta = s3Object.getMeta().get(PUBLIC_PASSWORD_META_KEY);
             if (passwordsMeta != null)
-                return  (String) ((List) passwordsMeta).get(0);
+			{
+                String storedPassword = (String) ((List) passwordsMeta).get(0);
+				if(storedPassword == null || storedPassword.length() == 0) return defaultPassword;
+				else if(storedPassword.equals(REAL_BLANK_PASSWORD)) return "";
+				
+				return storedPassword;	
+			}
             else
-                return null;
+			{
+                return defaultPassword;
+			}
     }
 
 
     public void setPassword(String password) throws IOException {
-        s3Object.getMeta().put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(password));
+		String realPassword = password;
+		if(password == null || password.length() == 0) realPassword = REAL_BLANK_PASSWORD;
+        s3Object.getMeta().put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(realPassword));
     }
 
     public void save() throws IOException {
@@ -108,7 +123,8 @@ public class DocumentImpl implements Document, Serializable {
      * @return public url for external user to download (password needed)
      */
     public String getPublicUrl(){
-         return "http://thoughtfiles.com/" + getName() ;
+         return "http://thoughtdocs.com/dl/" + getName() ;
     }
+
 
 }

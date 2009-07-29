@@ -86,4 +86,8 @@ public class CredentialsConfig {
     public static String getAdminPassword() {
         return getProperty("adminPassword");
     }
+
+	public static String getDefaultDocumentPassword() {
+		return getProperty("defaultDocumentPassword");
+	}
 }
