@@ -58,10 +58,8 @@ public class DocumentPublicDownloadAction {
 
     public void download() throws IOException {
 
-        Document doc = DocumentImpl.createTransientDocument(defaultRepository, key);
-        doc.update();
-
-        if (doc.isTransient() || password == null || !password.equals(doc.getPassword())) {
+        Document doc = DocumentImpl.loadedFromRepository(defaultRepository, key);
+        if (doc == null || password == null || !password.equals(doc.getPassword())) {
             statusMessages.add("File and password does not match, please try again");
             return;
         }

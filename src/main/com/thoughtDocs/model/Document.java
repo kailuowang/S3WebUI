@@ -19,7 +19,7 @@ public interface Document {
 
     String getSignedURL();
 
-    byte[] getData();
+    byte[] getData() throws IOException;
 
     void setData(byte[] data);
 

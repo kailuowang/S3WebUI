@@ -1,11 +1,7 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.thoughtDocs.model.Repository;
-import com.thoughtDocs.model.impl.s3.RepositoryFactory;
-
-import java.io.IOException;
-import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Date;
 
 
@@ -16,10 +12,10 @@ import java.util.Date;
  * Time: 9:47:23 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FixtureBase {
- 
+public abstract class FixtureBase {
 
-     protected String randomString()  {
+
+    protected String randomString() {
         SecureRandom random = null;
         try {
             random = SecureRandom.getInstance("SHA1PRNG");
@@ -32,4 +28,5 @@ public class FixtureBase {
     }
 
 
+    protected abstract S3Bucket createBucket();
 }

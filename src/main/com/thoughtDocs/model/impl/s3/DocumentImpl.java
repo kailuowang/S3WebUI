@@ -1,17 +1,12 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.amazon.s3.ListEntry;
-import com.amazon.s3.Response;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
-import org.jboss.seam.annotations.Name;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -36,6 +31,21 @@ public class DocumentImpl implements Document, Serializable {
         return new DocumentImpl(obj);
     }
 
+    /**
+     * get the document by name from server
+     * @param repo
+     * @param name
+     * @return null if no such file found on server
+     * @throws IOException
+     */
+    public static Document loadedFromRepository(Repository repo, String name) throws IOException {
+        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl)repo).getBucket(), name);
+        obj.updateMeta();
+        if(obj.isTransient())
+            return null;
+        return new DocumentImpl(obj);
+    }
+
     public String getName() {
         return s3Object.getKey();
     }
@@ -49,7 +59,9 @@ public class DocumentImpl implements Document, Serializable {
         return s3Object.getSignedURL();
     }
 
-    public byte[] getData() {
+    public byte[] getData() throws IOException {
+        if(s3Object.getData() == null && !isTransient())
+          update();
         return s3Object.getData();
     }
 
@@ -70,13 +82,11 @@ public class DocumentImpl implements Document, Serializable {
     }
 
     public String getPassword() throws IOException {
-        s3Object.ensureMeta();
         Object passwordsMeta = s3Object.getMeta().get(PUBLIC_PASSWORD_META_KEY);
             if (passwordsMeta != null)
                 return  (String) ((List) passwordsMeta).get(0);
             else
                 return null;
-        
     }
 
 

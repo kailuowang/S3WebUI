@@ -129,8 +129,8 @@ class S3Object {
     }
 
 
-    public void ensureMeta() throws IOException {
-        if(isTransient || meta.size() > 0)
+    public void updateMeta() throws IOException {
+        if( meta.size() > 0)
              return;
         bucket.updateObjectMeta(this);
 

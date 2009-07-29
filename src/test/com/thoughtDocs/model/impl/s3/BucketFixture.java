@@ -1,13 +1,13 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.thoughtDocs.util.S3Config;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,7 +16,7 @@ import java.util.*;
  * Time: 11:32:23 PM
  * These tests relies on valid s3 service account to run
  */
-public abstract class BucketFixtureBase extends FixtureBase {
+public class BucketFixture extends FixtureBase {
     private static final String TEST_DATA = "testData";
 
 
@@ -74,7 +74,6 @@ public abstract class BucketFixtureBase extends FixtureBase {
     }
 
 
-
     @Test
     public void testUpdateObject() throws IOException {
 
@@ -99,10 +98,6 @@ public abstract class BucketFixtureBase extends FixtureBase {
     }
 
 
-    protected abstract S3Bucket createBucket();
-
-
-
     private S3Object createRandomTestObj(S3Bucket bucket) throws IOException {
         String randomString = randomString();
         S3Object obj = S3Object.createNewTransient(bucket, randomString);
@@ -117,5 +112,9 @@ public abstract class BucketFixtureBase extends FixtureBase {
         } catch (Exception e) {
             //delete is not tested here.
         }
+    }
+
+    protected S3Bucket createBucket() {
+        return new MemoryBucketImpl("testBucket");
     }
 }

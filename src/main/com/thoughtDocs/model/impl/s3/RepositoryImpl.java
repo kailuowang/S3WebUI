@@ -36,7 +36,7 @@ public class RepositoryImpl implements Repository, Serializable {
         List<Document> retVal = new ArrayList<Document>();
         List<S3Object> objects = bucket.getObjects();
         for (S3Object obj : objects) {
-            retVal.add(new DocumentImpl(obj));
+            retVal.add(DocumentImpl.loadedFromRepository(this, obj.getKey()));
         }
         return retVal;
     }

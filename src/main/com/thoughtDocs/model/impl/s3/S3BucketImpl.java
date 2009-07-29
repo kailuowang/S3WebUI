@@ -77,7 +77,10 @@ class S3BucketImpl implements S3Bucket {
         if(object.isTransient())
             throw new RuntimeException("transient object cannot updated, check transient status first");
         com.amazon.s3.S3Object obj = awsAuthConnection.head(name, object.getKey(), null).object;
-        object.setMeta(obj.metadata);
+        if(obj == null)
+           object.setTransient(true);
+        else
+            object.setMeta(obj.metadata);
     }
 
     @Override

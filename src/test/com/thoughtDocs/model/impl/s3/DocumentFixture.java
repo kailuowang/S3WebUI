@@ -1,15 +1,10 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.thoughtDocs.model.impl.s3.DocumentImpl;
-import com.thoughtDocs.model.impl.s3.FixtureBase;
 import com.thoughtDocs.model.Document;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,29 +17,23 @@ public class DocumentFixture extends FixtureBase {
     private static final String TEST_DATA = "testData";
 
 
-    public DocumentFixture() throws IOException {
-    }
-
-
-
-
-
-
-
     @Test
     public void testDocumentPassword() throws IOException {
-        RepositoryFactory rf = new RepositoryFactory(new MemoryBucketImpl("test"));
+        RepositoryFactory rf = new RepositoryFactory(createBucket());
 
         Document doc = DocumentImpl.createTransientDocument(rf.getDefaultRepository(), randomString());
         doc.setData(TEST_DATA.getBytes());
         String pass = "pass";
         doc.setPassword(pass);
         doc.save();
-        doc =  DocumentImpl.createTransientDocument(rf.getDefaultRepository(), doc.getName());
-        doc.update();
+        doc = DocumentImpl.loadedFromRepository(rf.getDefaultRepository(), doc.getName());
         Assert.assertEquals(doc.getPassword(), pass);
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
         doc.delete();
+    }
+
+    protected S3Bucket createBucket() {
+        return new MemoryBucketImpl("test");  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
 

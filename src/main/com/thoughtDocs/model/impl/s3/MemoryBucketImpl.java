@@ -1,5 +1,8 @@
 package com.thoughtDocs.model.impl.s3;
 
+import com.amazon.s3.ListBucketResponse;
+import com.amazon.s3.ListEntry;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,12 @@ public class MemoryBucketImpl implements S3Bucket {
     }
 
     public List<S3Object> getObjects() throws IOException {
-        return objects;
+
+        List<S3Object> retVal = new ArrayList<S3Object>();
+        for (S3Object obj : objects) {
+            retVal.add(S3Object.loadedFromServer(this, obj.getKey()));
+        }
+        return retVal;
     }
 
     public void updateObject(S3Object object) throws IOException {
