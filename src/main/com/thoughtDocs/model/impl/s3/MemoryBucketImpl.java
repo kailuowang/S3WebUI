@@ -1,8 +1,5 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.amazon.s3.ListBucketResponse;
-import com.amazon.s3.ListEntry;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

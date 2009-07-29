@@ -32,7 +32,6 @@ public class DocumentPublicDownloadAction {
     private StatusMessages statusMessages;
 
 
-
     @In
     private Repository defaultRepository;
 

@@ -44,7 +44,4 @@ public class RepositoryFixture extends FixtureBase {
     }
 
 
-    protected S3Bucket createBucket() {
-        return new MemoryBucketImpl("test");
-    }
 }

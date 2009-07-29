@@ -31,7 +31,7 @@ public class CredentialsConfig {
      * @param key key
      * @return
      */
-    public static String getProperty(final String key)  {
+    public static String getProperty(final String key) {
         if (props == null) {
             try {
                 props = loadFromResource(configurationFilePath);
@@ -70,13 +70,13 @@ public class CredentialsConfig {
     }
 
 
-    public static String getAWSAccessKey(){
-        return getProperty("awsAccessKeyId") ;
+    public static String getAWSAccessKey() {
+        return getProperty("awsAccessKeyId");
     }
 
-     public static String getAWSSecretKey(){
+    public static String getAWSSecretKey() {
 
-         return getProperty("awsSecretAccessKey");
+        return getProperty("awsSecretAccessKey");
     }
 
     public static String getAWSBucketName() {

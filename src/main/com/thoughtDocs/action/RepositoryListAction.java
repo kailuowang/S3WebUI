@@ -1,7 +1,7 @@
 package com.thoughtDocs.action;
 
-import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.exception.NotImplementedException;
+import com.thoughtDocs.model.Repository;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.*;
 import org.jboss.seam.annotations.datamodel.DataModel;

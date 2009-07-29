@@ -10,7 +10,7 @@ package com.thoughtDocs.model.impl.s3;
 public class RDocumentFixture extends DocumentFixture {
 
     @Override
-    protected S3Bucket createBucket() {
+    protected S3Bucket testBucket() {
         return BucketFactory.getTestS3Bucket();
     }
 }

@@ -13,7 +13,8 @@ public interface Document {
      * @return the name of the document that is unique under one repository
      */
     String getName();
-    void  setName(String newName);
+
+    void setName(String newName);
 
     void delete() throws IOException;
 

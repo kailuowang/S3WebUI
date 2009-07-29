@@ -19,7 +19,7 @@ public class DocumentFixture extends FixtureBase {
 
     @Test
     public void testDocumentPassword() throws IOException {
-        RepositoryFactory rf = new RepositoryFactory(createBucket());
+        RepositoryFactory rf = new RepositoryFactory(testBucket());
 
         Document doc = DocumentImpl.createTransientDocument(rf.getDefaultRepository(), randomString());
         doc.setData(TEST_DATA.getBytes());
@@ -32,8 +32,6 @@ public class DocumentFixture extends FixtureBase {
         doc.delete();
     }
 
-    protected S3Bucket createBucket() {
-        return new MemoryBucketImpl("test");  //To change body of implemented methods use File | Settings | File Templates.
-    }
+
 }
 

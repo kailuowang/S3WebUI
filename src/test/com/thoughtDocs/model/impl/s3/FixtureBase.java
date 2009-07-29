@@ -28,5 +28,7 @@ public abstract class FixtureBase {
     }
 
 
-    protected abstract S3Bucket createBucket();
+    protected S3Bucket testBucket() {
+        return new MemoryBucketImpl("test");  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

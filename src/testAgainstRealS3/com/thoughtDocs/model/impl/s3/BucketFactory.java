@@ -12,7 +12,7 @@ import com.thoughtDocs.util.CredentialsConfig;
 public class BucketFactory {
     public static S3Bucket getTestS3Bucket() {
         return new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
-                                CredentialsConfig.getAWSSecretKey(),
-                                CredentialsConfig.getAWSBucketName());
+                CredentialsConfig.getAWSSecretKey(),
+                CredentialsConfig.getAWSBucketName());
     }
 }

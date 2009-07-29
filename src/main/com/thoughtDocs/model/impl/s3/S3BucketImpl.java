@@ -5,7 +5,6 @@ import com.amazon.s3.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.net.MalformedURLException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -74,11 +73,11 @@ class S3BucketImpl implements S3Bucket {
     }
 
     public void updateObjectMeta(S3Object object) throws IOException {
-        if(object.isTransient())
+        if (object.isTransient())
             throw new RuntimeException("transient object cannot updated, check transient status first");
         com.amazon.s3.S3Object obj = awsAuthConnection.head(name, object.getKey(), null).object;
-        if(obj == null)
-           object.setTransient(true);
+        if (obj == null)
+            object.setTransient(true);
         else
             object.setMeta(obj.metadata);
     }

@@ -19,7 +19,7 @@ public class RepositoryFactory {
 
     private S3Bucket defaultBucket;
 
-    
+
     @Factory(autoCreate = true)
     public Repository getDefaultRepository() throws IOException {
         return new RepositoryImpl(defaultBucket);
@@ -29,9 +29,9 @@ public class RepositoryFactory {
         this.defaultBucket = defaultBucket;
     }
 
-    public RepositoryFactory(){
+    public RepositoryFactory() {
         this(new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
-                                CredentialsConfig.getAWSSecretKey(),
-                                CredentialsConfig.getAWSBucketName()));
+                CredentialsConfig.getAWSSecretKey(),
+                CredentialsConfig.getAWSBucketName()));
     }
 }

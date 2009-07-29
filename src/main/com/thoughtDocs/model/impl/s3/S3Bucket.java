@@ -2,7 +2,6 @@ package com.thoughtDocs.model.impl.s3;
 
 import java.io.IOException;
 import java.util.List;
-import java.net.MalformedURLException;
 
 /**
  * Created by IntelliJ IDEA.

@@ -19,29 +19,30 @@ public class DocumentImpl implements Document, Serializable {
     private S3Object s3Object;
 
     public DocumentImpl(S3Object obj) {
-       this.s3Object = obj;
+        this.s3Object = obj;
     }
 
-    public boolean isTransient(){
+    public boolean isTransient() {
         return s3Object.isTransient();
     }
 
-    public static Document createTransientDocument(Repository repo, String name){
-        S3Object obj = S3Object.createNewTransient(((RepositoryImpl)repo).getBucket(), name);
+    public static Document createTransientDocument(Repository repo, String name) {
+        S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), name);
         return new DocumentImpl(obj);
     }
 
     /**
      * get the document by name from server
+     *
      * @param repo
      * @param name
      * @return null if no such file found on server
      * @throws IOException
      */
     public static Document loadedFromRepository(Repository repo, String name) throws IOException {
-        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl)repo).getBucket(), name);
+        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), name);
         obj.updateMeta();
-        if(obj.isTransient())
+        if (obj.isTransient())
             return null;
         return new DocumentImpl(obj);
     }
@@ -60,8 +61,8 @@ public class DocumentImpl implements Document, Serializable {
     }
 
     public byte[] getData() throws IOException {
-        if(s3Object.getData() == null && !isTransient())
-          update();
+        if (s3Object.getData() == null && !isTransient())
+            update();
         return s3Object.getData();
     }
 
@@ -70,7 +71,7 @@ public class DocumentImpl implements Document, Serializable {
     }
 
     public String getContentType() {
-        return  s3Object.getContentType();
+        return s3Object.getContentType();
     }
 
     public void setContentType(String contentType) {
@@ -83,10 +84,10 @@ public class DocumentImpl implements Document, Serializable {
 
     public String getPassword() throws IOException {
         Object passwordsMeta = s3Object.getMeta().get(PUBLIC_PASSWORD_META_KEY);
-            if (passwordsMeta != null)
-                return  (String) ((List) passwordsMeta).get(0);
-            else
-                return null;
+        if (passwordsMeta != null)
+            return (String) ((List) passwordsMeta).get(0);
+        else
+            return null;
     }
 
 
@@ -102,13 +103,12 @@ public class DocumentImpl implements Document, Serializable {
         s3Object.update();
     }
 
-    
+
     /**
-     *
      * @return public url for external user to download (password needed)
      */
-    public String getPublicUrl(){
-         return "http://thoughtfiles.com/" + getName() ;
+    public String getPublicUrl() {
+        return "http://thoughtfiles.com/" + getName();
     }
 
 }

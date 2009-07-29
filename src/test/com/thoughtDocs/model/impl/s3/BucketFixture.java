@@ -22,7 +22,7 @@ public class BucketFixture extends FixtureBase {
 
     @Test
     public void getObjects() throws IOException {
-        S3Bucket bucket = createBucket();
+        S3Bucket bucket = testBucket();
         List<S3Object> objects = bucket.getObjects();
         assert objects != null;
     }
@@ -30,7 +30,7 @@ public class BucketFixture extends FixtureBase {
 
     @Test
     public void testAddObjectTest() throws IOException {
-        S3Bucket bucket = createBucket();
+        S3Bucket bucket = testBucket();
         int oldSize = bucket.getObjects().size();
         S3Object obj = createRandomTestObj(bucket);
         Assert.assertEquals(bucket.getObjects().size(), oldSize + 1);
@@ -42,7 +42,7 @@ public class BucketFixture extends FixtureBase {
 
     @Test
     public void testDeleteS3Object() throws IOException {
-        S3Bucket bucket = createBucket();
+        S3Bucket bucket = testBucket();
         int oldSize = bucket.getObjects().size();
         S3Object obj = createRandomTestObj(bucket);
         Assert.assertEquals(bucket.getObjects().size(), oldSize + 1);
@@ -55,7 +55,7 @@ public class BucketFixture extends FixtureBase {
     @Test
     public void testObjectMeta() throws IOException {
 
-        S3Bucket bucket = createBucket();
+        S3Bucket bucket = testBucket();
         S3Object obj = S3Object.createNewTransient(bucket, randomString());
         Map<String, List<String>> meta = new TreeMap<String, List<String>>();
         meta.put("test", Arrays.asList("value"));
@@ -77,7 +77,7 @@ public class BucketFixture extends FixtureBase {
     @Test
     public void testUpdateObject() throws IOException {
 
-        S3Bucket bucket = createBucket();
+        S3Bucket bucket = testBucket();
         S3Object obj = S3Object.createNewTransient(bucket, randomString());
         Map<String, List<String>> meta = new TreeMap<String, List<String>>();
         obj.setData(TEST_DATA.getBytes());
@@ -114,7 +114,4 @@ public class BucketFixture extends FixtureBase {
         }
     }
 
-    protected S3Bucket createBucket() {
-        return new MemoryBucketImpl("testBucket");
-    }
 }

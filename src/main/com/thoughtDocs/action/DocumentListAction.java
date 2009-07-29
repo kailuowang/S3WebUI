@@ -56,5 +56,5 @@ public class DocumentListAction implements Serializable {
         getDocuments();
     }
 
-    
+
 }

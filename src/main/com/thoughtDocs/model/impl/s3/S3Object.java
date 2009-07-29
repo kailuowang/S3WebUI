@@ -100,6 +100,7 @@ class S3Object {
     public void setTransient(boolean val) {
         this.isTransient = val;
     }
+
     /**
      * save transient object to database
      *
@@ -130,8 +131,8 @@ class S3Object {
 
 
     public void updateMeta() throws IOException {
-        if( meta.size() > 0)
-             return;
+        if (meta.size() > 0)
+            return;
         bucket.updateObjectMeta(this);
 
     }

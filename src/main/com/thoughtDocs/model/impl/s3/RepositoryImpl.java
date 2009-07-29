@@ -1,10 +1,8 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.amazon.s3.ListBucketResponse;
-import com.amazon.s3.ListEntry;
+import com.thoughtDocs.exception.NotImplementedException;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
-import com.thoughtDocs.exception.NotImplementedException;
 
 import java.io.IOException;
 import java.io.Serializable;
