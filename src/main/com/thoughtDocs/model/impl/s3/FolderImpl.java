@@ -10,14 +10,12 @@ import com.thoughtDocs.model.Repository;
  * Time: 11:25:23 AM
  * To change this template use File | Settings | File Templates.
  */
-public class FolderImpl implements Folder {
+public class FolderImpl extends AbstractItem implements Folder {
     private static final String FOLDER_SUFFIX ="_$folder$";
-    private S3Object s3Object;
 
     public FolderImpl(S3Object obj) {
-        this.s3Object = obj;
+        super(obj);
     }
-
 
     public String getKey(){
         String key = s3Object.getKey();
@@ -28,4 +26,6 @@ public class FolderImpl implements Folder {
        S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), key + FOLDER_SUFFIX);
        return new FolderImpl(obj);
     }
+
+    
 }

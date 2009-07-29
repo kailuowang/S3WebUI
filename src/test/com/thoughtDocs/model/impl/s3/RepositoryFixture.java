@@ -27,7 +27,7 @@ public class RepositoryFixture extends FixtureBase {
         String pass = "pass";
         doc.setPassword(pass);
         doc.save();
-        Document docloaded = findDocByKey(doc.getName(), repo.getDocuments());
+        Document docloaded = findDocByKey(doc.getKey(), repo.getDocuments());
         Assert.assertNotNull(docloaded);
         Assert.assertEquals(docloaded.getPassword(), pass);
         doc.delete();
@@ -36,7 +36,7 @@ public class RepositoryFixture extends FixtureBase {
 
     private Document findDocByKey(String name, List<Document> documents) {
         for (Document doc : documents) {
-            if (doc.getName().equals(name))
+            if (doc.getKey().equals(name))
                 return doc;
         }
         return null;

@@ -16,6 +16,22 @@ import java.io.IOException;
 public class DocumentFixture extends FixtureBase {
     private static final String TEST_DATA = "testData";
 
+    @Test
+    public void testDocumentKeyNameWithPath() {
+        String name = randomString();
+        String key = "/ge/" + name;
+        Document doc = DocumentImpl.createTransientDocument(new RepositoryImpl(testBucket()), key);
+        Assert.assertEquals(doc.getName(), name);
+    }
+
+    @Test
+    public void testDocumentKeyNameWithoutPath() {
+        String name = randomString();
+        String key = name;
+        Document doc = DocumentImpl.createTransientDocument(new RepositoryImpl(testBucket()), key);
+        Assert.assertEquals(doc.getName(), name);
+    }
+
 
     @Test
     public void testDocumentPassword() throws IOException {
@@ -25,7 +41,7 @@ public class DocumentFixture extends FixtureBase {
         String pass = "pass";
         doc.setPassword(pass);
         doc.save();
-        doc = DocumentImpl.loadedFromRepository(rf.getDefaultRepository(), doc.getName());
+        doc = DocumentImpl.loadedFromRepository(rf.getDefaultRepository(), doc.getKey());
         Assert.assertEquals(doc.getPassword(), pass);
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
         doc.delete();

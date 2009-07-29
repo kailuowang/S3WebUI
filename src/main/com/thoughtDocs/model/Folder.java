@@ -7,5 +7,5 @@ package com.thoughtDocs.model;
  * Time: 11:31:25 AM
  * To change this template use File | Settings | File Templates.
  */
-public interface Folder {
+public interface Folder extends Item {
 }

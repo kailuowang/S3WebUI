@@ -13,46 +13,41 @@ import java.util.List;
  * Date: Jul 10, 2009
  * Time: 6:29:24 PM
  */
-public class DocumentImpl implements Document, Serializable {
+public class DocumentImpl extends AbstractItem implements Document, Serializable {
 
     private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
-    private S3Object s3Object;
 
     public DocumentImpl(S3Object obj) {
-        this.s3Object = obj;
+        super(obj);
     }
 
-    public boolean isTransient() {
-        return s3Object.isTransient();
-    }
-
-    public static Document createTransientDocument(Repository repo, String name) {
-        S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), name);
+    public static Document createTransientDocument(Repository repo, String key) {
+        S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), key);
         return new DocumentImpl(obj);
+    }
+
+    public String getKey() {
+        return s3Object.getKey();
     }
 
     /**
      * get the document by name from server
      *
      * @param repo
-     * @param name
+     * @param key
      * @return null if no such file found on server
      * @throws IOException
      */
-    public static Document loadedFromRepository(Repository repo, String name) throws IOException {
-        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), name);
+    public static Document loadedFromRepository(Repository repo, String key) throws IOException {
+        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), key);
         obj.updateMeta();
         if (obj.isTransient())
             return null;
         return new DocumentImpl(obj);
     }
 
-    public String getName() {
-        return s3Object.getKey();
-    }
-
-    public void setName(String newName) {
-        s3Object.setKey(newName);
+    public void setKey(String newKey) {
+        s3Object.setKey(newKey);
     }
 
 
@@ -95,20 +90,12 @@ public class DocumentImpl implements Document, Serializable {
         s3Object.getMeta().put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(password));
     }
 
-    public void save() throws IOException {
-        s3Object.save();
-    }
-
-    public void update() throws IOException {
-        s3Object.update();
-    }
-
 
     /**
      * @return public url for external user to download (password needed)
      */
     public String getPublicUrl() {
-        return "http://thoughtfiles.com/" + getName();
+        return "http://thoughtfiles.com/" + getKey();
     }
 
 }

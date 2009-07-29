@@ -7,14 +7,14 @@ import java.io.IOException;
  * Date: Jul 9, 2009
  * Time: 10:50:33 PM
  */
-public interface Document {
+public interface Document extends Item {
 
     /**
      * @return the name of the document that is unique under one repository
      */
-    String getName();
+    String getKey();
 
-    void setName(String newName);
+    void setKey(String newKey);
 
     void delete() throws IOException;
 
@@ -37,4 +37,5 @@ public interface Document {
     void update() throws IOException;
 
     boolean isTransient();
+
 }

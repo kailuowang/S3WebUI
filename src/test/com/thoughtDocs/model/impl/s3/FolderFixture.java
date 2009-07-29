@@ -1,8 +1,7 @@
 package com.thoughtDocs.model.impl.s3;
 
-import org.testng.annotations.Test;
 import org.testng.Assert;
-import com.thoughtDocs.model.Folder;
+import org.testng.annotations.Test;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,15 +10,18 @@ import com.thoughtDocs.model.Folder;
  * Time: 11:28:23 AM
  * To change this template use File | Settings | File Templates.
  */
-public class FolderFixture extends FixtureBase{
+public class FolderFixture extends FixtureBase {
 
     @Test
-    public void testFolderCreation(){
-        String folderKey = randomString();
-        FolderImpl folder = (FolderImpl) FolderImpl.createTransientFolder(new RepositoryImpl(testBucket()),folderKey);
-        Assert.assertEquals(folder.getKey(), folderKey );
-
+    public void testFolderCreation() {
+        String folderName = randomString();
+        String folderKey = "/ge/" + folderName;
+        FolderImpl folder = (FolderImpl) FolderImpl.createTransientFolder(new RepositoryImpl(testBucket()), folderKey);
+        Assert.assertEquals(folder.getKey(), folderKey);
+        Assert.assertEquals(folder.getName(), folderName);
     }
 
+
     
+
 }
