@@ -16,12 +16,12 @@ import java.util.Properties;
 /**
  * A temporary solution for reading s3 account
  */
-public class S3Config {
+public class CredentialsConfig {
 
     /**
      * configuration file
      */
-    private static final String configurationFilePath = "s3.properties";
+    private static final String configurationFilePath = "credentials.properties";
 
     private static Properties props = null;
 
@@ -36,7 +36,7 @@ public class S3Config {
             try {
                 props = loadFromResource(configurationFilePath);
             } catch (IOException e) {
-                throw new Error("Couldn't find s3.properties file in the resource folder, " +
+                throw new Error("Couldn't find credentials.properties file in the resource folder, " +
                         "please add it with two keys awsAccessKeyId and " +
                         "awsSecretAccessKey");
             }
@@ -70,12 +70,20 @@ public class S3Config {
     }
 
 
-    public static String getAwsAccessKey(){
+    public static String getAWSAccessKey(){
         return getProperty("awsAccessKeyId") ;
     }
 
-     public static String getAwsSecretKey(){
+     public static String getAWSSecretKey(){
 
          return getProperty("awsSecretAccessKey");
+    }
+
+    public static String getAWSBucketName() {
+        return getProperty("awsBucketName");
+    }
+
+    public static String getAdminPassword() {
+        return getProperty("adminPassword");
     }
 }

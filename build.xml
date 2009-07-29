@@ -245,7 +245,7 @@
                 <include name="messages*.properties"/>
                 <include name="*_theme.properties"/>
                 <include name="seam.properties" />
-                <include name="s3.properties" />
+                <include name="credentials.properties" />
                 <include name="*.drl" />
                 <include name="META-INF/*.drl" />
                 <include name="*jpdl.xml" />

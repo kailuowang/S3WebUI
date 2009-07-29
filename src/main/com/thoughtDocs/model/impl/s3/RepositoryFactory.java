@@ -1,7 +1,7 @@
 package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Repository;
-import com.thoughtDocs.util.S3Config;
+import com.thoughtDocs.util.CredentialsConfig;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.Name;
 
@@ -30,6 +30,8 @@ public class RepositoryFactory {
     }
 
     public RepositoryFactory(){
-        this(new S3BucketImpl(S3Config.getAwsAccessKey(), S3Config.getAwsSecretKey(), "thoughtdocstest"));
+        this(new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
+                                CredentialsConfig.getAWSSecretKey(),
+                                CredentialsConfig.getAWSBucketName()));
     }
 }

@@ -6,4 +6,4 @@ test-build
 test-output
 dist
 exploded-archives
-resources/s3.properties
+resources/credentials.properties

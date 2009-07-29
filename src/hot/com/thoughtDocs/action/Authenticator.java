@@ -6,6 +6,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
+import com.thoughtDocs.util.CredentialsConfig;
 
 @Name("authenticator")
 public class Authenticator
@@ -21,7 +22,8 @@ public class Authenticator
         //write your authentication logic here,
         //return true if the authentication was
         //successful, false otherwise
-        if ("admin".equals(credentials.getUsername()) && "csoscott".equals(credentials.getPassword()))
+        if ("admin".equals(credentials.getUsername()) &&
+                CredentialsConfig.getAdminPassword().equals(credentials.getPassword()))
         {
             identity.addRole("admin");
             return true;

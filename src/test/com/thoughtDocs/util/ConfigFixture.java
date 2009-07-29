@@ -15,7 +15,7 @@ import java.io.IOException;
 public class ConfigFixture {
     @Test
     public void testReadS3Config() throws IOException {
-        String awsKey = S3Config.getProperty("awsAccessKeyId");
+        String awsKey = CredentialsConfig.getProperty("awsAccessKeyId");
         Assert.assertNotNull(awsKey);
         assert awsKey.length() > 0;
     }

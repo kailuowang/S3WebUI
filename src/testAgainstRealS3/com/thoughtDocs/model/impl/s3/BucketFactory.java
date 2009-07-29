@@ -1,6 +1,6 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.thoughtDocs.util.S3Config;
+import com.thoughtDocs.util.CredentialsConfig;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,6 +11,8 @@ import com.thoughtDocs.util.S3Config;
  */
 public class BucketFactory {
     public static S3Bucket getTestS3Bucket() {
-        return new S3BucketImpl(S3Config.getAwsAccessKey(), S3Config.getAwsSecretKey(), "thoughtdocstest");
+        return new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
+                                CredentialsConfig.getAWSSecretKey(),
+                                CredentialsConfig.getAWSBucketName());
     }
 }
