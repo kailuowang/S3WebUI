@@ -1,11 +1,12 @@
 package com.thoughtDocs.action;
 
-import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
@@ -23,28 +24,24 @@ public class DocumentUploadAction implements Serializable {
     @In
     DocumentListAction documentListAction;
 
-    @In
-    private Account account;
 
     @In
     private Repository defaultRepository;
 
-    private String password;
 
 
     public void upload(Document doc) throws IOException {
-        doc.setPassword(password);
-        doc.upload(defaultRepository);
+        doc.save();
         documentListAction.getDocuments();
     }
 
-
-    public void setPassword(String password) {
-        this.password = password;
+    @Factory(value = "uploadingDocument", autoCreate = true)
+    public Document createUploadingDocument(){
+        //the "newfile" key set here will be immidietly replaced by real file name of the uploaded filename
+        Document doc = DocumentImpl.createTransientDocument(defaultRepository, "newfile");
+        return doc;
     }
 
-    public String getPassword() {
-        return password;
-    }
+
 }
 

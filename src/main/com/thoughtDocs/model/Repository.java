@@ -13,8 +13,5 @@ public interface Repository {
 
     List<Document> getDocuments() throws IOException;
 
-
-    Account getAccount();
-
     void delete() throws IOException;
 }

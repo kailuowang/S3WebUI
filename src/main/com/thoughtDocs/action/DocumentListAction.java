@@ -1,6 +1,5 @@
 package com.thoughtDocs.action;
 
-import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import org.jboss.seam.ScopeType;
@@ -11,7 +10,6 @@ import org.jboss.seam.faces.FacesManager;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
-import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -33,8 +31,6 @@ public class DocumentListAction implements Serializable {
     @In
     private StatusMessages statusMessages;
 
-    @In
-    private Account account;
 
     @In
     private Repository defaultRepository;

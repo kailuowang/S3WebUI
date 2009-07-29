@@ -1,13 +1,11 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.util.S3Config;
 import org.jboss.seam.annotations.Factory;
-import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,25 +17,19 @@ import java.util.List;
 @Name("repositoryFactory")
 public class RepositoryFactory {
 
-    @In
-    private Account account;
+    private S3Bucket defaultBucket;
 
+    
     @Factory(autoCreate = true)
     public Repository getDefaultRepository() throws IOException {
-        List<Repository> repos = account.getRepositories();
-        for (Repository repo : repos) {
-            if (repo.getName().equals("thoughtdocstest"))
-                return repo;
-        }
-        return repos.get(0);
-
+        return new RepositoryImpl(defaultBucket);
     }
 
-
-    public RepositoryFactory(Account account) {
-        this.account = account;
+    public RepositoryFactory(S3Bucket defaultBucket) {
+        this.defaultBucket = defaultBucket;
     }
 
-    public RepositoryFactory() {
+    public RepositoryFactory(){
+        this(new S3BucketImpl(S3Config.getAwsAccessKey(), S3Config.getAwsSecretKey(), "thoughtdocstest"));
     }
 }

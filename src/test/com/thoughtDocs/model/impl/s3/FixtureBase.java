@@ -1,12 +1,12 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Repository;
-import com.thoughtDocs.model.impl.s3.AccountFactory;
 import com.thoughtDocs.model.impl.s3.RepositoryFactory;
 
 import java.io.IOException;
-
+import java.security.SecureRandom;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 
 /**
@@ -17,15 +17,18 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class FixtureBase {
-    Account account;
-    Repository defaultRepository;
+ 
 
-    public FixtureBase() throws IOException {
-        account = new AccountFactory().loadAccount();
-        RepositoryFactory rf = new RepositoryFactory(account);
-        defaultRepository = rf.getDefaultRepository();
-
-
+     protected String randomString()  {
+        SecureRandom random = null;
+        try {
+            random = SecureRandom.getInstance("SHA1PRNG");
+        } catch (NoSuchAlgorithmException e) {
+            throw new UnknownError(e.getMessage());
+        }
+        random.setSeed(new Date().getTime());
+        String randomString = String.valueOf(random.nextLong());
+        return randomString;
     }
 
 

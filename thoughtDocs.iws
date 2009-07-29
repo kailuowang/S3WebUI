@@ -2,8 +2,8 @@
 <project relativePaths="false" version="4">
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="" />
-    <ignored path="thoughtDocs.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="thoughtDocs.iws" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="Commander">
@@ -74,28 +74,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SignedURLGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/SignedURLGenerator.java">
+      <file leaf-file-name="DocumentUploadAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/DocumentUploadAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="13" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+            <state line="33" column="14" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RepositoryFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryFactory.java">
+      <file leaf-file-name="S3Object.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Object.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="13" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
+            <state line="134" column="22" selection-start="2936" selection-end="2936" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="S3Bucket.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Bucket.java">
+      <file leaf-file-name="DocumentPublicDownloadAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/DocumentPublicDownloadAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="17" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
+            <state line="72" column="0" selection-start="1843" selection-end="1843" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="components.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/WEB-INF/components.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="40" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.54545456">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/WEB-INF/web.xml">
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -105,6 +132,35 @@
         <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/MemoryBucketImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="13" column="13" selection-start="326" selection-end="326" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="S3Bucket.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Bucket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="41" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="S3BucketImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="79" column="12" selection-start="2709" selection-end="2709" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Document.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/Document.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="11" selection-start="531" selection-end="531" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -113,46 +169,10 @@
       <file leaf-file-name="DocumentImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="13" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="13" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="13" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="S3BucketImpl.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="6" selection-start="317" selection-end="317" vertical-scroll-proportion="-0.09090909">
+            <state line="35" column="6" selection-start="970" selection-end="970" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="S3Object.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Object.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="6" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -239,11 +259,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="view" />
+          <option name="myItemId" value="src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="layout" />
+          <option name="myItemId" value="test" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -262,6 +282,44 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="s3" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -364,6 +422,74 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="s3" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="exception" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="thoughtDocs" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="action" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -503,13 +629,13 @@
       <recent name="com.thoughtDocs.model.impl.s3.DocumentImpl" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.com.thoughtDocs.model.impl.s3">
-    <tempConfiguration default="false" name="com.thoughtDocs.model.impl.s3" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
+  <component name="RunManager" selected="TestNG.&lt;default&gt;">
+    <tempConfiguration default="false" name="&lt;default&gt;" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
       <module name="thoughtDocs" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="com.thoughtDocs.model.impl.s3" />
+      <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="GROUP_NAME" />
@@ -649,8 +775,8 @@
       </method>
     </configuration>
     <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="TestNG.com.thoughtDocs.model.impl.s3" />
-      <item index="1" class="java.lang.String" itemvalue="TestNG.BucketFixtureBase" />
+      <item index="0" class="java.lang.String" itemvalue="TestNG.BucketFixtureBase" />
+      <item index="1" class="java.lang.String" itemvalue="TestNG.&lt;default&gt;" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -757,58 +883,79 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/view/index.html">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/RepositoryListAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="17" column="13" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/login.page.xml">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/MemoryBucketImplFixture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="9" column="13" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/login.xhtml">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/RepositoryListTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="5" column="13" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/home.xhtml">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/S3BucketImplFixture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="11" column="13" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/documentPublicDownload.xhtml">
+    <entry file="file://$PROJECT_DIR$/src/test/com/thoughtDocs/model/impl/s3/DocumentFixture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="35" column="80" selection-start="865" selection-end="865" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/layout/menu.xhtml">
+    <entry file="file://$PROJECT_DIR$/view/documentList.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="50" selection-start="808" selection-end="808" vertical-scroll-proportion="-9.473684">
+        <state line="55" column="79" selection-start="2952" selection-end="2952" vertical-scroll-proportion="-31.263159">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hot/com/thoughtDocs/action/Authenticator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/DocumentUploadAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
+        <state line="33" column="14" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/RepositoryFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Bucket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
+        <state line="26" column="41" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="12" selection-start="2709" selection-end="2709" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="22" selection-start="2936" selection-end="2936" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/Document.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="11" selection-start="531" selection-end="531" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -816,58 +963,48 @@
     <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/MemoryBucketImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="13" selection-start="326" selection-end="326" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/DocumentImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/AccountFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Bucket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="17" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="6" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/SignedURLGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/model/impl/s3/S3BucketImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="6" selection-start="317" selection-end="317" vertical-scroll-proportion="-0.09090909">
+        <state line="35" column="6" selection-start="970" selection-end="970" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/thoughtDocs/action/DocumentPublicDownloadAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="0" selection-start="1843" selection-end="1843" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/WEB-INF/components.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="40" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.54545456">
+          <folding />
         </state>
       </provider>
     </entry>

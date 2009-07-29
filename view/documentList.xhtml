@@ -46,10 +46,10 @@
                             <s:fileUpload id="newFile"
                                           data="#{uploadingDocument.data}" accept="image/*"
                                           contentType="#{uploadingDocument.contentType}"
-                                          fileName="#{uploadingDocument.name}" fileSize="#{uploadingDocument.size}"
-                                          size="40" maxlength="40" required="true"/>
-                            <h:outputLabel for="username">Password:</h:outputLabel>
-                            <h:inputSecret id="password" value="#{documentUploadAction.password}"/>
+                                          fileName="#{uploadingDocument.name}"
+                                          size="80" maxlength="80" required="true"/>
+                            <h:outputLabel for="password">Password:</h:outputLabel>
+                            <h:inputSecret id="password" value="#{uploadingDocument.password}"/>
                         </div>
                         <div>
                             <h:commandButton value="Upload"

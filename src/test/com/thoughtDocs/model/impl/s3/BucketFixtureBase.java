@@ -16,7 +16,7 @@ import java.util.*;
  * Time: 11:32:23 PM
  * These tests relies on valid s3 service account to run
  */
-public abstract class BucketFixtureBase {
+public abstract class BucketFixtureBase extends FixtureBase {
     private static final String TEST_DATA = "testData";
 
 
@@ -101,17 +101,7 @@ public abstract class BucketFixtureBase {
 
     protected abstract S3Bucket createBucket();
 
-    private String randomString() {
-        SecureRandom random = null;
-        try {
-            random = SecureRandom.getInstance("SHA1PRNG");
-        } catch (NoSuchAlgorithmException e) {
-            throw new UnknownError(e.getMessage());
-        }
-        random.setSeed(new Date().getTime());
-        String randomString = String.valueOf(random.nextLong());
-        return randomString;
-    }
+
 
     private S3Object createRandomTestObj(S3Bucket bucket) throws IOException {
         String randomString = randomString();

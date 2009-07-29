@@ -1,7 +1,7 @@
 package com.thoughtDocs.action;
 
-import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.exception.NotImplementedException;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.*;
 import org.jboss.seam.annotations.datamodel.DataModel;
@@ -22,7 +22,6 @@ public class RepositoryListAction implements Serializable {
     @In
     StatusMessages statusMessages;
     @In
-    Account account;
 
     @DataModel
     List<Repository> repositories;
@@ -32,7 +31,7 @@ public class RepositoryListAction implements Serializable {
 
     @Factory
     public void getRepositories() throws IOException {
-        repositories = account.getRepositories();
+        throw new NotImplementedException();
     }
     // add additional action methods
 

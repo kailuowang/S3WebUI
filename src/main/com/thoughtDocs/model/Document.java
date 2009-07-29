@@ -8,12 +8,12 @@ import java.io.IOException;
  * Time: 10:50:33 PM
  */
 public interface Document {
-    Repository getRepository();
 
     /**
      * @return the name of the document that is unique under one repository
      */
     String getName();
+    void  setName(String newName);
 
     void delete() throws IOException;
 
@@ -31,5 +31,9 @@ public interface Document {
 
     void setPassword(String password) throws IOException;
 
-    void upload(Repository repo) throws IOException;
+    void save() throws IOException;
+
+    void update() throws IOException;
+
+    boolean isTransient();
 }

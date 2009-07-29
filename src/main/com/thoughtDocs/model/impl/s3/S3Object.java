@@ -1,8 +1,9 @@
 package com.thoughtDocs.model.impl.s3;
 
-import java.util.Map;
-import java.util.List;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,22 +16,32 @@ class S3Object {
 
     private String key;
     private byte[] data;
-    private Map<String, List<String>> meta;
+    private Map<String, List<String>> meta = new TreeMap<String, List<String>>();
     private S3Bucket bucket;
     private boolean isTransient;
-    
+    private String contentType;
+    private long size;
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
     public S3Object(S3Bucket bucket, String key) {
         this.bucket = bucket;
         this.key = key;
     }
 
-    public static S3Object createNewTransient(S3Bucket bucket, String key){
+    public static S3Object createNewTransient(S3Bucket bucket, String key) {
         S3Object retVal = new S3Object(bucket, key);
         retVal.isTransient = true;
         return retVal;
     }
 
-    public static S3Object loadedFromServer(S3Bucket bucket,String key){
+    public static S3Object loadedFromServer(S3Bucket bucket, String key) {
         S3Object retVal = new S3Object(bucket, key);
         retVal.isTransient = false;
         return retVal;
@@ -51,8 +62,19 @@ class S3Object {
         return data;
     }
 
+    public long getSize() {
+        if (size == 0 && data != null)
+            size = data.length;
+        return size;
+    }
+
+    public void setSize(long s) {
+        size = s;
+    }
+
     public void setData(byte[] data) {
         this.data = data;
+        size = data.length;
     }
 
     public Map<String, List<String>> getMeta() {
@@ -75,23 +97,26 @@ class S3Object {
         return isTransient;
     }
 
+    public void setTransient(boolean val) {
+        this.isTransient = val;
+    }
     /**
      * save transient object to database
+     *
      * @throws IOException
      */
     public void save() throws IOException {
-        bucket.addObject(this);
+        bucket.saveObject(this);
         this.isTransient = false;
     }
-    
+
     /**
      * update content from the s3 server
+     *
      * @throws IOException
      */
     public void update() throws IOException {
-        if(isTransient)
-            throw new RuntimeException("trying to update an object that is transient");
-        bucket.update(this);
+        bucket.updateObject(this);
     }
 
     public void delete() throws IOException {
@@ -99,9 +124,15 @@ class S3Object {
         isTransient = true;
     }
 
-    public String getSignedUrl(){
-         return bucket.getSignedUrl(this);
+    public String getSignedURL() {
+        return bucket.getSignedUrl(this);
     }
 
-    
+
+    public void ensureMeta() throws IOException {
+        if(isTransient || meta.size() > 0)
+             return;
+        bucket.updateObjectMeta(this);
+
+    }
 }

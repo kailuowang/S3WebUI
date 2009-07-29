@@ -1,7 +1,5 @@
 package com.thoughtDocs.action;
 
-import com.amazon.s3.ListEntry;
-import com.thoughtDocs.model.Account;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
@@ -33,8 +31,7 @@ public class DocumentPublicDownloadAction {
     @In
     private StatusMessages statusMessages;
 
-    @In
-    private Account account;
+
 
     @In
     private Repository defaultRepository;
@@ -61,12 +58,11 @@ public class DocumentPublicDownloadAction {
 
     public void download() throws IOException {
 
-        ListEntry listEntry = new ListEntry();
-        listEntry.key = key;
-        Document doc = new DocumentImpl(defaultRepository, listEntry);
+        Document doc = DocumentImpl.createTransientDocument(defaultRepository, key);
+        doc.update();
 
-        if (password == null || !password.equals(doc.getPassword())) {
-            statusMessages.add("Inccrrect password#{doc.password}, please try again");
+        if (doc.isTransient() || password == null || !password.equals(doc.getPassword())) {
+            statusMessages.add("File and password does not match, please try again");
             return;
         }
 

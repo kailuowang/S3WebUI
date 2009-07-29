@@ -30,7 +30,7 @@
    <web:multipart-filter create-temp-files="true" url-pattern="*.seam"/> 
     <component class="org.jboss.seam.web.MultipartFilter">
       <property name="createTempFiles">true</property>
-      <property name="maxRequestSize">1000000</property>
+      <property name="maxRequestSize">1000000000</property>
     </component>
     
    <persistence:entity-manager-factory name="entityManagerFactory"

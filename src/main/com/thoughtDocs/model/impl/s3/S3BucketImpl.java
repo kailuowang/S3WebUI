@@ -5,6 +5,7 @@ import com.amazon.s3.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.net.MalformedURLException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,7 +30,7 @@ class S3BucketImpl implements S3Bucket {
     }
 
 
-    public void addObject(S3Object obj) throws IOException {
+    public void saveObject(S3Object obj) throws IOException {
         obj.setBucket(this);
         com.amazon.s3.S3Object object = new com.amazon.s3.S3Object(obj.getData(), obj.getMeta());
         Response response = awsAuthConnection.put(name, obj.getKey(), object, null);
@@ -58,10 +59,13 @@ class S3BucketImpl implements S3Bucket {
      * @param object
      * @throws IOException
      */
-    public void update(S3Object object) throws IOException {
+    public void updateObject(S3Object object) throws IOException {
         com.amazon.s3.S3Object obj = awsAuthConnection.get(name, object.getKey(), null).object;
-        object.setData(obj.data);
-        object.setMeta(obj.metadata);
+        object.setTransient(obj == null);
+        if (!object.isTransient()) {
+            object.setData(obj.data);
+            object.setMeta(obj.metadata);
+        }
     }
 
     public String getSignedUrl(S3Object object) {
@@ -69,5 +73,30 @@ class S3BucketImpl implements S3Bucket {
         return queryStringGenerator.get(name, object.getKey(), null);
     }
 
+    public void updateObjectMeta(S3Object object) throws IOException {
+        if(object.isTransient())
+            throw new RuntimeException("transient object cannot updated, check transient status first");
+        com.amazon.s3.S3Object obj = awsAuthConnection.head(name, object.getKey(), null).object;
+        object.setMeta(obj.metadata);
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        S3BucketImpl s3Bucket = (S3BucketImpl) o;
+
+        if (name != null ? !name.equals(s3Bucket.name) : s3Bucket.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = awsAuthConnection != null ? awsAuthConnection.hashCode() : 0;
+        result = 31 * result + (queryStringGenerator != null ? queryStringGenerator.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
 }
