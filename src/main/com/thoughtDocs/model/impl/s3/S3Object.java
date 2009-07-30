@@ -74,7 +74,7 @@ class S3Object {
 
     public void setData(byte[] data) {
         this.data = data;
-        size = data.length;
+        size = data != null ? data.length : 0;
     }
 
     public Map<String, List<String>> getMeta() {

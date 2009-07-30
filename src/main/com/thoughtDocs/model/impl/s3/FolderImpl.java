@@ -2,6 +2,10 @@ package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.Item;
+
+import java.util.List;
+import java.io.IOException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,10 +15,12 @@ import com.thoughtDocs.model.Repository;
  * To change this template use File | Settings | File Templates.
  */
 public class FolderImpl extends AbstractItem implements Folder {
-    private static final String FOLDER_SUFFIX ="_$folder$";
+    public static final String FOLDER_SUFFIX ="_$folder$";
+    private static Repository repository;
 
-    public FolderImpl(S3Object obj) {
+    private FolderImpl(S3Object obj, Repository repository) {
         super(obj);
+        this.repository = repository;
     }
 
     public String getKey(){
@@ -23,9 +29,40 @@ public class FolderImpl extends AbstractItem implements Folder {
     }
 
     public static Folder createTransientFolder(Repository repo, String key) {
-       S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), key + FOLDER_SUFFIX);
-       return new FolderImpl(obj);
+       S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), createS3ObjectKey(key));
+       return new FolderImpl(obj,repo);
     }
 
+    private static String createS3ObjectKey(String key) {
+        return key + FOLDER_SUFFIX;
+    }
+
+
+    public static Folder loadedFromRepository(Repository repo, String key) {
+        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), createS3ObjectKey(key));
+        return loadedFromS3Object(repo, obj);
+    }
+
+    static Folder loadedFromS3Object(Repository repo, S3Object obj) {
+        return new FolderImpl(obj, repo);
+    }
+
+    public static Folder createTransientFolder( Folder parentFolder, String name) {
+        if(parentFolder.isTransient())
+            throw new UnsupportedOperationException("Cannot create sub folder under transient folder");
+        String key = parentFolder.getKey() + "/" + name;
+        return createTransientFolder(((FolderImpl) parentFolder).getRepository(), key);
+    }
     
+    public List<Item> getItems() throws IOException {
+          return repository.findItmes(subItemsFolderPath());
+    }
+
+    private String subItemsFolderPath() {
+        return getKey() +"/";
+    }
+
+    public Repository getRepository() {
+        return repository;
+    }
 }

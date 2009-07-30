@@ -7,4 +7,7 @@ package com.thoughtDocs.model;
  */
 public interface Item {
     String getName();
+    String getKey();
+
+    boolean isTransient();
 }

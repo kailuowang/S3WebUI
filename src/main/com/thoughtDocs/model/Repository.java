@@ -14,4 +14,6 @@ public interface Repository {
     List<Document> getDocuments() throws IOException;
 
     void delete() throws IOException;
+
+    List<Item> findItmes(String folderPath) throws IOException;
 }

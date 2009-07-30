@@ -19,7 +19,7 @@ public class DocumentFixture extends FixtureBase {
     @Test
     public void testDocumentKeyNameWithPath() {
         String name = randomString();
-        String key = "/ge/" + name;
+        String key = "ge/" + name;
         Document doc = DocumentImpl.createTransientDocument(new RepositoryImpl(testBucket()), key);
         Assert.assertEquals(doc.getName(), name);
     }

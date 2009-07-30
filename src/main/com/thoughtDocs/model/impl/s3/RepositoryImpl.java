@@ -3,6 +3,8 @@ package com.thoughtDocs.model.impl.s3;
 import com.thoughtDocs.exception.NotImplementedException;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.Item;
+import com.thoughtDocs.model.Path;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -42,6 +44,18 @@ public class RepositoryImpl implements Repository, Serializable {
 
     public void delete() throws IOException {
         throw new NotImplementedException();
+    }
+
+    public List<Item> findItmes(String folderPath) throws IOException {
+        List<S3Object> objects = bucket.getObjects();
+         List<Item> retVal = new ArrayList<Item>();
+        for (S3Object obj : objects) {
+            String key = obj.getKey();
+            Path p = new Path(key);  //todo: better implemetation needed here
+            if(p.getFolderPath().equals(folderPath))
+                retVal.add(AbstractItem.loadedFromRepository (this, obj.getKey()));
+        }
+        return retVal;
     }
 
 

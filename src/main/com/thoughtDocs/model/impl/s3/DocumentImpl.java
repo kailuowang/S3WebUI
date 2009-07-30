@@ -17,7 +17,7 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
 
     private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
 
-    public DocumentImpl(S3Object obj) {
+    private DocumentImpl(S3Object obj) {
         super(obj);
     }
 
@@ -40,6 +40,10 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
      */
     public static Document loadedFromRepository(Repository repo, String key) throws IOException {
         S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), key);
+        return loadedFromS3Object(obj);
+    }
+
+    static Document loadedFromS3Object(S3Object obj) throws IOException {
         obj.updateMeta();
         if (obj.isTransient())
             return null;

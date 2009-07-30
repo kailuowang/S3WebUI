@@ -36,6 +36,4 @@ public interface Document extends Item {
 
     void update() throws IOException;
 
-    boolean isTransient();
-
 }
