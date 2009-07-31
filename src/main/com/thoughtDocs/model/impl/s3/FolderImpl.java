@@ -71,4 +71,8 @@ public class FolderImpl extends AbstractItem implements Folder {
     public Repository getRepository() {
         return repository;
     }
+
+    static boolean isFolder(String key) {
+        return key.indexOf(FOLDER_SUFFIX) >= 0;
+    }
 }

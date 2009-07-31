@@ -3,15 +3,16 @@ package com.thoughtDocs.viewModel;
 import com.thoughtDocs.model.Folder;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 30, 2009
  * Time: 10:17:38 PM
  */
-public class FolderDisplayItem extends AbstractDisplayItem {
-    protected FolderDisplayItem(Folder item, ItemOpener opener) {
-        super(item, opener);
+public class FolderDisplayItem extends AbstractDisplayItem implements Serializable {
+    protected FolderDisplayItem(Folder item) {
+        super(item);
     }
 
     public Folder getFolder() {
@@ -26,7 +27,7 @@ public class FolderDisplayItem extends AbstractDisplayItem {
         return "";
     }
 
-    public void open() throws IOException {
+    public void open(ItemOpener opener) throws IOException {
         opener.open(this.getFolder());
     }
 }

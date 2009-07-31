@@ -89,9 +89,7 @@ class S3Object {
         return key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
+   
 
     public boolean isTransient() {
         return isTransient;

@@ -1,9 +1,6 @@
 package com.thoughtDocs.viewModel;
 
-import com.thoughtDocs.model.Document;
-import com.thoughtDocs.model.Folder;
-import com.thoughtDocs.model.Repository;
-import com.thoughtDocs.model.Item;
+import com.thoughtDocs.model.*;
 import com.thoughtDocs.viewModel.DisplayItem;
 import com.thoughtDocs.viewModel.AbstractDisplayItem;
 import org.jboss.seam.ScopeType;
@@ -36,13 +33,18 @@ public class DocumentListAction implements Serializable, ItemOpener {
     private Folder currentFolder;
 
     @DataModel
-    private List<DisplayItem> documents;
+    private List<DisplayItem> items;
 
     @DataModelSelection
-    private DisplayItem doc;
+    private DisplayItem item;
 
     public DocumentListAction() {
 
+    }
+
+
+    public Repository getDefaultRepository() {
+        return defaultRepository;
     }
 
     public Folder getCurrentFolder(){
@@ -52,11 +54,12 @@ public class DocumentListAction implements Serializable, ItemOpener {
     }
 
     @Factory
-    public void getDocuments() throws IOException {
+    public void getItems() throws IOException {
 
-        documents = new ArrayList<DisplayItem>();
+        items = new ArrayList<DisplayItem>();
+        
         for(Item item : getCurrentFolder().getItems())
-            documents.add(AbstractDisplayItem.create(item, this));
+            items.add(AbstractDisplayItem.create(item));
     }
 
     public void open(Document doc)  throws IOException {
@@ -65,12 +68,18 @@ public class DocumentListAction implements Serializable, ItemOpener {
 
     public void open(Folder folder) throws IOException {
         currentFolder = folder;
-        getDocuments();
+        getItems();
     }
 
+    public void open(DisplayItem item) throws IOException {
+        item.open(this);
+        getItems();
+    }
+
+    
 
     public void delete(DisplayItem item) throws IOException {
         item.getItem().delete();
-        getDocuments();
+        getItems();
     }
 }

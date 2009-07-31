@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 public class DocumentDisplayItem extends AbstractDisplayItem{
 
-    public DocumentDisplayItem(Document item, ItemOpener opener) {
-        super(item, opener);
+    public DocumentDisplayItem(Document item) {
+        super(item);
     }
 
     
@@ -31,7 +31,9 @@ public class DocumentDisplayItem extends AbstractDisplayItem{
     }
 
     @Override
-     public void open() throws IOException {
+     public void open(ItemOpener opener) throws IOException {
         opener.open(this.getDocument());
     }
+
+    
 }

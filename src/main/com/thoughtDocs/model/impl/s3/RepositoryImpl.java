@@ -31,15 +31,6 @@ public class RepositoryImpl implements Repository, Serializable {
         return bucket.getName();
     }
 
-    public List<Document> getDocuments() throws IOException {
-        List<Document> retVal = new ArrayList<Document>();
-        List<S3Object> objects = bucket.getObjects();
-        for (S3Object obj : objects) {
-            retVal.add(DocumentImpl.loadedFromRepository(this, obj.getKey()));
-        }
-        return retVal;
-    }
-
 
     public void delete() throws IOException {
         throw new NotImplementedException();
@@ -50,7 +41,7 @@ public class RepositoryImpl implements Repository, Serializable {
          List<Item> retVal = new ArrayList<Item>();
         for (S3Object obj : objects) {
             String key = obj.getKey();
-            Path p = new Path(key);  //todo: better implemetation needed here
+            Path p = new Path(key);  
             if(p.getFolderPath().equals(folderPath))
                 retVal.add(AbstractItem.loadedFromRepository (this, obj.getKey()));
         }

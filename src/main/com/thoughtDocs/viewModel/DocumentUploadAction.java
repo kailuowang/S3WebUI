@@ -25,20 +25,54 @@ public class DocumentUploadAction implements Serializable {
 
     @In
     private Repository defaultRepository;
+    private String password;
+    private String name;
+    private String contentType;
+    private byte[] data;
 
 
-    public void upload(Document doc) throws IOException {
+    public void upload() throws IOException {
+        Document doc = DocumentImpl.createTransientDocument(defaultRepository.getRootFolder(), name);
+        doc.setPassword(password);
+        doc.setContentType(contentType);
+        doc.setData(data);
         doc.save();
-        documentListAction.getDocuments();
-    }
-
-    @Factory(value = "uploadingDocument", autoCreate = true)
-    public Document createUploadingDocument() {
-        //the "newfile" key set here will be immidietly replaced by real file name of the uploaded filename
-        Document doc = DocumentImpl.createTransientDocument(defaultRepository.getRootFolder(), "newfile");
-        return doc;
+        documentListAction.getItems();
     }
 
 
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
 }
 

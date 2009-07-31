@@ -13,20 +13,22 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class FixtureBase {
-
+               SecureRandom random ;
 
     protected String randomString() {
-        SecureRandom random = null;
+        String randomString = String.valueOf(random.nextLong());
+        return randomString;
+    }
+
+    protected FixtureBase() {
+           random = null;
         try {
             random = SecureRandom.getInstance("SHA1PRNG");
         } catch (NoSuchAlgorithmException e) {
             throw new UnknownError(e.getMessage());
         }
         random.setSeed(new Date().getTime());
-        String randomString = String.valueOf(random.nextLong());
-        return randomString;
     }
-
 
     protected S3Bucket testBucket() {
         return new MemoryBucketImpl("test");  //To change body of implemented methods use File | Settings | File Templates.

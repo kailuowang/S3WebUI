@@ -6,19 +6,19 @@ import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.exception.NotImplementedException;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 30, 2009
  * Time: 10:04:32 PM
  */
-public abstract class AbstractDisplayItem implements DisplayItem {
+public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
     Item item;
-    protected ItemOpener opener;
 
-    protected AbstractDisplayItem(Item item, ItemOpener opener) {
-        this.opener = opener;
-        this.item = item;
+
+    protected AbstractDisplayItem(Item item ) {
+          this.item = item;
     }
 
     public String getName() {
@@ -29,14 +29,16 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         return item;
     }
 
-    public abstract void open() throws IOException;
+    public abstract void open(ItemOpener opener) throws IOException;
 
-    public static DisplayItem create(Item item, ItemOpener opener) {
+    public static DisplayItem create(Item item) {
         if(item instanceof Document)
-            return new DocumentDisplayItem((Document) item,  opener);
+            return new DocumentDisplayItem((Document) item);
         if(item instanceof Folder)
-            return new FolderDisplayItem((Folder) item, opener);
+            return new FolderDisplayItem((Folder) item);
         throw new NotImplementedException(item.getClass() + " diplay item is not implemented yet");
 
     }
+
+    
 }

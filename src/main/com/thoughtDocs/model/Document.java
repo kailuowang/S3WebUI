@@ -14,8 +14,7 @@ public interface Document extends Item {
      */
     String getKey();
 
-    void setKey(String newKey);
-
+  
 
     String getSignedURL();
 

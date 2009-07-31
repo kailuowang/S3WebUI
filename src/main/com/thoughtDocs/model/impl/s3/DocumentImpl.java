@@ -57,10 +57,7 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
         return new DocumentImpl(obj);
     }
 
-    public void setKey(String newKey) {
-        s3Object.setKey(newKey);
-    }
-
+ 
 
     public String getSignedURL() {
         return s3Object.getSignedURL();
@@ -106,7 +103,7 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
      * @return public url for external user to download (password needed)
      */
     public String getPublicUrl() {
-        return "http://thoughtfiles.com/" + getKey();
+        return "http://thoughtdocs.com/dl/" + getKey();
     }
 
 }

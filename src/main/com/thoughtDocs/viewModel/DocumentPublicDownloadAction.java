@@ -65,7 +65,7 @@ public class DocumentPublicDownloadAction implements Serializable {
             return;
         }
 
-        new DocumentDisplayItem(doc).open();
+        new DocumentListAction().open(doc);
         //test url http://localhost:8080/thoughtDocs/documentPublicDownload.seam?key=restws.pdf
     }
 }

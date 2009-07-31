@@ -11,8 +11,6 @@ import java.util.List;
 public interface Repository {
     String getName();
 
-    List<Document> getDocuments() throws IOException;
-
     void delete() throws IOException;
 
     List<Item> findItmes(String folderPath) throws IOException;

@@ -2,6 +2,7 @@ package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.Item;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -27,17 +28,17 @@ public class RepositoryFixture extends FixtureBase {
         String pass = "pass";
         doc.setPassword(pass);
         doc.save();
-        Document docloaded = findDocByKey(doc.getKey(), repo.getDocuments());
+        Document docloaded = findDocByKey(doc.getKey(), repo.getRootFolder().getItems());
         Assert.assertNotNull(docloaded);
         Assert.assertEquals(docloaded.getPassword(), pass);
         doc.delete();
 
     }
 
-    private Document findDocByKey(String name, List<Document> documents) {
-        for (Document doc : documents) {
+    private Document findDocByKey(String name, List<Item> documents) {
+        for (Item doc : documents) {
             if (doc.getKey().equals(name))
-                return doc;
+                return (Document) doc;
         }
         return null;
 

@@ -19,5 +19,5 @@ public interface DisplayItem {
 
     Item getItem();
 
-    void open() throws IOException;
+    void open(ItemOpener opener) throws IOException;
 }

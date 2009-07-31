@@ -10,10 +10,13 @@
                 template="layout/template.xhtml">
 
     <ui:define name="body">
-        <rich:panel id="documentsPanel">
-            <f:facet name="header">Documents</f:facet>
-            <h:dataTable id="documents" value="#{documents}"
-                         var="doc" rendered="#{documents != null and documents.size>0}">
+        <rich:panel id="itemsPanel">
+            <f:facet name="header">
+              <h2>#{documentListAction.defaultRepository.name}</h2>
+            #{documentListAction.currentFolder.key}
+            </f:facet>
+            <h:dataTable id="items" value="#{items}"
+                         var="doc" rendered="#{items != null and items.size>0}">
                 <h:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
                      <s:link id="open" value="#{doc.name}"
@@ -34,6 +37,7 @@
 
                     <s:link id="delete" value="Delete" action="#{documentListAction.delete(doc)}"/>
                 </h:column>
+                
             </h:dataTable>
         </rich:panel>
         <rich:panel>
@@ -44,17 +48,17 @@
                         <legend>Enter file to upload</legend>
                         <div>
                             <s:fileUpload id="newFile"
-                                          data="#{uploadingDocument.data}" accept="image/*"
-                                          contentType="#{uploadingDocument.contentType}"
-                                          fileName="#{uploadingDocument.key}"
+                                          data="#{documentUploadAction.data}" accept="image/*"
+                                          contentType="#{documentUploadAction.contentType}"
+                                          fileName="#{documentUploadAction.name}"
                                           size="80" maxlength="80" required="true"/>
                             <h:outputLabel for="password">Password:</h:outputLabel>
-                            <h:inputSecret id="password" value="#{uploadingDocument.password}"/>
+                            <h:inputSecret id="password" value="#{documentUploadAction.password}"/>
                         </div>
                         <div>
                             <h:commandButton value="Upload"
-                                             action="#{documentUploadAction.upload(uploadingDocument)}"
-                                             reRender="documentsPanel" id="uploadButton"/>
+                                             action="#{documentUploadAction.upload}"
+                                             reRender="itemsPanel" id="uploadButton"/>
                         </div>
                     </fieldset>
                 </s:validateAll>

@@ -52,7 +52,7 @@ abstract class AbstractItem {
         if (obj.isTransient())
             return null;
         else {
-            boolean isFolder = key.indexOf(FolderImpl.FOLDER_SUFFIX) >= 0; //todo: better implementation needed here.
+            boolean isFolder = FolderImpl.isFolder(key);
             if (isFolder)
                 return FolderImpl.loadedFromS3Object(repo, obj);
             else
