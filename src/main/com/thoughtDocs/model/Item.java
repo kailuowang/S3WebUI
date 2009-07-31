@@ -1,5 +1,7 @@
 package com.thoughtDocs.model;
 
+import java.io.IOException;
+
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 29, 2009
@@ -10,4 +12,6 @@ public interface Item {
     String getKey();
 
     boolean isTransient();
+    void update() throws IOException;
+    void delete() throws IOException;
 }

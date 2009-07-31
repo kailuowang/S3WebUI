@@ -2,14 +2,16 @@ package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Folder;
 
+import java.io.IOException;
+
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 30, 2009
  * Time: 10:17:38 PM
  */
 public class FolderDisplayItem extends AbstractDisplayItem {
-    protected FolderDisplayItem(Folder item) {
-        super(item);
+    protected FolderDisplayItem(Folder item, ItemOpener opener) {
+        super(item, opener);
     }
 
     public Folder getFolder() {
@@ -24,7 +26,7 @@ public class FolderDisplayItem extends AbstractDisplayItem {
         return "";
     }
 
-    public Folder open() {
-        return getFolder();
+    public void open() throws IOException {
+        opener.open(this.getFolder());
     }
 }

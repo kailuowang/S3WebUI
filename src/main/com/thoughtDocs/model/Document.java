@@ -16,7 +16,6 @@ public interface Document extends Item {
 
     void setKey(String newKey);
 
-    void delete() throws IOException;
 
     String getSignedURL();
 
@@ -34,7 +33,6 @@ public interface Document extends Item {
 
     void save() throws IOException;
 
-    void update() throws IOException;
 
     String getPublicUrl();
 }

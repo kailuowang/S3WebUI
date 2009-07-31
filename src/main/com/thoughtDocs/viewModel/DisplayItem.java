@@ -3,6 +3,8 @@ package com.thoughtDocs.viewModel;
 import com.thoughtDocs.model.Item;
 import com.thoughtDocs.model.Folder;
 
+import java.io.IOException;
+
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 30, 2009
@@ -13,9 +15,9 @@ public interface DisplayItem {
 
     String getPublicUrl();
 
-    String getPassword();
+    String getPassword() throws IOException;
 
     Item getItem();
 
-    Folder open();
+    void open() throws IOException;
 }

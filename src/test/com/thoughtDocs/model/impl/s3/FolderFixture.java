@@ -31,15 +31,22 @@ public class FolderFixture extends FixtureBase {
     public void testFolderSave() throws IOException {
         String key = randomString();
         RepositoryImpl repo = new RepositoryImpl(testBucket());
-        Folder folder = FolderImpl.createTransientFolder(createRoot(), key);
-        folder.save();
+        Folder folder = FolderImpl.createTransientFolder(repo.getRootFolder(), key);
+
         Folder loaded = FolderImpl.loadedFromRepository(repo, key);
+        loaded.update();
+        Assert.assertTrue(loaded.isTransient());
+
+        folder.save();
+        loaded = FolderImpl.loadedFromRepository(repo, key);
+        loaded.update();
+        Assert.assertFalse(loaded.isTransient());
         Assert.assertEquals(loaded.getKey(), key);
     }
 
     @Test
     public void testFolderTree() throws IOException {
-        RepositoryImpl repo = new RepositoryImpl(testBucket());
+  
         Folder firstLevel = FolderImpl.createTransientFolder(createRoot(), "firstLevel" + randomString());
         firstLevel.save();
         Folder subFolder = FolderImpl.createTransientFolder(firstLevel, randomString());
@@ -65,7 +72,43 @@ public class FolderFixture extends FixtureBase {
         Assert.assertEquals(f.getKey(), subFolder12.getKey());
 
     }
-    
+
+    @Test
+    public void testDeleteFolder() throws IOException {
+        RepositoryImpl repo = new RepositoryImpl(testBucket());
+        Folder firstLevel = FolderImpl.createTransientFolder(repo.getRootFolder(), "firstLevel" + randomString());
+        firstLevel.save();
+        Folder subFolder = FolderImpl.createTransientFolder(firstLevel, randomString());
+        subFolder.save();
+        Folder subFolder2 = FolderImpl.createTransientFolder(firstLevel, randomString());
+        subFolder2.save(); 
+        Folder subFolder3 = FolderImpl.createTransientFolder(firstLevel, randomString());
+        subFolder3.save();
+        Assert.assertEquals( firstLevel.getItems().size(), 3);
+
+        subFolder3.delete();
+
+        assertDeleted(repo, subFolder3);
+
+        Assert.assertEquals(firstLevel.getItems().size(), 2);
+
+        firstLevel.delete();
+
+
+
+        assertDeleted(repo, firstLevel);
+        assertDeleted(repo, subFolder);
+        assertDeleted(repo, subFolder2);
+
+
+    }
+
+    private void assertDeleted(RepositoryImpl repo, Item item) throws IOException {
+        Folder loaded = FolderImpl.loadedFromRepository(repo,  item.getKey());
+        loaded.update();
+        Assert.assertTrue(loaded.isTransient());
+    }
+
     @Test
     public void testRootFolder() throws IOException {
         Folder root = createRoot();
@@ -82,8 +125,6 @@ public class FolderFixture extends FixtureBase {
             }
         }
         Assert.assertNotNull(found);
-
-
     }
 
     private Folder createRoot() {

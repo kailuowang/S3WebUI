@@ -1,4 +1,4 @@
-package com.thoughtDocs.action;
+package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
@@ -6,7 +6,6 @@ import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import org.jboss.seam.annotations.*;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
-import org.jboss.seam.ScopeType;
 
 import java.io.IOException;
 import java.io.Serializable;

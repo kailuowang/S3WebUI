@@ -1,4 +1,4 @@
-package com.thoughtDocs.action;
+package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 @Scope(ScopeType.CONVERSATION)
 @Name("documentListAction")
-public class DocumentListAction implements Serializable {
+public class DocumentListAction implements Serializable, ItemOpener {
 
     @Logger
     private Log log;
@@ -56,24 +56,21 @@ public class DocumentListAction implements Serializable {
 
         documents = new ArrayList<DisplayItem>();
         for(Item item : getCurrentFolder().getItems())
-            documents.add(AbstractDisplayItem.create(item));
+            documents.add(AbstractDisplayItem.create(item, this));
     }
 
-    private void download(Document doc) {
+    public void open(Document doc)  throws IOException {
         FacesManager.instance().redirectToExternalURL((doc.getSignedURL()));
     }
 
-    public void open(DisplayItem displayItem) throws IOException {
-        Folder loadedFolder = displayItem.open();
-        if(loadedFolder != null)
-        {
-            currentFolder = loadedFolder;
-            getDocuments();
-        }
+    public void open(Folder folder) throws IOException {
+        currentFolder = folder;
+        getDocuments();
     }
 
-    public void delete(Document doc) throws IOException {
-        doc.delete();
+
+    public void delete(DisplayItem item) throws IOException {
+        item.getItem().delete();
         getDocuments();
     }
 }

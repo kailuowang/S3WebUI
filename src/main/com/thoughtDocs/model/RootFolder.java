@@ -41,4 +41,13 @@ public class RootFolder implements Folder {
     public boolean isTransient() {
         return false;
     }
+
+    public void update() throws IOException {
+        //nothing needed
+    }
+
+    public void delete() throws IOException{
+        throw new UnsupportedOperationException("Rootfolder cannot be deleted");
+
+    }
 }

@@ -12,9 +12,10 @@ import java.util.List;
  * a bucket implementation that uses memory to store objects basically for testing purpose
  */
 public class MemoryBucketImpl implements S3Bucket {
-    private List<S3Object> objects = new ArrayList<S3Object>();
+    private List<S3Object> objects;
 
     public MemoryBucketImpl(String name) {
+        objects = new ArrayList<S3Object>();
         this.name = name;
     }
 
@@ -40,7 +41,7 @@ public class MemoryBucketImpl implements S3Bucket {
     }
 
     public void removeObject(S3Object obj) throws IOException {
-        objects.remove(obj);
+        objects.remove(findByKey(obj.getKey()));
     }
 
     public List<S3Object> getObjects() throws IOException {

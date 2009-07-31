@@ -1,4 +1,4 @@
-package com.thoughtDocs.action;
+package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.exception.NotImplementedException;
 import com.thoughtDocs.model.Repository;

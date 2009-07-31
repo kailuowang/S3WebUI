@@ -5,6 +5,8 @@ import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.exception.NotImplementedException;
 
+import java.io.IOException;
+
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 30, 2009
@@ -12,8 +14,10 @@ import com.thoughtDocs.exception.NotImplementedException;
  */
 public abstract class AbstractDisplayItem implements DisplayItem {
     Item item;
+    protected ItemOpener opener;
 
-    protected AbstractDisplayItem(Item item) {
+    protected AbstractDisplayItem(Item item, ItemOpener opener) {
+        this.opener = opener;
         this.item = item;
     }
 
@@ -25,13 +29,14 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         return item;
     }
 
-    public abstract Folder open() ;
+    public abstract void open() throws IOException;
 
-    public static DisplayItem create(Item item) {
+    public static DisplayItem create(Item item, ItemOpener opener) {
         if(item instanceof Document)
-            return new DocumentDisplayItem((Document) item);
+            return new DocumentDisplayItem((Document) item,  opener);
         if(item instanceof Folder)
-            return new FolderDisplayItem((Folder) item);
+            return new FolderDisplayItem((Folder) item, opener);
         throw new NotImplementedException(item.getClass() + " diplay item is not implemented yet");
+
     }
 }

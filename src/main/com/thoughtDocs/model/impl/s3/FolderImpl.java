@@ -28,6 +28,12 @@ public class FolderImpl extends AbstractItem implements Folder {
         return key.replace(FOLDER_SUFFIX, "");
     }
 
+    public void delete() throws IOException {
+        for(Item item : getItems())
+            item.delete();
+        s3Object.delete();
+    }
+
     private static Folder createTransientFolder(Repository repo, String key) {
        S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), createS3ObjectKey(key));
        return new FolderImpl(obj,repo);

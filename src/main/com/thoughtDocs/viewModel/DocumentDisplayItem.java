@@ -1,8 +1,9 @@
 package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Document;
-import com.thoughtDocs.model.Folder;
 import org.jboss.seam.faces.FacesManager;
+
+import java.io.IOException;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -11,9 +12,11 @@ import org.jboss.seam.faces.FacesManager;
  */
 public class DocumentDisplayItem extends AbstractDisplayItem{
 
-    public DocumentDisplayItem(Document item) {
-        super(item);
+    public DocumentDisplayItem(Document item, ItemOpener opener) {
+        super(item, opener);
     }
+
+    
 
     public Document getDocument(){
         return (Document) item;
@@ -23,13 +26,12 @@ public class DocumentDisplayItem extends AbstractDisplayItem{
         return getDocument().getPublicUrl();
     }
 
-    public String getPassword() {
-        return null;
+    public String getPassword() throws IOException {
+        return getDocument().getPassword();
     }
 
     @Override
-     public Folder open() {
-        FacesManager.instance().redirectToExternalURL((getDocument().getSignedURL()));
-        return null;
+     public void open() throws IOException {
+        opener.open(this.getDocument());
     }
 }

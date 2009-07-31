@@ -1,4 +1,4 @@
-package com.thoughtDocs.action;
+package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;

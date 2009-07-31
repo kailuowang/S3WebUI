@@ -182,7 +182,6 @@
     <target name="copyclasses" depends="init,groovy.copyactions"
             description="Copy the classes that were compiled by eclipse"
             if="eclipse.running">
-        <!-- TODO check how the groovy eclipse plugin works, does it compile? -->
         <copy todir="${classes.model.dir}">
             <fileset dir="classes/main">
                 <include name="**/*.class"/>
