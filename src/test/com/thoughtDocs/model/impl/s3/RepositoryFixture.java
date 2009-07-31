@@ -22,7 +22,7 @@ public class RepositoryFixture extends FixtureBase {
     @Test
     public void testGetDocuments() throws IOException {
         Repository repo = new RepositoryImpl(new MemoryBucketImpl("test"));
-        Document doc = DocumentImpl.createTransientDocument(repo, randomString());
+        Document doc = DocumentImpl.createTransientDocument(repo.getRootFolder(), randomString());
         doc.setData(TEST_DATA.getBytes());
         String pass = "pass";
         doc.setPassword(pass);

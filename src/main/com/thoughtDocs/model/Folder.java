@@ -15,5 +15,7 @@ public interface Folder extends Item {
     void save() throws IOException;
 
     List<Item> getItems() throws IOException;
+
+    Repository getRepository();
 }
                       

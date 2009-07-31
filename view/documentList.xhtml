@@ -16,7 +16,10 @@
                          var="doc" rendered="#{documents != null and documents.size>0}">
                 <h:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
-                    #{doc.name}
+                     <s:link id="open" value="#{doc.name}"
+                            action="#{documentListAction.open(doc)}" />
+                   
+
                 </h:column>
                 <h:column id="column6">
                     <f:facet id="publicurl" name="header">Public URL</f:facet>
@@ -28,12 +31,9 @@
                 </h:column>
                 <h:column id="column5">
                     <f:facet id="ActionFacet" name="header">Action</f:facet>
-                    <s:link id="download" value="Download"
-                            action="#{documentListAction.download(doc)}"/>
-                    <span>&nbsp;</span>
+
                     <s:link id="delete" value="Delete" action="#{documentListAction.delete(doc)}"/>
                 </h:column>
-
             </h:dataTable>
         </rich:panel>
         <rich:panel>

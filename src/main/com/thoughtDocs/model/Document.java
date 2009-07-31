@@ -36,4 +36,5 @@ public interface Document extends Item {
 
     void update() throws IOException;
 
+    String getPublicUrl();
 }

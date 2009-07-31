@@ -3,6 +3,7 @@ package com.thoughtDocs.action;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
+import com.thoughtDocs.viewModel.DocumentDisplayItem;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
@@ -13,6 +14,7 @@ import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,7 +25,7 @@ import java.io.IOException;
  */
 @Scope(ScopeType.SESSION)
 @Name("documentPublicDownloadAction")
-public class DocumentPublicDownloadAction {
+public class DocumentPublicDownloadAction implements Serializable {
     private String key;
     @Logger
     private Log log;
@@ -63,7 +65,7 @@ public class DocumentPublicDownloadAction {
             return;
         }
 
-        new DocumentListAction().download(doc);
+        new DocumentDisplayItem(doc).open();
         //test url http://localhost:8080/thoughtDocs/documentPublicDownload.seam?key=restws.pdf
     }
 }

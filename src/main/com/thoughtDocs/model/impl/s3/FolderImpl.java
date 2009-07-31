@@ -28,7 +28,7 @@ public class FolderImpl extends AbstractItem implements Folder {
         return key.replace(FOLDER_SUFFIX, "");
     }
 
-    public static Folder createTransientFolder(Repository repo, String key) {
+    private static Folder createTransientFolder(Repository repo, String key) {
        S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), createS3ObjectKey(key));
        return new FolderImpl(obj,repo);
     }
@@ -48,12 +48,12 @@ public class FolderImpl extends AbstractItem implements Folder {
     }
 
     public static Folder createTransientFolder( Folder parentFolder, String name) {
-        if(parentFolder.isTransient())
-            throw new UnsupportedOperationException("Cannot create sub folder under transient folder");
-        String key = parentFolder.getKey() + "/" + name;
-        return createTransientFolder(((FolderImpl) parentFolder).getRepository(), key);
+        String key = createKey(parentFolder, name);
+        return createTransientFolder( parentFolder.getRepository(), key);
     }
-    
+
+
+
     public List<Item> getItems() throws IOException {
           return repository.findItmes(subItemsFolderPath());
     }

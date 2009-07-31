@@ -12,7 +12,7 @@ import com.thoughtDocs.util.CredentialsConfig;
 public class BucketFactory {
     public static S3Bucket getTestS3Bucket() {
 
-        final boolean temporarilyOffline = false;
+        final boolean temporarilyOffline = true;
         return  temporarilyOffline ?
                 new MemoryBucketImpl("test") :
                 new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),

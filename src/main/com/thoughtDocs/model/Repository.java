@@ -16,4 +16,6 @@ public interface Repository {
     void delete() throws IOException;
 
     List<Item> findItmes(String folderPath) throws IOException;
+
+    Folder getRootFolder();
 }

@@ -11,4 +11,8 @@ public class NotImplementedException extends UnsupportedOperationException {
     public NotImplementedException() {
         super("Not implemented");
     }
+
+    public NotImplementedException(String msg) {
+        super(msg);
+    }
 }

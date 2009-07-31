@@ -3,12 +3,10 @@ package com.thoughtDocs.action;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
-import org.jboss.seam.annotations.Factory;
-import org.jboss.seam.annotations.In;
-import org.jboss.seam.annotations.Logger;
-import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.*;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
+import org.jboss.seam.ScopeType;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,6 +19,7 @@ public class DocumentUploadAction implements Serializable {
 
     @In
     private StatusMessages statusMessages;
+
     @In
     DocumentListAction documentListAction;
 
@@ -37,7 +36,7 @@ public class DocumentUploadAction implements Serializable {
     @Factory(value = "uploadingDocument", autoCreate = true)
     public Document createUploadingDocument() {
         //the "newfile" key set here will be immidietly replaced by real file name of the uploaded filename
-        Document doc = DocumentImpl.createTransientDocument(defaultRepository, "newfile");
+        Document doc = DocumentImpl.createTransientDocument(defaultRepository.getRootFolder(), "newfile");
         return doc;
     }
 

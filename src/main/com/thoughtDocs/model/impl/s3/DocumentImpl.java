@@ -2,6 +2,7 @@ package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.Folder;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,10 +22,16 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
         super(obj);
     }
 
-    public static Document createTransientDocument(Repository repo, String key) {
+    private static Document createTransientDocument(Repository repo, String key) {
         S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), key);
         return new DocumentImpl(obj);
     }
+
+    public static Document createTransientDocument(Folder parentFolder, String name) {
+          String key = createKey(parentFolder, name);
+          return createTransientDocument( parentFolder.getRepository(), key);
+      }
+
 
     public String getKey() {
         return s3Object.getKey();

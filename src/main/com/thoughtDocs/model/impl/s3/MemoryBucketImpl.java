@@ -26,7 +26,17 @@ public class MemoryBucketImpl implements S3Bucket {
     }
 
     public void saveObject(S3Object obj) throws IOException {
+        S3Object toRemove = findByKey(obj.getKey());
+        if(toRemove != null)
+            objects.remove(obj);
         objects.add(obj);
+    }
+
+    private S3Object findByKey(String key){
+        for (S3Object object : objects)
+                    if(object.getKey().equals(key))
+                          return object;
+        return null;
     }
 
     public void removeObject(S3Object obj) throws IOException {
