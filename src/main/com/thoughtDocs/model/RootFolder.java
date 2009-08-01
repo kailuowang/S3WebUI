@@ -50,4 +50,8 @@ public class RootFolder implements Folder {
         throw new UnsupportedOperationException("Rootfolder cannot be deleted");
 
     }
+
+    public Folder getParent() throws IOException {
+        return null;
+    }
 }

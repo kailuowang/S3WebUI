@@ -14,4 +14,6 @@ public interface Item {
     boolean isTransient();
     void update() throws IOException;
     void delete() throws IOException;
+
+    Folder getParent() throws IOException;
 }

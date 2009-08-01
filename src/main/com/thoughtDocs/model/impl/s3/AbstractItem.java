@@ -1,9 +1,6 @@
 package com.thoughtDocs.model.impl.s3;
 
-import com.thoughtDocs.model.Folder;
-import com.thoughtDocs.model.Item;
-import com.thoughtDocs.model.Path;
-import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.*;
 
 import java.io.IOException;
 
@@ -12,11 +9,14 @@ import java.io.IOException;
  * Date: Jul 29, 2009
  * Time: 7:34:49 PM
  */
-abstract class AbstractItem {
+abstract class AbstractItem implements Item{
     protected S3Object s3Object;
+    private Path path;
+    protected static Repository repository;
 
-    public AbstractItem(S3Object obj) {
+    public AbstractItem(S3Object obj, Repository repository) {
         s3Object = obj;
+        this.repository = repository;
     }
 
     public String getName() {
@@ -28,7 +28,20 @@ abstract class AbstractItem {
     }
 
     private Path getPath() {
-        return new Path(getKey());
+        if(path == null)
+            path = new Path(getKey());
+        return path;
+    }
+
+    public Folder getParent() throws IOException {
+       String folderPath = getPath().getFolderPath();
+        if(folderPath.length() == 0)
+            return new RootFolder(repository);
+         else
+        {
+            String folderKey = folderPath.substring(0, folderPath.length() -1 );
+            return FolderImpl.loadedFromRepository(repository, folderKey);
+        }
     }
 
     public abstract String getKey();
@@ -56,7 +69,7 @@ abstract class AbstractItem {
             if (isFolder)
                 return FolderImpl.loadedFromS3Object(repo, obj);
             else
-                return DocumentImpl.loadedFromS3Object(obj);
+                return DocumentImpl.loadedFromS3Object(repo, obj);
         }
     }
 

@@ -42,6 +42,7 @@ public class FolderFixture extends FixtureBase {
         loaded.update();
         Assert.assertFalse(loaded.isTransient());
         Assert.assertEquals(loaded.getKey(), key);
+        folder.delete();
     }
 
     @Test
@@ -63,6 +64,8 @@ public class FolderFixture extends FixtureBase {
         items = firstLevel.getItems();
         Assert.assertEquals(items.size(), 2);
 
+        Assert.assertEquals(subFolder2.getParent().getKey(), firstLevel.getKey());
+        Assert.assertTrue(firstLevel.getParent() instanceof RootFolder);
 
         Folder subFolder12 = FolderImpl.createTransientFolder(f, randomString());
         subFolder12.save();
@@ -70,6 +73,7 @@ public class FolderFixture extends FixtureBase {
         Assert.assertEquals(items.size(), 1);
         f = (Folder) items.get(0);
         Assert.assertEquals(f.getKey(), subFolder12.getKey());
+        firstLevel.delete();
 
     }
 
@@ -125,6 +129,7 @@ public class FolderFixture extends FixtureBase {
             }
         }
         Assert.assertNotNull(found);
+        firstLevel.delete();
     }
 
     private Folder createRoot() {

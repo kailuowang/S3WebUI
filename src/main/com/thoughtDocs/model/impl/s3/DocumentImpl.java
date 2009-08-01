@@ -18,13 +18,13 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
 
     private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
 
-    private DocumentImpl(S3Object obj) {
-        super(obj);
+    private DocumentImpl(S3Object obj, Repository repo) {
+        super(obj, repo);
     }
 
     private static Document createTransientDocument(Repository repo, String key) {
         S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), key);
-        return new DocumentImpl(obj);
+        return new DocumentImpl(obj, repo);
     }
 
     public static Document createTransientDocument(Folder parentFolder, String name) {
@@ -47,14 +47,14 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
      */
     public static Document loadedFromRepository(Repository repo, String key) throws IOException {
         S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), key);
-        return loadedFromS3Object(obj);
+        return loadedFromS3Object(repo, obj);
     }
 
-    static Document loadedFromS3Object(S3Object obj) throws IOException {
+    static Document loadedFromS3Object(Repository repo, S3Object obj) throws IOException {
         obj.updateMeta();
         if (obj.isTransient())
             return null;
-        return new DocumentImpl(obj);
+        return new DocumentImpl(obj,repo );
     }
 
  

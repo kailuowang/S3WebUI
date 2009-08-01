@@ -16,11 +16,9 @@ import java.io.IOException;
  */
 public class FolderImpl extends AbstractItem implements Folder {
     public static final String FOLDER_SUFFIX ="_$folder$";
-    private static Repository repository;
 
     private FolderImpl(S3Object obj, Repository repository) {
-        super(obj);
-        this.repository = repository;
+        super(obj, repository);
     }
 
     public String getKey(){
