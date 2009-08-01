@@ -2,6 +2,7 @@ package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
+import com.thoughtDocs.viewModel.itemList.BackToParentDisplayItem;
 
 import java.io.IOException;
 
@@ -14,4 +15,6 @@ public interface ItemOpener {
     void open(Document doc)  throws IOException;
 
     void open(Folder folder) throws IOException;
+
+    void open(BackToParentDisplayItem item) throws IOException;
 }

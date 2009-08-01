@@ -15,8 +15,12 @@
 
         
     </page>
-    <page view-id="/documentList.xhtml">
+    <page view-id="/documentList.xhtml" >
         <restrict>#{s:hasRole('admin')}</restrict>
+        <begin-conversation join="true" />
+    </page>
+    <page view-id="/documentPublicDownload.xhtml" >
+        <begin-conversation join="true"/>
     </page>
 
     <exception class="org.jboss.seam.framework.EntityNotFoundException">

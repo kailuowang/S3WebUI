@@ -1,8 +1,9 @@
-package com.thoughtDocs.viewModel;
+package com.thoughtDocs.viewModel.itemList;
 
 import com.thoughtDocs.model.*;
-import com.thoughtDocs.viewModel.DisplayItem;
-import com.thoughtDocs.viewModel.AbstractDisplayItem;
+import com.thoughtDocs.viewModel.itemList.DisplayItem;
+import com.thoughtDocs.viewModel.itemList.AbstractDisplayItem;
+import com.thoughtDocs.viewModel.ItemOpener;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.*;
 import org.jboss.seam.annotations.datamodel.DataModel;
@@ -33,7 +34,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
     private Folder currentFolder;
 
     @DataModel
-    private List<DisplayItem> items;
+    private List<DisplayItem> displayItems;
 
     @DataModelSelection
     private DisplayItem item;
@@ -54,12 +55,15 @@ public class DocumentListAction implements Serializable, ItemOpener {
     }
 
     @Factory
-    public void getItems() throws IOException {
+    public void getDisplayItems() throws IOException {
 
-        items = new ArrayList<DisplayItem>();
-        
+        displayItems = new ArrayList<DisplayItem>();
+
+        if(getCurrentFolder().getParent() != null)
+          displayItems.add(new BackToParentDisplayItem());
         for(Item item : getCurrentFolder().getItems())
-            items.add(AbstractDisplayItem.create(item));
+            displayItems.add(AbstractDisplayItem.create(item));
+
     }
 
     public void open(Document doc)  throws IOException {
@@ -68,18 +72,23 @@ public class DocumentListAction implements Serializable, ItemOpener {
 
     public void open(Folder folder) throws IOException {
         currentFolder = folder;
-        getItems();
+        getDisplayItems();
     }
 
-    public void open(DisplayItem item) throws IOException {
+    public void open(BackToParentDisplayItem item) throws IOException {
+        currentFolder = getCurrentFolder().getParent();
+        getDisplayItems();
+    }
+
+    public void openItem(DisplayItem item) throws IOException {
         item.open(this);
-        getItems();
+        getDisplayItems();
     }
 
     
 
     public void delete(DisplayItem item) throws IOException {
         item.getItem().delete();
-        getItems();
+        getDisplayItems();
     }
 }

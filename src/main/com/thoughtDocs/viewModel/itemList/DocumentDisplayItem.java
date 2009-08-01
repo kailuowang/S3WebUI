@@ -1,7 +1,7 @@
-package com.thoughtDocs.viewModel;
+package com.thoughtDocs.viewModel.itemList;
 
 import com.thoughtDocs.model.Document;
-import org.jboss.seam.faces.FacesManager;
+import com.thoughtDocs.viewModel.ItemOpener;
 
 import java.io.IOException;
 

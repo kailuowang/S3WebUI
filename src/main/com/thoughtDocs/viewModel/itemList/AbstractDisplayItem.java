@@ -1,9 +1,10 @@
-package com.thoughtDocs.viewModel;
+package com.thoughtDocs.viewModel.itemList;
 
 import com.thoughtDocs.model.Item;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.exception.NotImplementedException;
+import com.thoughtDocs.viewModel.ItemOpener;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,6 +17,7 @@ import java.io.Serializable;
 public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
     Item item;
 
+    
 
     protected AbstractDisplayItem(Item item ) {
           this.item = item;
@@ -31,6 +33,10 @@ public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
 
     public abstract void open(ItemOpener opener) throws IOException;
 
+    public boolean getDeletable() {
+        return true;
+    }
+
     public static DisplayItem create(Item item) {
         if(item instanceof Document)
             return new DocumentDisplayItem((Document) item);
@@ -40,5 +46,5 @@ public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
 
     }
 
-    
+
 }

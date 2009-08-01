@@ -15,27 +15,27 @@
               <h2>#{documentListAction.defaultRepository.name}</h2>
             #{documentListAction.currentFolder.key}
             </f:facet>
-            <h:dataTable id="items" value="#{items}"
-                         var="doc" rendered="#{items != null and items.size>0}">
+            <h:dataTable id="itemsTable" value="#{displayItems}"
+                         var="item" rendered="#{displayItems != null and displayItems.size>0}">
                 <h:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
-                     <s:link id="open" value="#{doc.name}"
-                            action="#{documentListAction.open(doc)}" />
+                     <s:link id="open" value="#{item.name}"
+                            action="#{documentListAction.openItem(item)}" />
                    
 
                 </h:column>
                 <h:column id="column6">
                     <f:facet id="publicurl" name="header">Public URL</f:facet>
-                    #{doc.publicUrl}
+                    #{item.publicUrl}
                 </h:column>
                 <h:column id="column11">
                     <f:facet id="PasswordFacet" name="header">Password</f:facet>
-                    #{doc.password}
+                    #{item.password}
                 </h:column>
                 <h:column id="column5">
                     <f:facet id="ActionFacet" name="header">Action</f:facet>
 
-                    <s:link id="delete" value="Delete" action="#{documentListAction.delete(doc)}"/>
+                    <s:link id="delete" value="Delete" action="#{documentListAction.delete(item)}" rendered="#{item.deletable}"  />
                 </h:column>
                 
             </h:dataTable>

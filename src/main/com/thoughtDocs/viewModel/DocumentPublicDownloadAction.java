@@ -3,7 +3,7 @@ package com.thoughtDocs.viewModel;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
-import com.thoughtDocs.viewModel.DocumentDisplayItem;
+import com.thoughtDocs.viewModel.itemList.DocumentListAction;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
@@ -23,7 +23,7 @@ import java.io.Serializable;
  * Time: 7:06:41 PM
  * To change this template use File | Settings | File Templates.
  */
-@Scope(ScopeType.SESSION)
+@Scope(ScopeType.CONVERSATION)
 @Name("documentPublicDownloadAction")
 public class DocumentPublicDownloadAction implements Serializable {
     private String key;
