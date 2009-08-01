@@ -91,4 +91,5 @@ public class DocumentListAction implements Serializable, ItemOpener {
         item.getItem().delete();
         getDisplayItems();
     }
+    
 }

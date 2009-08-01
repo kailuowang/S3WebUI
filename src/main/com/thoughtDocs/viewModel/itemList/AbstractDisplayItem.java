@@ -1,9 +1,9 @@
 package com.thoughtDocs.viewModel.itemList;
 
-import com.thoughtDocs.model.Item;
+import com.thoughtDocs.exception.NotImplementedException;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
-import com.thoughtDocs.exception.NotImplementedException;
+import com.thoughtDocs.model.Item;
 import com.thoughtDocs.viewModel.ItemOpener;
 
 import java.io.IOException;
@@ -17,10 +17,9 @@ import java.io.Serializable;
 public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
     Item item;
 
-    
 
-    protected AbstractDisplayItem(Item item ) {
-          this.item = item;
+    protected AbstractDisplayItem(Item item) {
+        this.item = item;
     }
 
     public String getName() {
@@ -37,10 +36,12 @@ public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
         return true;
     }
 
+    public abstract String getIconFile();
+
     public static DisplayItem create(Item item) {
-        if(item instanceof Document)
+        if (item instanceof Document)
             return new DocumentDisplayItem((Document) item);
-        if(item instanceof Folder)
+        if (item instanceof Folder)
             return new FolderDisplayItem((Folder) item);
         throw new NotImplementedException(item.getClass() + " diplay item is not implemented yet");
 

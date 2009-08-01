@@ -23,4 +23,6 @@ public interface DisplayItem {
     void open(ItemOpener opener) throws IOException;
 
     boolean getDeletable();
+
+    String getIconFile();
 }

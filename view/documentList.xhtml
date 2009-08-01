@@ -19,9 +19,12 @@
                          var="item" rendered="#{displayItems != null and displayItems.size>0}">
                 <h:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
+
+                                 <h:graphicImage value="#{item.iconFile}" alt="#{item.name}" />
                      <s:link id="open" value="#{item.name}"
                             action="#{documentListAction.openItem(item)}" />
-                   
+
+
 
                 </h:column>
                 <h:column id="column6">

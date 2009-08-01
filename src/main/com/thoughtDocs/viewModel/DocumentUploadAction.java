@@ -33,7 +33,7 @@ public class DocumentUploadAction implements Serializable {
 
 
     public void upload() throws IOException {
-        Document doc = DocumentImpl.createTransientDocument(defaultRepository.getRootFolder(), name);
+        Document doc = DocumentImpl.createTransientDocument(documentListAction.getCurrentFolder(), name);
         doc.setPassword(password);
         doc.setContentType(contentType);
         doc.setData(data);

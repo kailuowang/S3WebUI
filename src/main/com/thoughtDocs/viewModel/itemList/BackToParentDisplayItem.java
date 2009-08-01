@@ -36,4 +36,8 @@ public class BackToParentDisplayItem implements DisplayItem {
     public boolean getDeletable() {
         return false;
     }
+
+    public String getIconFile() {
+        return "/img/folder.png";
+    }
 }
