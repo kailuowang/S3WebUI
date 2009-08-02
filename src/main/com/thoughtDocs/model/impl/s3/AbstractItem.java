@@ -5,6 +5,8 @@ import com.thoughtDocs.model.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.EnumSet;
+import java.util.Arrays;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -16,6 +18,8 @@ abstract class AbstractItem implements Item {
     private Path path;
     protected static Repository repository;
     private boolean metaUpdated = false;
+    private static final String SECURITY_MODE_KEY = "security-mode";
+
 
     public AbstractItem(S3Object obj, Repository repository) {
         s3Object = obj;
@@ -94,13 +98,15 @@ abstract class AbstractItem implements Item {
     }
 
 
-    public SecurityMode getSecurityMode() {
-        s3Object.getMeta();
-        return null;
+    public SecurityMode getSecurityMode() throws IOException {
+        List<String> vals = getMeta().get(SECURITY_MODE_KEY);
+        if(vals == null || vals.size() == 0 )
+            return SecurityMode.INHERITED;
+       return SecurityMode.valueOf(vals.get(0));
     }
 
-    public void setSecurityMode() {
-
+    public void setSecurityMode(SecurityMode mode) throws IOException {
+        getMeta().put(SECURITY_MODE_KEY, Arrays.asList(mode.name())) ;
     }
 
 }

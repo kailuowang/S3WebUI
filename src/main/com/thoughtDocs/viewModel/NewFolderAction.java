@@ -7,6 +7,7 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -14,7 +15,7 @@ import java.io.IOException;
  * Time: 11:00:00 PM
  */
 @Name("newFolderAction")
-public class NewFolderAction {
+public class NewFolderAction implements Serializable {
     @In
     DocumentListAction documentListAction;
     private String name;

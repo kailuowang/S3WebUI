@@ -1,6 +1,7 @@
 package com.thoughtDocs.model.impl.s3;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -12,7 +13,7 @@ import java.util.TreeMap;
  * Time: 5:20:46 PM
  * To change this template use File | Settings | File Templates.
  */
-class S3Object {
+class S3Object implements Serializable {
 
     private String key;
     private byte[] data;

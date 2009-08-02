@@ -3,6 +3,7 @@ package com.thoughtDocs.model.impl.s3;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.SecurityMode;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -50,6 +51,17 @@ public class DocumentFixture extends FixtureBase {
         doc = DocumentImpl.findFromRepository(repository, doc.getKey());
         Assert.assertEquals(doc.getPassword(), pass);
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+        doc.delete();
+    }
+
+    @Test
+    public void testDocumentSecrityMode() throws IOException {
+        Repository repository = new RepositoryImpl(testBucket());
+        Document doc = DocumentImpl.createTransientDocument(repository.getRootFolder(), randomString());
+        doc.setSecurityMode(SecurityMode.INHERITED);
+        doc.save();
+        doc = DocumentImpl.findFromRepository(repository, doc.getKey());
+        Assert.assertEquals(doc.getSecurityMode(), SecurityMode.INHERITED);
         doc.delete();
     }
 

@@ -52,4 +52,12 @@ public class RootFolder implements Folder {
     public Folder getParent() throws IOException {
         return null;
     }
+
+    public SecurityMode getSecurityMode() throws IOException {
+        return SecurityMode.SPECIFIED_PASSWORD;
+    }
+
+    public void setSecurityMode(SecurityMode mode) throws IOException {
+        throw new UnsupportedOperationException("root folder's securityMode cannot be changed.");
+    }
 }

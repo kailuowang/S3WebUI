@@ -4,13 +4,14 @@ import com.thoughtDocs.model.Item;
 import com.thoughtDocs.viewModel.ItemOpener;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by Kailuo "Kai" Wang
  * Date: Jul 30, 2009
  * Time: 10:31:30 PM
  */
-public interface DisplayItem {
+public interface DisplayItem extends Serializable {
     String getName();
 
     String getPublicUrl();
