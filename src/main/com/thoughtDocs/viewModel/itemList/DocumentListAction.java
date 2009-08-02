@@ -70,7 +70,8 @@ public class DocumentListAction implements Serializable, ItemOpener {
     public void open(Document doc) throws IOException {
         FacesManager.instance().redirectToExternalURL((doc.getSignedURL()));
     }
-
+    
+    @Begin(nested=true)
     public void open(Folder folder) throws IOException {
         currentFolder = folder;
         getDisplayItems();
@@ -82,7 +83,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
         getDisplayItems();
     }
 
-    @Begin(nested=true)
+
     public void openItem(DisplayItem item) throws IOException {
         item.open(this);
         getDisplayItems();
@@ -91,6 +92,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
 
     public void delete(DisplayItem item) throws IOException {
         item.getItem().delete();
+        currentFolder = item.getItem().getParent();
         getDisplayItems();
     }
 
