@@ -76,11 +76,13 @@ public class DocumentListAction implements Serializable, ItemOpener {
         getDisplayItems();
     }
 
+
     public void open(BackToParentDisplayItem item) throws IOException {
         currentFolder = getCurrentFolder().getParent();
         getDisplayItems();
     }
 
+    @Begin(nested=true)
     public void openItem(DisplayItem item) throws IOException {
         item.open(this);
         getDisplayItems();

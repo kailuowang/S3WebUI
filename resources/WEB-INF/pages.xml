@@ -15,9 +15,10 @@
 
         
     </page>
-    <page view-id="/documentList.xhtml" >
+    <page name="documentList" view-id="/documentList.xhtml" redirect="true" back="enabled" >
         <restrict>#{s:hasRole('admin')}</restrict>
         <begin-conversation join="true" />
+        <transition to="documentList" />
     </page>
     <page view-id="/documentPublicDownload.xhtml" >
         <begin-conversation join="true"/>
