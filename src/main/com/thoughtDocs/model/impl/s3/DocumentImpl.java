@@ -1,8 +1,8 @@
 package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Document;
-import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.Folder;
+import com.thoughtDocs.model.Repository;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -28,9 +28,9 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
     }
 
     public static Document createTransientDocument(Folder parentFolder, String name) {
-          String key = createKey(parentFolder, name);
-          return createTransientDocument( parentFolder.getRepository(), key);
-      }
+        String key = createKey(parentFolder, name);
+        return createTransientDocument(parentFolder.getRepository(), key);
+    }
 
 
     public String getKey() {
@@ -45,19 +45,19 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
      * @return null if no such file found on server
      * @throws IOException
      */
-    public static Document loadedFromRepository(Repository repo, String key) throws IOException {
+    public static Document findFromRepository(Repository repo, String key) throws IOException {
         S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), key);
-        return loadedFromS3Object(repo, obj);
-    }
-
-    static Document loadedFromS3Object(Repository repo, S3Object obj) throws IOException {
         obj.updateMeta();
         if (obj.isTransient())
             return null;
-        return new DocumentImpl(obj,repo );
+        return loadedFromS3Object(repo, obj);
     }
 
- 
+    public static Document loadedFromS3Object(Repository repo, S3Object obj) throws IOException {
+
+        return new DocumentImpl(obj, repo);
+    }
+
 
     public String getSignedURL() {
         return s3Object.getSignedURL();
@@ -86,7 +86,7 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
     }
 
     public String getPassword() throws IOException {
-        Object passwordsMeta = s3Object.getMeta().get(PUBLIC_PASSWORD_META_KEY);
+        Object passwordsMeta = getMeta().get(PUBLIC_PASSWORD_META_KEY);
         if (passwordsMeta != null)
             return (String) ((List) passwordsMeta).get(0);
         else
@@ -95,7 +95,7 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
 
 
     public void setPassword(String password) throws IOException {
-        s3Object.getMeta().put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(password));
+        getMeta().put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(password));
     }
 
 

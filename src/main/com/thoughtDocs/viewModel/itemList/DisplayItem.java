@@ -1,7 +1,6 @@
 package com.thoughtDocs.viewModel.itemList;
 
 import com.thoughtDocs.model.Item;
-import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.viewModel.ItemOpener;
 
 import java.io.IOException;

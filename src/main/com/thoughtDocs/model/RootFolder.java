@@ -1,7 +1,5 @@
 package com.thoughtDocs.model;
 
-import com.thoughtDocs.model.impl.s3.RepositoryImpl;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class RootFolder implements Folder {
     }
 
     public void save() throws IOException {
-       //no need to save root folder
+        //no need to save root folder
     }
 
     public List<Item> getItems() throws IOException {
@@ -31,7 +29,7 @@ public class RootFolder implements Folder {
     }
 
     public String getName() {
-        return SUBITEMS_FOLDER_PATH;   
+        return SUBITEMS_FOLDER_PATH;
     }
 
     public String getKey() {
@@ -46,7 +44,7 @@ public class RootFolder implements Folder {
         //nothing needed
     }
 
-    public void delete() throws IOException{
+    public void delete() throws IOException {
         throw new UnsupportedOperationException("Rootfolder cannot be deleted");
 
     }

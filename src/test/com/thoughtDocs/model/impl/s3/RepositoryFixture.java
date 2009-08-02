@@ -1,8 +1,8 @@
 package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Document;
-import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.Item;
+import com.thoughtDocs.model.Repository;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

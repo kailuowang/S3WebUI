@@ -47,7 +47,7 @@ public class DocumentFixture extends FixtureBase {
         String pass = "pass";
         doc.setPassword(pass);
         doc.save();
-        doc = DocumentImpl.loadedFromRepository(repository, doc.getKey());
+        doc = DocumentImpl.findFromRepository(repository, doc.getKey());
         Assert.assertEquals(doc.getPassword(), pass);
         Assert.assertEquals(new String(doc.getData()), TEST_DATA);
         doc.delete();

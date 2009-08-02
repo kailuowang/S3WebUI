@@ -47,7 +47,7 @@ public class FolderFixture extends FixtureBase {
 
     @Test
     public void testFolderTree() throws IOException {
-  
+
         Folder firstLevel = FolderImpl.createTransientFolder(createRoot(), "firstLevel" + randomString());
         firstLevel.save();
         Folder subFolder = FolderImpl.createTransientFolder(firstLevel, randomString());
@@ -85,10 +85,10 @@ public class FolderFixture extends FixtureBase {
         Folder subFolder = FolderImpl.createTransientFolder(firstLevel, randomString());
         subFolder.save();
         Folder subFolder2 = FolderImpl.createTransientFolder(firstLevel, randomString());
-        subFolder2.save(); 
+        subFolder2.save();
         Folder subFolder3 = FolderImpl.createTransientFolder(firstLevel, randomString());
         subFolder3.save();
-        Assert.assertEquals( firstLevel.getItems().size(), 3);
+        Assert.assertEquals(firstLevel.getItems().size(), 3);
 
         subFolder3.delete();
 
@@ -99,7 +99,6 @@ public class FolderFixture extends FixtureBase {
         firstLevel.delete();
 
 
-
         assertDeleted(repo, firstLevel);
         assertDeleted(repo, subFolder);
         assertDeleted(repo, subFolder2);
@@ -108,7 +107,7 @@ public class FolderFixture extends FixtureBase {
     }
 
     private void assertDeleted(RepositoryImpl repo, Item item) throws IOException {
-        Folder loaded = FolderImpl.loadedFromRepository(repo,  item.getKey());
+        Folder loaded = FolderImpl.loadedFromRepository(repo, item.getKey());
         loaded.update();
         Assert.assertTrue(loaded.isTransient());
     }
@@ -120,10 +119,8 @@ public class FolderFixture extends FixtureBase {
         firstLevel.save();
         List<Item> items = root.getItems();
         Folder found = null;
-        for(Item item :items)
-        {
-            if(item.getKey().equals(firstLevel.getKey()))
-            {
+        for (Item item : items) {
+            if (item.getKey().equals(firstLevel.getKey())) {
                 found = (Folder) item;
                 break;
             }

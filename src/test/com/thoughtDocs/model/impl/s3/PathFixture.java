@@ -1,8 +1,8 @@
 package com.thoughtDocs.model.impl.s3;
 
-import org.testng.annotations.Test;
-import org.testng.Assert;
 import com.thoughtDocs.model.Path;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -11,7 +11,7 @@ import com.thoughtDocs.model.Path;
  */
 public class PathFixture {
     @Test
-    public void testPathGetItemNameAndFolderPath(){
+    public void testPathGetItemNameAndFolderPath() {
         Path p = new Path("/ge/lala.pdf");
         Assert.assertEquals(p.getItemName(), "lala.pdf");
         Assert.assertEquals(p.getFolderPath(), "/ge/");

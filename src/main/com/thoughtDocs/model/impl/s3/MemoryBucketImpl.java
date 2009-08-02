@@ -28,15 +28,15 @@ public class MemoryBucketImpl implements S3Bucket {
 
     public void saveObject(S3Object obj) throws IOException {
         S3Object toRemove = findByKey(obj.getKey());
-        if(toRemove != null)
+        if (toRemove != null)
             objects.remove(obj);
         objects.add(obj);
     }
 
-    private S3Object findByKey(String key){
+    private S3Object findByKey(String key) {
         for (S3Object object : objects)
-                    if(object.getKey().equals(key))
-                          return object;
+            if (object.getKey().equals(key))
+                return object;
         return null;
     }
 

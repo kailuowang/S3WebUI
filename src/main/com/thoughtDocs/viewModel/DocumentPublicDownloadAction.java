@@ -59,7 +59,7 @@ public class DocumentPublicDownloadAction implements Serializable {
 
     public void download() throws IOException {
 
-        Document doc = DocumentImpl.loadedFromRepository(defaultRepository, key);
+        Document doc = DocumentImpl.findFromRepository(defaultRepository, key);
         if (doc == null || password == null || !password.equals(doc.getPassword())) {
             statusMessages.add("File and password does not match, please try again");
             return;

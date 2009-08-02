@@ -12,7 +12,7 @@ import java.io.IOException;
  * Time: 4:44:15 PM
  */
 public interface ItemOpener {
-    void open(Document doc)  throws IOException;
+    void open(Document doc) throws IOException;
 
     void open(Folder folder) throws IOException;
 

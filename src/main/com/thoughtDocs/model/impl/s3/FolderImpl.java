@@ -1,11 +1,11 @@
 package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Folder;
-import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.Item;
+import com.thoughtDocs.model.Repository;
 
-import java.util.List;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,26 +15,26 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class FolderImpl extends AbstractItem implements Folder {
-    public static final String FOLDER_SUFFIX ="_$folder$";
+    public static final String FOLDER_SUFFIX = "_$folder$";
 
     private FolderImpl(S3Object obj, Repository repository) {
         super(obj, repository);
     }
 
-    public String getKey(){
+    public String getKey() {
         String key = s3Object.getKey();
         return key.replace(FOLDER_SUFFIX, "");
     }
 
     public void delete() throws IOException {
-        for(Item item : getItems())
+        for (Item item : getItems())
             item.delete();
         s3Object.delete();
     }
 
     private static Folder createTransientFolder(Repository repo, String key) {
-       S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), createS3ObjectKey(key));
-       return new FolderImpl(obj,repo);
+        S3Object obj = S3Object.createNewTransient(((RepositoryImpl) repo).getBucket(), createS3ObjectKey(key));
+        return new FolderImpl(obj, repo);
     }
 
     private static String createS3ObjectKey(String key) {
@@ -51,19 +51,18 @@ public class FolderImpl extends AbstractItem implements Folder {
         return new FolderImpl(obj, repo);
     }
 
-    public static Folder createTransientFolder( Folder parentFolder, String name) {
+    public static Folder createTransientFolder(Folder parentFolder, String name) {
         String key = createKey(parentFolder, name);
-        return createTransientFolder( parentFolder.getRepository(), key);
+        return createTransientFolder(parentFolder.getRepository(), key);
     }
-
 
 
     public List<Item> getItems() throws IOException {
-          return repository.findItmes(subItemsFolderPath());
+        return repository.findItmes(subItemsFolderPath());
     }
 
     private String subItemsFolderPath() {
-        return getKey() +"/";
+        return getKey() + "/";
     }
 
     public Repository getRepository() {

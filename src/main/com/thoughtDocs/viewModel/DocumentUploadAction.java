@@ -4,7 +4,9 @@ import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import com.thoughtDocs.viewModel.itemList.DocumentListAction;
-import org.jboss.seam.annotations.*;
+import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Logger;
+import org.jboss.seam.annotations.Name;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
@@ -40,8 +42,6 @@ public class DocumentUploadAction implements Serializable {
         doc.save();
         documentListAction.getDisplayItems();
     }
-
-
 
 
     public void setPassword(String password) {

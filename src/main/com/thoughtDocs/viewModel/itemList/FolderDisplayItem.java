@@ -32,7 +32,7 @@ public class FolderDisplayItem extends AbstractDisplayItem implements Serializab
         opener.open(this.getFolder());
     }
 
-       public String getIconFile() {
+    public String getIconFile() {
         return "/img/folder.png";
     }
 }

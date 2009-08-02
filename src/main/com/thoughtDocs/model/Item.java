@@ -9,10 +9,13 @@ import java.io.IOException;
  */
 public interface Item {
     String getName();
+
     String getKey();
 
     boolean isTransient();
+
     void update() throws IOException;
+
     void delete() throws IOException;
 
     Folder getParent() throws IOException;

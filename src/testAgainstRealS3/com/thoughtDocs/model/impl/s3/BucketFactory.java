@@ -13,10 +13,10 @@ public class BucketFactory {
     public static S3Bucket getTestS3Bucket() {
 
         final boolean temporarilyOffline = false;
-        return  temporarilyOffline ?
+        return temporarilyOffline ?
                 new MemoryBucketImpl("test") :
                 new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
-                CredentialsConfig.getAWSSecretKey(),
-                CredentialsConfig.getAWSBucketName());
+                        CredentialsConfig.getAWSSecretKey(),
+                        CredentialsConfig.getAWSBucketName());
     }
 }

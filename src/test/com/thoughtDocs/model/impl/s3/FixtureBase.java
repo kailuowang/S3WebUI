@@ -13,7 +13,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class FixtureBase {
-               SecureRandom random ;
+    SecureRandom random;
 
     protected String randomString() {
         String randomString = String.valueOf(random.nextLong());
@@ -21,7 +21,7 @@ public abstract class FixtureBase {
     }
 
     protected FixtureBase() {
-           random = null;
+        random = null;
         try {
             random = SecureRandom.getInstance("SHA1PRNG");
         } catch (NoSuchAlgorithmException e) {

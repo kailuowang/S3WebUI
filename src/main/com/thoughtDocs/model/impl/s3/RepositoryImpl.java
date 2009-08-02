@@ -38,12 +38,12 @@ public class RepositoryImpl implements Repository, Serializable {
 
     public List<Item> findItmes(String folderPath) throws IOException {
         List<S3Object> objects = bucket.getObjects();
-         List<Item> retVal = new ArrayList<Item>();
+        List<Item> retVal = new ArrayList<Item>();
         for (S3Object obj : objects) {
             String key = obj.getKey();
-            Path p = new Path(key);  
-            if(p.getFolderPath().equals(folderPath))
-                retVal.add(AbstractItem.loadedFromRepository (this, obj.getKey()));
+            Path p = new Path(key);
+            if (p.getFolderPath().equals(folderPath))
+                retVal.add(AbstractItem.loadedFromRepository(this, obj.getKey()));
         }
         return retVal;
     }

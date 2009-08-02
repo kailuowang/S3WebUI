@@ -14,7 +14,6 @@ public interface Document extends Item {
      */
     String getKey();
 
-  
 
     String getSignedURL();
 
@@ -31,7 +30,6 @@ public interface Document extends Item {
     void setPassword(String password) throws IOException;
 
     void save() throws IOException;
-
 
     String getPublicUrl();
 }

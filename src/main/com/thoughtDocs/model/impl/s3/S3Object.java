@@ -22,6 +22,7 @@ class S3Object {
     private String contentType;
     private long size;
 
+
     public String getContentType() {
         return contentType;
     }
@@ -89,7 +90,6 @@ class S3Object {
         return key;
     }
 
-   
 
     public boolean isTransient() {
         return isTransient;
@@ -129,8 +129,7 @@ class S3Object {
 
 
     public void updateMeta() throws IOException {
-        if (meta.size() > 0)
-            return;
+
         bucket.updateObjectMeta(this);
 
     }
