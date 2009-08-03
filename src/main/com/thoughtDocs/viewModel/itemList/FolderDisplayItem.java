@@ -24,9 +24,7 @@ public class FolderDisplayItem extends AbstractDisplayItem implements Serializab
         return "";
     }
 
-    public String getPassword() {
-        return "";
-    }
+  
 
     public void open(ItemOpener opener) throws IOException {
         opener.open(this.getFolder());

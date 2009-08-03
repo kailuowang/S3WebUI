@@ -1,6 +1,7 @@
 package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Folder;
+import com.thoughtDocs.model.SecurityMode;
 import com.thoughtDocs.model.impl.s3.FolderImpl;
 import com.thoughtDocs.viewModel.itemList.DocumentListAction;
 import org.jboss.seam.annotations.In;
@@ -19,6 +20,9 @@ public class NewFolderAction implements Serializable {
     @In
     DocumentListAction documentListAction;
     private String name;
+    private SecurityMode securityMode;
+    private String password;
+
 
     public void setName(String name) {
         this.name = name;
@@ -31,8 +35,27 @@ public class NewFolderAction implements Serializable {
 
     public void create() throws IOException {
         Folder newFolder = FolderImpl.createTransientFolder(documentListAction.getCurrentFolder(), name);
+        newFolder.setSecurityMode(securityMode);
+        newFolder.setPassword(password);
         newFolder.save();
         documentListAction.open(newFolder);
 
+    }
+
+
+    public void setSecurityMode(SecurityMode securityMode) {
+        this.securityMode = securityMode;
+    }
+
+    public SecurityMode getSecurityMode() {
+        return securityMode;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

@@ -25,9 +25,6 @@ public class DocumentDisplayItem extends AbstractDisplayItem {
         return getDocument().getPublicUrl();
     }
 
-    public String getPassword() throws IOException {
-        return getDocument().getPassword();
-    }
 
     @Override
     public void open(ItemOpener opener) throws IOException {

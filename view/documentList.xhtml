@@ -8,20 +8,20 @@
                 xmlns:rich="http://richfaces.org/rich"
                 xmlns:a="http://richfaces.org/a4j"
                 template="layout/template.xhtml">
-    
+
     <ui:define name="body">
         <rich:panel id="itemsPanel">
             <f:facet name="header">
-              <h2>#{documentListAction.defaultRepository.name}</h2>
-            #{documentListAction.currentFolder.key}
+                <h2>#{documentListAction.defaultRepository.name}</h2>
+                #{documentListAction.currentFolder.key}
             </f:facet>
             <h:dataTable id="itemsTable" value="#{displayItems}"
                          var="item" rendered="#{displayItems != null and displayItems.size>0}">
                 <h:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
-                     <h:graphicImage value="#{item.iconFile}" alt="#{item.name}" />
-                     <s:link id="open" value="#{item.name}"
-                            action="#{documentListAction.openItem(item)}" />
+                    <h:graphicImage value="#{item.iconFile}" alt="#{item.name}"/>
+                    <s:link id="open" value="#{item.name}"
+                            action="#{documentListAction.openItem(item)}"/>
                 </h:column>
                 <h:column id="column6">
                     <f:facet id="publicurl" name="header">Public URL</f:facet>
@@ -33,7 +33,8 @@
                 </h:column>
                 <h:column id="column5">
                     <f:facet id="ActionFacet" name="header">Action</f:facet>
-                    <s:link id="delete" value="Delete" action="#{documentListAction.delete(item)}" rendered="#{item.deletable}"  />
+                    <s:link id="delete" value="Delete" action="#{documentListAction.delete(item)}"
+                            rendered="#{item.deletable}"/>
                 </h:column>
             </h:dataTable>
         </rich:panel>
@@ -49,9 +50,19 @@
                                           contentType="#{documentUploadAction.contentType}"
                                           fileName="#{documentUploadAction.name}"
                                           size="80" maxlength="80" required="true"/>
-                            <h:outputLabel for="password">Password:</h:outputLabel>
-                            <h:inputText id="password" value="#{documentUploadAction.password}"/>
                         </div>
+                        <div>
+                               <br />
+                            <h:selectOneMenu value="#{documentUploadAction.securityMode}">
+                                <s:selectItems var="mode" value="#{securityModes}"
+                                               label="#{mode.longName}" noSelectionLabel="-- Select Security Mode--"/>
+                                <s:convertEnum/>
+                            </h:selectOneMenu>
+                            <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
+                            <h:inputText id="password" value="#{documentUploadAction.password}"/>
+
+                        </div>
+
                         <div>
                             <h:commandButton value="Upload"
                                              action="#{documentUploadAction.upload}"
@@ -66,14 +77,24 @@
             <h:form id="newFolderForm">
                 <s:validateAll>
 
-                        <div>
+                    <div>
 
-                            <h:outputLabel for="folderName">Folder Name:</h:outputLabel>
-                            <h:inputText id="folderName" value="#{newFolderAction.name}"/>
-                            <h:commandButton value="create"
-                                             action="#{newFolderAction.create()}"
-                                             reRender="itemsPanel" id="newFolderButton" />
-                        </div>
+                        <h:outputLabel for="folderName">Folder Name:</h:outputLabel>
+                        <h:inputText id="folderName" value="#{newFolderAction.name}"/>
+                        <br />
+                        <span>&nbsp;&nbsp;</span>
+                        <h:selectOneMenu value="#{newFolderAction.securityMode}">
+                                <s:selectItems var="mode" value="#{securityModes}"
+                                               label="#{mode.longName}" noSelectionLabel="-- Select Security Mode--"/>
+                                <s:convertEnum/>
+                            </h:selectOneMenu>
+
+                         <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
+                            <h:inputText id="password" value="#{newFolderAction.password}"/>
+                        <h:commandButton value="create"
+                                         action="#{newFolderAction.create()}"
+                                         reRender="itemsPanel" id="newFolderButton"/>
+                    </div>
                 </s:validateAll>
             </h:form>
         </rich:panel>

@@ -46,6 +46,10 @@ public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
         throw new NotImplementedException(item.getClass() + " diplay item is not implemented yet");
 
     }
+    public String getPassword() throws IOException {
+        String retVal =  item.getUsingPassword();
+        return retVal != null ? retVal : "None";
+    }
 
 
 }

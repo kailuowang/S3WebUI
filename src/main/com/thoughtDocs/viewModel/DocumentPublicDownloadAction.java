@@ -4,11 +4,9 @@ import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import com.thoughtDocs.viewModel.itemList.DocumentListAction;
+import com.thoughtDocs.exception.DocumentNotFoundException;
 import org.jboss.seam.ScopeType;
-import org.jboss.seam.annotations.In;
-import org.jboss.seam.annotations.Logger;
-import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.annotations.*;
 import org.jboss.seam.annotations.web.RequestParameter;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
@@ -26,6 +24,8 @@ import java.io.Serializable;
 @Scope(ScopeType.CONVERSATION)
 @Name("documentPublicDownloadAction")
 public class DocumentPublicDownloadAction implements Serializable {
+
+    @RequestParameter
     private String key;
     @Logger
     private Log log;
@@ -33,15 +33,10 @@ public class DocumentPublicDownloadAction implements Serializable {
     @In
     private StatusMessages statusMessages;
 
+    private Document doc;
 
     @In
     private Repository defaultRepository;
-
-    @RequestParameter
-    void setKey(String newkey) {
-        if (newkey != null)
-            key = newkey;
-    }
 
     private String password;
 
@@ -57,15 +52,30 @@ public class DocumentPublicDownloadAction implements Serializable {
         return key;
     }
 
-    public void download() throws IOException {
+    public void checkFile() throws IOException {
+        if(doc == null)
+            doc = DocumentImpl.findFromRepository(defaultRepository, key);
+        if(doc == null)
+        {   throw new DocumentNotFoundException();
+           
+        }
+        if(doc.getUsingPassword() == null)
+            download();
+    }
 
-        Document doc = DocumentImpl.findFromRepository(defaultRepository, key);
-        if (doc == null || password == null || !password.equals(doc.getPassword())) {
+    public void testPassword() throws IOException {
+
+        if (doc == null || password == null || !password.equals(doc.getUsingPassword())) {
             statusMessages.add("File and password does not match, please try again");
             return;
         }
-
-        new DocumentListAction().open(doc);
+       
+        download();
         //test url http://localhost:8080/thoughtDocs/documentPublicDownload.seam?key=restws.pdf
+    }
+
+    @End
+    private void download() throws IOException {
+        new DocumentListAction().open(doc);
     }
 }

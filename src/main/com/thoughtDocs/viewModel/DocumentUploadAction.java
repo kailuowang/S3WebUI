@@ -2,6 +2,7 @@ package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.SecurityMode;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import com.thoughtDocs.viewModel.itemList.DocumentListAction;
 import org.jboss.seam.annotations.In;
@@ -32,6 +33,7 @@ public class DocumentUploadAction implements Serializable {
     private String name;
     private String contentType;
     private byte[] data;
+    private SecurityMode securityMode;
 
 
     public void upload() throws IOException {
@@ -39,6 +41,7 @@ public class DocumentUploadAction implements Serializable {
         doc.setPassword(password);
         doc.setContentType(contentType);
         doc.setData(data);
+        doc.setSecurityMode(securityMode);
         doc.save();
         documentListAction.getDisplayItems();
     }
@@ -74,6 +77,14 @@ public class DocumentUploadAction implements Serializable {
 
     public byte[] getData() {
         return data;
+    }
+
+    public void setSecurityMode(SecurityMode securityMode) {
+        this.securityMode = securityMode;
+    }
+
+    public SecurityMode getSecurityMode() {
+        return securityMode;
     }
 }
 

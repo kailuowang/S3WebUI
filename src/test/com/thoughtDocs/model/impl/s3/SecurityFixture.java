@@ -1,9 +1,9 @@
 package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.model.Document;
+import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.SecurityMode;
-import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.util.CredentialsConfig;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -82,7 +82,7 @@ public class SecurityFixture extends FixtureBase {
     }
 
     @Test
-    public void testInherited() throws IOException{
+    public void testInherited() throws IOException {
         Repository repository = createTestRepo();
         Folder folder = FolderImpl.createTransientFolder(repository.getRootFolder(), randomString());
         folder.setSecurityMode(SecurityMode.SPECIFIED_PASSWORD);
@@ -90,10 +90,10 @@ public class SecurityFixture extends FixtureBase {
         folder.setPassword(testPassword);
         folder.save();
 
-         Document doc = DocumentImpl.createTransientDocument(folder, randomString());
-                doc.setSecurityMode(SecurityMode.INHERITED);
-                doc.save();
-                Assert.assertEquals(doc.getUsingPassword(), testPassword);
+        Document doc = DocumentImpl.createTransientDocument(folder, randomString());
+        doc.setSecurityMode(SecurityMode.INHERITED);
+        doc.save();
+        Assert.assertEquals(doc.getUsingPassword(), testPassword);
 
     }
 }

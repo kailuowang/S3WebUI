@@ -51,8 +51,8 @@ public class PropertiesConfig {
         Properties prop = getProperties();
         if (prop != null) {
             String retVal = (String) prop.get(key);
-            if (retVal != null && retVal.length() > 0) {
-                return (T) Convert.valOf(argType, retVal);
+            if (retVal != null && ( argType == String.class || retVal.length() > 0 )) {
+                return Convert.valOf(argType, retVal);
             }
         }
 

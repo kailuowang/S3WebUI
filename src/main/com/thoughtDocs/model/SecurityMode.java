@@ -13,6 +13,11 @@ public enum SecurityMode {
         public String usingPassword(Item item) throws IOException {
             return item.getPassword();
         }
+
+        @Override
+        public String getLongName() {
+            return "Specify a password";
+        }
     },
     INHERITED{
         @Override
@@ -20,11 +25,21 @@ public enum SecurityMode {
             Folder parent = item.getParent();
             return parent.getSecurityMode().usingPassword(parent);
         }
+
+        @Override
+        public String getLongName() {
+            return "Use folder secuirty";
+        }
     },
     UNPROTECTED{
         @Override
         public String usingPassword(Item item){
             return null;
+        }
+
+         @Override
+        public String getLongName() {
+            return "Public without password protection";
         }
     };
 
@@ -36,5 +51,7 @@ public enum SecurityMode {
      */
      public abstract String usingPassword(Item item) throws IOException;
 
+
+    public abstract String getLongName();
 
 }

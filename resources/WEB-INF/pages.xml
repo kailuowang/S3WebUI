@@ -21,7 +21,8 @@
         <transition to="documentList" />
     </page>
     <page view-id="/documentPublicDownload.xhtml" >
-        <begin-conversation join="true"/>
+       <action execute="#{documentPublicDownloadAction.checkFile}"/>
+          <begin-conversation join="true" />
     </page>
 
     <exception class="org.jboss.seam.framework.EntityNotFoundException">
@@ -29,7 +30,8 @@
             <message severity="warn">Record not found</message>
         </redirect>
     </exception>
-    
+
+
     <exception class="javax.persistence.EntityNotFoundException">
         <redirect view-id="/error.xhtml">
             <message severity="warn">Record not found</message>
@@ -70,7 +72,13 @@
     <exception class="org.jboss.seam.ConcurrentRequestTimeoutException" log-level="trace">
       <http-error error-code="503" />
     </exception>
-     
+
+    <exception class="com.thoughtDocs.exception.DocumentNotFoundException">
+        <redirect view-id="/error.xhtml">
+            <message severity="warn">Document not found</message>
+        </redirect>
+    </exception>
+
     <exception>
         <redirect view-id="/error.xhtml">
             <message severity="error">Unexpected error, please try again</message>
