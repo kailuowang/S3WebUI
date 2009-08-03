@@ -245,6 +245,7 @@
                 <include name="*_theme.properties"/>
                 <include name="seam.properties" />
                 <include name="credentials.properties" />
+                <include name="thoughtDocs.properties" />
                 <include name="*.drl" />
                 <include name="META-INF/*.drl" />
                 <include name="*jpdl.xml" />

@@ -64,9 +64,9 @@ public class DocumentListAction implements Serializable, ItemOpener {
             displayItems.add(new BackToParentDisplayItem());
         for (Item item : getCurrentFolder().getItems())
             displayItems.add(AbstractDisplayItem.create(item));
-
     }
-
+    
+    @Begin(nested=true)
     public void open(Document doc) throws IOException {
         FacesManager.instance().redirectToExternalURL((doc.getSignedURL()));
     }

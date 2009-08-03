@@ -7,4 +7,6 @@ test-output
 dist
 exploded-archives
 resources/credentials.properties
+resources/thoughtDocs.properties
 thoughtDocs.iws
+src/test/test.properties
