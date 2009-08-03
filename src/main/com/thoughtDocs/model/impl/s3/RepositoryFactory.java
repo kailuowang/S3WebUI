@@ -26,6 +26,7 @@ public class RepositoryFactory {
     Repository defaultRepository;
 
     private S3Bucket defaultBucket;
+
     public RepositoryFactory(S3Bucket defaultBucket) {
         this.defaultBucket = defaultBucket;
     }
@@ -35,19 +36,23 @@ public class RepositoryFactory {
                 CredentialsConfig.getAWSSecretKey(),
                 CredentialsConfig.getAWSBucketName()));
     }
-              
+
     @Factory(autoCreate = true)
     public Repository getDefaultRepository() throws IOException {
-        if(defaultRepository == null)
+        if (defaultRepository == null)
             defaultRepository =
                     ThoughtDocsConfig.getRunOnMemoryBucket() ?
-                createTestRepository() :
-                new RepositoryImpl(defaultBucket);
+                            createTestRepository() :
+                            new RepositoryImpl(defaultBucket);
         return defaultRepository;
     }
 
     private Repository createTestRepository() throws IOException {
         Repository repo = new RepositoryImpl(new MemoryBucketImpl("Development Test Repository"));
+        Document d1 = DocumentImpl.createTransientDocument(repo.getRootFolder(), "areadme.txt");
+        d1.setData("this is root!".getBytes());
+        d1.save();
+
         Folder f1 = FolderImpl.createTransientFolder(repo.getRootFolder(), "ThoughtWorks Documents");
         f1.setSecurityMode(SecurityMode.SPECIFIED_PASSWORD);
         f1.setPassword("1122");
@@ -82,8 +87,6 @@ public class RepositoryFactory {
         d311.save();
         return repo;
     }
-
-
 
 
 }

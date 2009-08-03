@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 
 
 @Scope(ScopeType.CONVERSATION)
@@ -41,9 +43,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
     private DisplayItem item;
 
     public DocumentListAction() {
-
     }
-
 
     public Repository getDefaultRepository() {
         return defaultRepository;
@@ -57,21 +57,24 @@ public class DocumentListAction implements Serializable, ItemOpener {
 
     @Factory
     public void getDisplayItems() throws IOException {
+        List<DisplayItem> items = new ArrayList<DisplayItem>();
 
-        displayItems = new ArrayList<DisplayItem>();
+        for (Item item : getCurrentFolder().getItems())
+            items.add(AbstractDisplayItem.create(item));
+        Collections.sort(items);
+        displayItems = new ArrayList<DisplayItem>( items.size() + 1 );
 
         if (getCurrentFolder().getParent() != null)
             displayItems.add(new BackToParentDisplayItem());
-        for (Item item : getCurrentFolder().getItems())
-            displayItems.add(AbstractDisplayItem.create(item));
+        displayItems.addAll(items);
     }
-    
-    @Begin(nested=true)
+
+    @Begin(nested = true)
     public void open(Document doc) throws IOException {
         FacesManager.instance().redirectToExternalURL((doc.getSignedURL()));
     }
-    
-    @Begin(nested=true)
+
+    @Begin(nested = true)
     public void open(Folder folder) throws IOException {
         currentFolder = folder;
         getDisplayItems();

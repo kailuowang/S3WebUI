@@ -52,7 +52,6 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
     }
 
     public static Document loadedFromS3Object(Repository repo, S3Object obj) throws IOException {
-
         return new DocumentImpl(obj, repo);
     }
 

@@ -66,7 +66,7 @@ public class MemoryBucketImpl implements S3Bucket {
     }
 
     public String getSignedUrl(S3Object object) {
-        return "http://memoryBucketGeneratedSignedUrl/" + name + "/" + object.getKey();
+        return "http://localhost:8080/thoughtDocs/memoryDL/" + object.getKey();
     }
 
     public void updateObjectMeta(S3Object object) throws IOException {

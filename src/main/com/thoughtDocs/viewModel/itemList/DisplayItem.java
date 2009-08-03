@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Date: Jul 30, 2009
  * Time: 10:31:30 PM
  */
-public interface DisplayItem extends Serializable {
+public interface DisplayItem extends Serializable , Comparable {
     String getName();
 
     String getPublicUrl();

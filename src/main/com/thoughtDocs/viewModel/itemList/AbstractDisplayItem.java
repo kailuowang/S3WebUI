@@ -52,4 +52,16 @@ public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
     }
 
 
+    public int compareTo(Object anotherItem) throws ClassCastException {
+       if (!(anotherItem instanceof DisplayItem))
+         throw new ClassCastException("A DisplayItem object expected.");
+
+       int typeCompare = - getClass().getName().compareTo(anotherItem.getClass().getName());
+       if(typeCompare != 0)
+            return typeCompare;
+       String thatName = ((DisplayItem) anotherItem).getName();
+       return this.getName().compareTo(thatName);
+     }
+
+
 }

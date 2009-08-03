@@ -22,5 +22,6 @@ public class ConfigFixture {
         assert awsKey.length() > 0;
     }
 
-    
+
+
 }

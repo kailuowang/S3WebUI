@@ -40,4 +40,8 @@ public class BackToParentDisplayItem implements DisplayItem {
     public String getIconFile() {
         return "/img/folder.png";
     }
+
+    public int compareTo(Object o) {
+        return 0;  // no need to implement
+    }
 }
