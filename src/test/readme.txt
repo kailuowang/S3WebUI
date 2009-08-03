@@ -27,3 +27,8 @@ using the endorsed directory.
 
 To add tests to your project create a TestNG xml descriptor called *Test.xml
 (e.g. FooTest.xml) next to your test classes and run ant test.
+
+
+
+
+You also need to create your test.properties from test.properties.template

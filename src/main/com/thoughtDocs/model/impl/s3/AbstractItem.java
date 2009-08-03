@@ -3,10 +3,9 @@ package com.thoughtDocs.model.impl.s3;
 import com.thoughtDocs.model.*;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.EnumSet;
-import java.util.Arrays;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -19,6 +18,7 @@ abstract class AbstractItem implements Item {
     protected static Repository repository;
     private boolean metaUpdated = false;
     private static final String SECURITY_MODE_KEY = "security-mode";
+    private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
 
 
     public AbstractItem(S3Object obj, Repository repository) {
@@ -100,13 +100,45 @@ abstract class AbstractItem implements Item {
 
     public SecurityMode getSecurityMode() throws IOException {
         List<String> vals = getMeta().get(SECURITY_MODE_KEY);
-        if(vals == null || vals.size() == 0 )
+        if (vals == null || vals.size() == 0)
             return SecurityMode.INHERITED;
-       return SecurityMode.valueOf(vals.get(0));
+        return SecurityMode.valueOf(vals.get(0));
     }
 
     public void setSecurityMode(SecurityMode mode) throws IOException {
-        getMeta().put(SECURITY_MODE_KEY, Arrays.asList(mode.name())) ;
+        getMeta().put(SECURITY_MODE_KEY, Arrays.asList(mode.name()));
     }
+
+    /**
+     * get the password specified for this particular item. it's not necessarily the password this item should be test against
+     *
+     * @return
+     * @throws IOException
+     */
+    public String getPassword() throws IOException {
+        Object passwordsMeta = getMeta().get(PUBLIC_PASSWORD_META_KEY);
+        if (passwordsMeta != null)
+            return (String) ((List) passwordsMeta).get(0);
+        else
+            return null;
+    }
+
+    /**
+     * set the password specified for this particular item. it's not necessarily the password this item should be test against
+     * @see this.getUsingPassword()
+     * @throws IOException
+     */
+    public void setPassword(String password) throws IOException {
+        getMeta().put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(password));
+    }
+
+    /**
+     * @return the password that should be test against when downloading this.
+     *         returns null or empty string if there is no password needed.
+     */
+    public String getUsingPassword() throws IOException {
+        return getSecurityMode().usingPassword(this);
+    }
+
 
 }

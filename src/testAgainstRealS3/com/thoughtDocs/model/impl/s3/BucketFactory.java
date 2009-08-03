@@ -1,6 +1,7 @@
 package com.thoughtDocs.model.impl.s3;
 
 import com.thoughtDocs.util.CredentialsConfig;
+import com.thoughtDocs.TestConfig;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,11 +13,11 @@ import com.thoughtDocs.util.CredentialsConfig;
 public class BucketFactory {
     public static S3Bucket getTestS3Bucket() {
 
-        final boolean temporarilyOffline = false;
-        return temporarilyOffline ?
-                new MemoryBucketImpl("test") :
+        return TestConfig.getTestAgainstRealS3Service() ?
                 new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
                         CredentialsConfig.getAWSSecretKey(),
-                        CredentialsConfig.getAWSBucketName());
+                        CredentialsConfig.getAWSBucketName()):
+                new MemoryBucketImpl("test");
+
     }
 }

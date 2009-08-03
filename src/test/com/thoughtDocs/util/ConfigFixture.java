@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import com.thoughtDocs.TestConfig;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ThoughtWorks
@@ -19,4 +21,6 @@ public class ConfigFixture {
         Assert.assertNotNull(awsKey);
         assert awsKey.length() > 0;
     }
+
+    
 }

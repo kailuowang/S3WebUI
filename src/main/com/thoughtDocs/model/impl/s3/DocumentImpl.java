@@ -16,8 +16,6 @@ import java.util.List;
  */
 public class DocumentImpl extends AbstractItem implements Document, Serializable {
 
-    private static final String PUBLIC_PASSWORD_META_KEY = "public-password";
-
     private DocumentImpl(S3Object obj, Repository repo) {
         super(obj, repo);
     }
@@ -83,19 +81,6 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
 
     public void delete() throws IOException {
         s3Object.delete();
-    }
-
-    public String getPassword() throws IOException {
-        Object passwordsMeta = getMeta().get(PUBLIC_PASSWORD_META_KEY);
-        if (passwordsMeta != null)
-            return (String) ((List) passwordsMeta).get(0);
-        else
-            return null;
-    }
-
-
-    public void setPassword(String password) throws IOException {
-        getMeta().put(PUBLIC_PASSWORD_META_KEY, Arrays.asList(password));
     }
 
 

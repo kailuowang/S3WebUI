@@ -25,10 +25,7 @@ public interface Document extends Item {
 
     void setContentType(String contentType);
 
-    String getPassword() throws IOException;
-
-    void setPassword(String password) throws IOException;
-
+   
     void save() throws IOException;
 
     String getPublicUrl();

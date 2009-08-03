@@ -24,4 +24,26 @@ public interface Item extends Serializable{
     SecurityMode getSecurityMode() throws IOException;
 
     void setSecurityMode(SecurityMode mode) throws IOException;
+
+    /**
+     * get the password specified for this particular item. it's not necessarily the password this item should be test against
+     * @return
+     * @throws IOException
+     */
+
+    String getPassword() throws IOException;
+
+    /**
+     * set the password specified for this particular item. it's not necessarily the password this item should be test against
+     * @throws IOException
+     */
+    void setPassword(String password) throws IOException;
+
+    /**
+     *
+     *
+     * @return the password that should be test against when downloading this.
+    * returns null  if there is no password needed.
+    */
+    String getUsingPassword() throws IOException;
 }

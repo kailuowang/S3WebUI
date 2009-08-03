@@ -1,5 +1,8 @@
 package com.thoughtDocs.model;
 
+import com.thoughtDocs.util.CredentialsConfig;
+import com.thoughtDocs.exception.NotImplementedException;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -59,5 +62,17 @@ public class RootFolder implements Folder {
 
     public void setSecurityMode(SecurityMode mode) throws IOException {
         throw new UnsupportedOperationException("root folder's securityMode cannot be changed.");
+    }
+
+    public String getPassword() throws IOException {
+        return CredentialsConfig.getDefaultPassword();
+    }
+
+    public void setPassword(String password) throws IOException {
+        throw new NotImplementedException();
+    }
+
+    public String getUsingPassword() throws IOException {
+        return getPassword();
     }
 }

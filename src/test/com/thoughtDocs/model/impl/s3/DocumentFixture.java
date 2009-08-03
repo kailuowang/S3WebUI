@@ -40,31 +40,6 @@ public class DocumentFixture extends FixtureBase {
     }
 
 
-    @Test
-    public void testDocumentPassword() throws IOException {
-        Repository repository = new RepositoryImpl(testBucket());
-        Document doc = DocumentImpl.createTransientDocument(repository.getRootFolder(), randomString());
-        doc.setData(TEST_DATA.getBytes());
-        String pass = "pass";
-        doc.setPassword(pass);
-        doc.save();
-        doc = DocumentImpl.findFromRepository(repository, doc.getKey());
-        Assert.assertEquals(doc.getPassword(), pass);
-        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
-        doc.delete();
-    }
-
-    @Test
-    public void testDocumentSecrityMode() throws IOException {
-        Repository repository = new RepositoryImpl(testBucket());
-        Document doc = DocumentImpl.createTransientDocument(repository.getRootFolder(), randomString());
-        doc.setSecurityMode(SecurityMode.INHERITED);
-        doc.save();
-        doc = DocumentImpl.findFromRepository(repository, doc.getKey());
-        Assert.assertEquals(doc.getSecurityMode(), SecurityMode.INHERITED);
-        doc.delete();
-    }
-
 
 }
 
