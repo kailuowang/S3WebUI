@@ -10,34 +10,45 @@
                 template="layout/template.xhtml">
 
     <ui:define name="body">
-        <rich:panel id="itemsPanel">
+        <a:outputPanel  id="main" >
+            <h:form>
+        <rich:panel>
             <f:facet name="header">
                 <h2>#{documentListAction.defaultRepository.name}</h2>
-                #{documentListAction.currentFolder.key}
+
             </f:facet>
-            <h:dataTable id="itemsTable" value="#{displayItems}"
-                         var="item" rendered="#{displayItems != null and displayItems.size>0}">
-                <h:column id="column1">
+            <h:outputLabel id="path" rendered="#{documentListAction.hasLevelAbove}">
+                Displaying Folder: #{documentListAction.currentFolder.key} &nbsp;&nbsp;
+            </h:outputLabel>
+            <a:commandButton image="/img/upLevel.png" id="goUp"
+                                            rendered="#{documentListAction.hasLevelAbove}"
+                                            action="#{documentListAction.goUpLevel()}" reRender="main" />
+                        
+            <rich:dataTable id="itemsTable" value="#{displayItems}"  border="0"
+                         var="item" rendered="#{displayItems != null and displayItems.size > 0 }">
+                <rich:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
                     <h:graphicImage value="#{item.iconFile}" alt="#{item.name}"/>
-                    <s:link id="open" value="#{item.name}"
-                            action="#{documentListAction.openItem(item)}"/>
-                </h:column>
-                <h:column id="column6">
+                    <a:commandLink id="open" value="#{item.name}"
+                            action="#{documentListAction.openItem(item)}" reRender="main" immediate="true" />
+                </rich:column>
+                <rich:column id="column6">
                     <f:facet id="publicurl" name="header">Public URL</f:facet>
                     #{item.publicUrl}
-                </h:column>
-                <h:column id="column11">
+                </rich:column>
+                <rich:column id="column11">
                     <f:facet id="PasswordFacet" name="header">Password</f:facet>
                     #{item.password}
-                </h:column>
-                <h:column id="column5">
+                </rich:column>
+                <rich:column id="column5">
                     <f:facet id="ActionFacet" name="header">Action</f:facet>
-                    <s:link id="delete" value="Delete" action="#{documentListAction.delete(item)}"
-                            rendered="#{item.deletable}"/>
-                </h:column>
-            </h:dataTable>
+                    <a:commandLink id="delete" value="Delete" action="#{documentListAction.delete(item)}"
+                            rendered="#{item.deletable}" reRender="main" immediate="true"/>
+                </rich:column>
+            </rich:dataTable>
         </rich:panel>
+            </h:form>
+    </a:outputPanel>
         <rich:panel>
             <f:facet name="header">Upload new file</f:facet>
             <h:form id="uploadForm" enctype="multipart/form-data">
@@ -52,7 +63,7 @@
                                           size="80" maxlength="80" required="true"/>
                         </div>
                         <div>
-                               <br />
+                            <br />
                             <h:selectOneMenu value="#{documentUploadAction.securityMode}">
                                 <s:selectItems var="mode" value="#{securityModes}"
                                                label="#{mode.longName}" noSelectionLabel="-- Select Security Mode--"/>
@@ -91,9 +102,9 @@
 
                          <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
                             <h:inputText id="password" value="#{newFolderAction.password}"/>
-                        <h:commandButton value="create"
+                        <a:commandButton value="create"
                                          action="#{newFolderAction.create()}"
-                                         reRender="itemsPanel" id="newFolderButton"/>
+                                         reRender="main" id="newFolderButton"/>
                     </div>
                 </s:validateAll>
             </h:form>

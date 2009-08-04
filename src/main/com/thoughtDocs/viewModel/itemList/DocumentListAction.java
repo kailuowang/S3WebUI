@@ -7,6 +7,7 @@ import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.viewModel.ItemOpener;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.*;
+import org.jboss.seam.annotations.async.Asynchronous;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
 import org.jboss.seam.faces.FacesManager;
@@ -69,19 +70,20 @@ public class DocumentListAction implements Serializable, ItemOpener {
         displayItems.addAll(items);
     }
 
-    @Begin(nested = true)
     public void open(Document doc) throws IOException {
         FacesManager.instance().redirectToExternalURL((doc.getSignedURL()));
     }
 
-    @Begin(nested = true)
     public void open(Folder folder) throws IOException {
         currentFolder = folder;
         getDisplayItems();
     }
 
-
     public void open(BackToParentDisplayItem item) throws IOException {
+        goUpLevel();
+    }
+
+    public void goUpLevel() throws IOException {
         currentFolder = getCurrentFolder().getParent();
         getDisplayItems();
     }
@@ -97,6 +99,10 @@ public class DocumentListAction implements Serializable, ItemOpener {
         item.getItem().delete();
         currentFolder = item.getItem().getParent();
         getDisplayItems();
+    }
+
+    public boolean getHasLevelAbove() throws IOException {
+        return getCurrentFolder().getParent() != null;
     }
 
 }

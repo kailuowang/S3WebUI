@@ -17,7 +17,7 @@
     </page>
     <page name="documentList" view-id="/documentList.xhtml" redirect="true" back="enabled" >
         <restrict>#{s:hasRole('admin')}</restrict>
-        <begin-conversation nested="true"  />
+        <begin-conversation join="true"  />
     </page>
     <page view-id="/documentPublicDownload.xhtml" >
        <action execute="#{documentPublicDownloadAction.checkFile}"/>
