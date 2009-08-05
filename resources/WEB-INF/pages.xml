@@ -21,7 +21,7 @@
     </page>
     <page view-id="/documentPublicDownload.xhtml" >
        <action execute="#{documentPublicDownloadAction.checkFile}"/>
-          <begin-conversation join="true" />
+        <begin-conversation join="true"/>
     </page>
 
     <exception class="org.jboss.seam.framework.EntityNotFoundException">

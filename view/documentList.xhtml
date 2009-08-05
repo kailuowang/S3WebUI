@@ -64,9 +64,9 @@
                         </div>
                         <div>
                             <br />
-                            <h:selectOneMenu value="#{documentUploadAction.securityMode}">
+                            <h:selectOneMenu value="#{documentUploadAction.securityMode}" required="true">
                                 <s:selectItems var="mode" value="#{securityModes}"
-                                               label="#{mode.longName}" noSelectionLabel="-- Select Security Mode--"/>
+                                               label="#{mode.longName}" noSelectionLabel="--Please select security mode--"/>
                                 <s:convertEnum/>
                             </h:selectOneMenu>
                             <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
@@ -94,15 +94,16 @@
                         <h:inputText id="folderName" value="#{newFolderAction.name}"/>
                         <br />
                         <span>&nbsp;&nbsp;</span>
-                        <h:selectOneMenu value="#{newFolderAction.securityMode}">
+                        <h:selectOneMenu value="#{newFolderAction.securityMode}" id="modeSelection" required="true" validatorMessage="*">
                                 <s:selectItems var="mode" value="#{securityModes}"
-                                               label="#{mode.longName}" noSelectionLabel="-- Select Security Mode--"/>
+                                               label="#{mode.longName}" noSelectionLabel="--Please select security mode--"/>
                                 <s:convertEnum/>
+                        
                             </h:selectOneMenu>
 
                          <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
                             <h:inputText id="password" value="#{newFolderAction.password}"/>
-                        <a:commandButton value="create"
+                        <a:commandButton value="create"   
                                          action="#{newFolderAction.create()}"
                                          reRender="main" id="newFolderButton"/>
                     </div>

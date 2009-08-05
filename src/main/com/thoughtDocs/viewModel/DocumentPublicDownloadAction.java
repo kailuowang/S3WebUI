@@ -49,24 +49,29 @@ public class DocumentPublicDownloadAction implements Serializable {
     }
 
     public String getFilename() {
-        return key;
+        return doc != null ? doc.getKey() : "";
     }
 
     public void checkFile() throws IOException {
         if(doc == null)
             doc = DocumentImpl.findFromRepository(defaultRepository, key);
         if(doc == null)
-        {   throw new DocumentNotFoundException();
-           
+        {
+            throw new DocumentNotFoundException();
         }
         if(doc.getUsingPassword() == null)
             download();
     }
 
     public void testPassword() throws IOException {
+        if(doc == null)
+        {
+            statusMessages.add("File not found");
+            return;
+        }
 
-        if (doc == null || password == null || !password.equals(doc.getUsingPassword())) {
-            statusMessages.add("File and password does not match, please try again");
+        if ( password == null || !password.equals(doc.getUsingPassword())) {
+            statusMessages.add("File and password does not match, please try again" );
             return;
         }
        
