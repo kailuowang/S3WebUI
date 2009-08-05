@@ -38,7 +38,7 @@ public class NewFolderAction implements Serializable {
         newFolder.setSecurityMode(securityMode);
         newFolder.setPassword(password);
         newFolder.save();
-        documentListAction.open(newFolder);
+        documentListAction.getDisplayItems();
 
     }
 
