@@ -28,7 +28,9 @@
                          var="item" rendered="#{displayItems != null and displayItems.size > 0 }">
                 <rich:column id="column1">
                     <f:facet id="NameFacet" name="header">Name</f:facet>
-                    <h:graphicImage value="#{item.iconFile}" alt="#{item.name}"/>
+                    <a:commandButton  image="#{item.iconFile}" alt="#{item.name}"
+                                      value="#{item.name}"
+                                      action="#{documentListAction.openItem(item)}" reRender="main" immediate="true"/>
                     <a:commandLink id="open" value="#{item.name}"
                             action="#{documentListAction.openItem(item)}" reRender="main" immediate="true" />
                 </rich:column>
@@ -40,10 +42,12 @@
                     <f:facet id="PasswordFacet" name="header">Password</f:facet>
                     #{item.password}
                 </rich:column>
-                <rich:column id="column5">
+                <rich:column id="column5" width="1%" >
                     <f:facet id="ActionFacet" name="header">Action</f:facet>
-                    <a:commandLink id="delete" value="Delete" action="#{documentListAction.delete(item)}"
-                            rendered="#{item.deletable}" reRender="main" immediate="true"/>
+                    <a:commandButton id="delete" image="/img/delete.png"        
+                                     value="Delete" action="#{documentListAction.delete(item)}"
+                            rendered="#{item.deletable}" reRender="main" immediate="true" 
+                            />
                 </rich:column>
             </rich:dataTable>
         </rich:panel>
