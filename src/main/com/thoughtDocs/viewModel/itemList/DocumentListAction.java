@@ -35,6 +35,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
     @In
     private Repository defaultRepository;
 
+
     private Folder currentFolder;
 
     @DataModel
@@ -50,6 +51,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
         return defaultRepository;
     }
 
+    @Out
     public Folder getCurrentFolder() {
         if (currentFolder == null)
             currentFolder = defaultRepository.getRootFolder();
@@ -57,6 +59,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
     }
 
     @Factory
+    @Observer({"CurrentLocationChanged", "NewFolderCreated","ItemDeleted", "DocumentUploaded"})
     public void getDisplayItems() throws IOException {
         List<DisplayItem> items = new ArrayList<DisplayItem>();
 
@@ -74,9 +77,9 @@ public class DocumentListAction implements Serializable, ItemOpener {
         FacesManager.instance().redirectToExternalURL((doc.getSignedURL()));
     }
 
+
     public void open(Folder folder) throws IOException {
         currentFolder = folder;
-        getDisplayItems();
     }
 
     public void open(BackToParentDisplayItem item) throws IOException {
@@ -84,21 +87,19 @@ public class DocumentListAction implements Serializable, ItemOpener {
     }
 
     public void goUpLevel() throws IOException {
-        currentFolder = getCurrentFolder().getParent();
-        getDisplayItems();
+       open(getCurrentFolder().getParent());
+
     }
 
-
+    @RaiseEvent("CurrentLocationChanged")
     public void openItem(DisplayItem item) throws IOException {
         item.open(this);
-        getDisplayItems();
     }
 
-
+    @RaiseEvent("ItemDeleted")
     public void delete(DisplayItem item) throws IOException {
         item.getItem().delete();
         currentFolder = item.getItem().getParent();
-        getDisplayItems();
     }
 
     public boolean getHasLevelAbove() throws IOException {

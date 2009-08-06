@@ -6,6 +6,7 @@ import com.thoughtDocs.model.impl.s3.FolderImpl;
 import com.thoughtDocs.viewModel.itemList.DocumentListAction;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.RaiseEvent;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -32,13 +33,17 @@ public class NewFolderAction implements Serializable {
         return name;
     }
 
+    @In
+    private Folder currentFolder;
 
+
+    @RaiseEvent("NewFolderCreated")
     public void create() throws IOException {
-        Folder newFolder = FolderImpl.createTransientFolder(documentListAction.getCurrentFolder(), name);
+        Folder newFolder = FolderImpl.createTransientFolder(currentFolder, name);
         newFolder.setSecurityMode(securityMode);
         newFolder.setPassword(password);
         newFolder.save();
-        documentListAction.getDisplayItems();
+
 
     }
 

@@ -3,11 +3,13 @@ package com.thoughtDocs.viewModel;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.SecurityMode;
+import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
 import com.thoughtDocs.viewModel.itemList.DocumentListAction;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.RaiseEvent;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 
@@ -35,15 +37,18 @@ public class DocumentUploadAction implements Serializable {
     private byte[] data;
     private SecurityMode securityMode;
 
+    @In
+    private Folder currentFolder;
 
+    @RaiseEvent("DocumentUploaded")
     public void upload() throws IOException {
-        Document doc = DocumentImpl.createTransientDocument(documentListAction.getCurrentFolder(), name);
+        Document doc = DocumentImpl.createTransientDocument(currentFolder, name);
         doc.setPassword(password);
         doc.setContentType(contentType);
         doc.setData(data);
         doc.setSecurityMode(securityMode);
         doc.save();
-        documentListAction.getDisplayItems();
+
     }
 
 
