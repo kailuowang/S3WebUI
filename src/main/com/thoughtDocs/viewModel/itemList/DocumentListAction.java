@@ -86,6 +86,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
         goUpLevel();
     }
 
+    @RaiseEvent("CurrentLocationChanged")
     public void goUpLevel() throws IOException {
        open(getCurrentFolder().getParent());
 

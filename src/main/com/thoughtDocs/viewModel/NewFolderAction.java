@@ -18,8 +18,7 @@ import java.io.Serializable;
  */
 @Name("newFolderAction")
 public class NewFolderAction implements Serializable {
-    @In
-    DocumentListAction documentListAction;
+
     private String name;
     private SecurityMode securityMode;
     private String password;

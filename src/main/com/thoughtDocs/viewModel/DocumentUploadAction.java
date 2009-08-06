@@ -5,7 +5,6 @@ import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.SecurityMode;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
-import com.thoughtDocs.viewModel.itemList.DocumentListAction;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
@@ -25,12 +24,7 @@ public class DocumentUploadAction implements Serializable {
     @In
     private StatusMessages statusMessages;
 
-    @In
-    DocumentListAction documentListAction;
-
-
-    @In
-    private Repository defaultRepository;
+    
     private String password;
     private String name;
     private String contentType;
