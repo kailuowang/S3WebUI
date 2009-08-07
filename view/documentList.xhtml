@@ -8,22 +8,33 @@
                 xmlns:rich="http://richfaces.org/rich"
                 xmlns:a="http://richfaces.org/a4j"
                 template="layout/template.xhtml">
-
     <ui:define name="body">
         <a:outputPanel  id="main" >
             <h:form>
-        <rich:panel>
+            <rich:panel>
             <f:facet name="header">
                 <h2>#{documentListAction.defaultRepository.name}</h2>
-
             </f:facet>
-            <h:outputLabel id="path" rendered="#{documentListAction.hasLevelAbove}">
-                Displaying Folder: #{documentListAction.currentFolder.key} &nbsp;&nbsp;
-            </h:outputLabel>
-            <a:commandButton image="/img/upLevel.png" id="goUp"
-                                            rendered="#{documentListAction.hasLevelAbove}"
-                                            action="#{documentListAction.goUpLevel()}" reRender="main" />
-                        
+           <table cellpadding="3">
+               <tr>
+                   <td>
+                       <input type="text"   
+                              value="#{documentListAction.currentPath}"
+                              size="50" />
+                   </td>
+                   <td>
+                       <a:commandButton image="/img/upLevel.png" id="goUp"
+                                   rendered="#{documentListAction.hasLevelAbove}"
+                                   action="#{documentListAction.goUpLevel()}"
+                                   reRender="main"  title="Go up to parent folder"  />
+                   </td>
+                   <td>
+                        <a:commandButton image="/img/newFolderHS.png" id="newFolder"
+                            oncomplete="Richfaces.showModalPanel('newFolderPanel')"
+                            reRender="newFolder" title="Create new folder" />
+                   </td>
+               </tr>
+           </table>
             <rich:dataTable id="itemsTable" value="#{displayItems}"  border="0"
                          var="item" rendered="#{displayItems != null and displayItems.size > 0 }">
                 <rich:column id="column1">
@@ -75,9 +86,7 @@
                             </h:selectOneMenu>
                             <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
                             <h:inputText id="password" value="#{documentUploadAction.password}"/>
-
                         </div>
-
                         <div>
                             <h:commandButton value="Upload"
                                              action="#{documentUploadAction.upload}"
@@ -87,32 +96,38 @@
                 </s:validateAll>
             </h:form>
         </rich:panel>
-        <rich:panel>
+        <a:outputPanel  id="newFolder" >
+        <rich:modalPanel id="newFolderPanel">
             <f:facet name="header">Create new folder here</f:facet>
             <h:form id="newFolderForm">
                 <s:validateAll>
-
                     <div>
-
                         <h:outputLabel for="folderName">Folder Name:</h:outputLabel>
-                        <h:inputText id="folderName" value="#{newFolderAction.name}"/>
-                        <br />
-                        <span>&nbsp;&nbsp;</span>
-                        <h:selectOneMenu value="#{newFolderAction.securityMode}" id="modeSelection" required="true" validatorMessage="*">
-                                <s:selectItems var="mode" value="#{securityModes}"
-                                               label="#{mode.longName}" noSelectionLabel="--Please select security mode--"/>
-                                <s:convertEnum/>
-                        
+                        <h:inputText id="folderName" value="#{newFolderAction.name}" size="32"/>
+                        <br /><br />
+                        <h:selectOneMenu value="#{newFolderAction.securityMode}"
+                                         id="modeSelection"
+                                         required="true" validatorMessage="*" >
+                            <s:selectItems var="mode" value="#{securityModes}"
+                                   label="#{mode.longName}"
+                                   noSelectionLabel="--Please select security mode--"/>
+                             <s:convertEnum/>
                             </h:selectOneMenu>
-
-                         <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
+                        <br /><br />
+                        <h:outputLabel for="password">Password:</h:outputLabel>
                             <h:inputText id="password" value="#{newFolderAction.password}"/>
+                        <br /><br />
                         <a:commandButton value="create"   
                                          action="#{newFolderAction.create()}"
-                                         reRender="main" id="newFolderButton"/>
+                                         reRender="main" id="newFolderButton"
+                                         oncomplete="Richfaces.hideModalPanel('newFolderPanel')" />
+                        <a:commandButton value="cancel"
+                                         reRender="main" id="cancelFolderButton"
+                                         oncomplete="Richfaces.hideModalPanel('newFolderPanel')" />
                     </div>
                 </s:validateAll>
             </h:form>
-        </rich:panel>
+        </rich:modalPanel>
+        </a:outputPanel>
     </ui:define>
 </ui:composition>

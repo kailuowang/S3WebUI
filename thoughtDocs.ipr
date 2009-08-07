@@ -259,6 +259,13 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
   </component>
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/view/documentList.xhtml" value="file://$PROJECT_DIR$/view" />
+      </map>
+    </option>
+  </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
 </project>
 

@@ -107,4 +107,9 @@ public class DocumentListAction implements Serializable, ItemOpener {
         return getCurrentFolder().getParent() != null;
     }
 
+    @Out
+    public String getCurrentPath() throws IOException {
+
+        return "/" + getCurrentFolder().getKey();
+    }
 }
