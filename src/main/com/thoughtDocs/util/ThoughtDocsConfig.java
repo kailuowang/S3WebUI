@@ -16,4 +16,7 @@ public class ThoughtDocsConfig {
     }
 
 
+    public static String getPublicDownloadSite() {
+        return cfg.getProperty("publicDownloadSite", "http://thoughtfiles.com");
+    }
 }

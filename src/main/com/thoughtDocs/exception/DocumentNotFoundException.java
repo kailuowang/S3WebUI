@@ -6,4 +6,7 @@ package com.thoughtDocs.exception;
  * Time: 10:09:21 PM
  */
 public class DocumentNotFoundException extends RuntimeException{
+    public DocumentNotFoundException(String document) {
+        super("Cannot find document - " + document );
+    }
 }

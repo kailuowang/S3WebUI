@@ -57,9 +57,8 @@ public class DocumentPublicDownloadAction implements Serializable {
             doc = DocumentImpl.findFromRepository(defaultRepository, key);
         if(doc == null)
         {
-            throw new DocumentNotFoundException();
-        }
-        if(doc.getUsingPassword() == null)
+            throw new DocumentNotFoundException(key);
+        }else if(doc.getUsingPassword() == null)
             download();
     }
 
@@ -76,7 +75,7 @@ public class DocumentPublicDownloadAction implements Serializable {
         }
        
         download();
-        //test url http://localhost:8080/thoughtDocs/documentPublicDownload.seam?key=restws.pdf
+        //test url http://thoughtfiles.com:8080/thoughtDocs/areadme.txt
     }
 
     @End

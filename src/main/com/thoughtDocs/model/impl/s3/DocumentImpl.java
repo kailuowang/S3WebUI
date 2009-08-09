@@ -3,6 +3,7 @@ package com.thoughtDocs.model.impl.s3;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.util.ThoughtDocsConfig;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -87,7 +88,7 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
      * @return public url for external user to download (password needed)
      */
     public String getPublicUrl() {
-        return "http://thoughtdocs.com/dl/" + getKey();
+        return ThoughtDocsConfig.getPublicDownloadSite() + "/" + getKey();
     }
 
 }
