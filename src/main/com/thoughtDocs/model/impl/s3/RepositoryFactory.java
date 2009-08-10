@@ -66,7 +66,7 @@ public class RepositoryFactory {
 
         Folder f2 = FolderImpl.createTransientFolder(repo.getRootFolder(), "GE Documents");
         f2.save();
-        Document d21 = DocumentImpl.createTransientDocument(f2, "DOPT.txt");
+        Document d21 = DocumentImpl.createTransientDocument(f2, "DO PT #2.txt");
         d21.setData("GE assigment Sow!".getBytes());
         d21.save();
         Folder f3 = FolderImpl.createTransientFolder(repo.getRootFolder(), "Public Documents");
