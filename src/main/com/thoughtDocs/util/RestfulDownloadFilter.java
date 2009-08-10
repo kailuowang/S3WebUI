@@ -25,10 +25,10 @@ public class RestfulDownloadFilter implements Filter {
             final HttpServletRequest request = (HttpServletRequest) req;
             final HttpServletResponse response = (HttpServletResponse) resp;
             String contextPath = filterConfig.getServletContext().getContextPath() + "/";
-            String url = request.getRequestURL().toString().replace(PUBLIC_DOWNLOAD_SITE,
+            String url = request.getRequestURL().toString().replaceFirst(PUBLIC_DOWNLOAD_SITE,
                                                                       "thoughtdocs.com");
             url = url.replace(request.getRequestURI(), contextPath + "documentPublicDownload.seam?key="
-                                    + request.getRequestURI().replace(contextPath, ""));
+                                    + request.getRequestURI().replaceFirst(contextPath, ""));
 
             response.sendRedirect(url);
 
