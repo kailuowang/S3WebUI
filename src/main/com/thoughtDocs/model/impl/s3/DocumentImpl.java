@@ -8,8 +8,6 @@ import com.thoughtDocs.util.URLEncoder;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -64,7 +62,7 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
 
     public byte[] getData() throws IOException {
         if (s3Object.getData() == null && !isTransient())
-            update();
+            refresh();
         return s3Object.getData();
     }
 

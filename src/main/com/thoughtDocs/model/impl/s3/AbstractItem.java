@@ -70,7 +70,7 @@ abstract class AbstractItem implements Item {
         s3Object.save();
     }
 
-    public void update() throws IOException {
+    public void refresh() throws IOException {
         s3Object.update();
     }
 

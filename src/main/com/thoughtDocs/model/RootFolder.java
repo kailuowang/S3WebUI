@@ -43,7 +43,7 @@ public class RootFolder implements Folder {
         return false;
     }
 
-    public void update() throws IOException {
+    public void refresh() throws IOException {
         //nothing needed
     }
 

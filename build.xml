@@ -8,7 +8,7 @@
     <property file="build-${profile}.properties" />
 
     <!-- set global properties for this build -->
-    <property name="project.name" value="thoughtDocs"/>
+    <property name="project.name" value="ROOT"/>
     <property name="project.war" value="true"/>
     <property name="richfaces.present" value="true"/>
     <property name="dist.dir" value="dist" />
@@ -27,7 +27,7 @@
     <property name="jboss.domain" value="default"/>
     <property name="deploy.dir" value="${jboss.home}/server/${jboss.domain}/deploy" />
     <property name="war.deploy.dir" value="${deploy.dir}/${project.name}.war" />
-    <property name="packaged.archive" value="${dist.dir}/ROOT.war"/>
+    <property name="packaged.archive" value="${dist.dir}/${project.name}.war"/>
     <property name="testng.jar" value="${basedir}/lib/testng.jar" />
     <property name="javac.debug" value="true" />
     <property name="javac.deprecation" value="false" />

@@ -26,7 +26,6 @@ public interface Document extends Item {
     void setContentType(String contentType);
 
    
-    void save() throws IOException;
 
     String getPublicUrl();
 }

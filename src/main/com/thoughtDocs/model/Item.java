@@ -15,7 +15,11 @@ public interface Item extends Serializable{
 
     boolean isTransient();
 
-    void update() throws IOException;
+    /**
+     * refresh data from server
+     * @throws IOException
+     */
+    void refresh() throws IOException;
 
     void delete() throws IOException;
 
@@ -46,4 +50,10 @@ public interface Item extends Serializable{
     * returns null  if there is no password needed.
     */
     String getUsingPassword() throws IOException;
+
+    /**
+     * save data onto server
+     * @throws IOException
+     */
+    void save() throws IOException;
 }

@@ -1,7 +1,6 @@
 package com.thoughtDocs.viewModel;
 
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.ScopeType;
 import com.thoughtDocs.model.Item;
@@ -30,7 +29,6 @@ public class UpdateSecurityAction implements Serializable{
     }
 
     public void setSecurityMode(SecurityMode mode) throws IOException {
-        if(item != null)
             item.setSecurityMode(mode);
     }
 
@@ -43,13 +41,11 @@ public class UpdateSecurityAction implements Serializable{
     }
 
     public void setPassword(String newpass) throws IOException {
-        if(item != null)
             item.setPassword(newpass);
     }
 
     public void update() throws IOException {
-        if(item != null)
-            item.update();
+            item.save();
     }
 
 

@@ -34,12 +34,12 @@ public class FolderFixture extends FixtureBase {
         Folder folder = FolderImpl.createTransientFolder(repo.getRootFolder(), key);
 
         Folder loaded = FolderImpl.loadedFromRepository(repo, key);
-        loaded.update();
+        loaded.refresh();
         Assert.assertTrue(loaded.isTransient());
 
         folder.save();
         loaded = FolderImpl.loadedFromRepository(repo, key);
-        loaded.update();
+        loaded.refresh();
         Assert.assertFalse(loaded.isTransient());
         Assert.assertEquals(loaded.getKey(), key);
         folder.delete();
@@ -108,7 +108,7 @@ public class FolderFixture extends FixtureBase {
 
     private void assertDeleted(RepositoryImpl repo, Item item) throws IOException {
         Folder loaded = FolderImpl.loadedFromRepository(repo, item.getKey());
-        loaded.update();
+        loaded.refresh();
         Assert.assertTrue(loaded.isTransient());
     }
 

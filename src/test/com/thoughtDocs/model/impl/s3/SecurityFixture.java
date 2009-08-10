@@ -33,7 +33,7 @@ public class SecurityFixture extends FixtureBase {
     }
 
     @Test
-    public void testDocumentSecrityMode() throws IOException {
+    public void testDocumentSecurityMode() throws IOException {
         Repository repository = createTestRepo();
         Document doc = DocumentImpl.createTransientDocument(repository.getRootFolder(), randomString());
         doc.setSecurityMode(SecurityMode.INHERITED);
@@ -41,6 +41,18 @@ public class SecurityFixture extends FixtureBase {
         doc = DocumentImpl.findFromRepository(repository, doc.getKey());
         Assert.assertEquals(doc.getSecurityMode(), SecurityMode.INHERITED);
         doc.delete();
+    }
+
+
+    @Test
+    public void testFolderSecurityMode() throws IOException {
+        Repository repository = createTestRepo();
+        Folder folder = FolderImpl.createTransientFolder(repository.getRootFolder(), randomString());
+        folder.setSecurityMode(SecurityMode.UNPROTECTED);
+        folder.save();
+        folder = FolderImpl.loadedFromRepository(repository, folder.getKey());
+        Assert.assertEquals(folder.getSecurityMode(), SecurityMode.UNPROTECTED);
+        folder.delete();
     }
 
     private Repository createTestRepo() {
