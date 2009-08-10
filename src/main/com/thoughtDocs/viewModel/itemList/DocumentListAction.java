@@ -41,6 +41,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
     @DataModel
     private List<DisplayItem> displayItems;
 
+   
     @DataModelSelection
     private DisplayItem item;
 

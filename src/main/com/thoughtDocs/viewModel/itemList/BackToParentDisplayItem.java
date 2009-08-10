@@ -41,6 +41,10 @@ public class BackToParentDisplayItem implements DisplayItem {
         return "/img/upLevel.png";
     }
 
+    public boolean getHasSecurity() {
+        return false;
+    }
+
     public int compareTo(Object o) {
         return 0;  // no need to implement
     }

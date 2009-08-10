@@ -17,7 +17,6 @@ import java.io.Serializable;
 public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
     Item item;
 
-
     protected AbstractDisplayItem(Item item) {
         this.item = item;
     }
@@ -36,6 +35,10 @@ public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
         return true;
     }
 
+    public boolean getHasSecurity() {
+        return getDeletable();
+    }
+
     public abstract String getIconFile();
 
     public static DisplayItem create(Item item) {
@@ -43,19 +46,18 @@ public abstract class AbstractDisplayItem implements DisplayItem, Serializable {
             return new DocumentDisplayItem((Document) item);
         if (item instanceof Folder)
             return new FolderDisplayItem((Folder) item);
-        throw new NotImplementedException(item.getClass() + " diplay item is not implemented yet");
+        throw new NotImplementedException(item.getClass() + " display item is not implemented yet");
 
     }
+
     public String getPassword() throws IOException {
-        String retVal =  item.getUsingPassword();
-        return retVal != null ? retVal : "None";
+        String returnVal =  item.getUsingPassword();
+        return returnVal != null ? returnVal : "None";
     }
-
 
     public int compareTo(Object anotherItem) throws ClassCastException {
        if (!(anotherItem instanceof DisplayItem))
          throw new ClassCastException("A DisplayItem object expected.");
-
        int typeCompare = - getClass().getName().compareTo(anotherItem.getClass().getName());
        if(typeCompare != 0)
             return typeCompare;

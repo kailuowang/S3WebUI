@@ -25,4 +25,6 @@ public interface DisplayItem extends Serializable , Comparable {
     boolean getDeletable();
 
     String getIconFile();
+
+    boolean getHasSecurity();
 }

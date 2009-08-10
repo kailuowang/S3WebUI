@@ -9,13 +9,13 @@
                 xmlns:a="http://richfaces.org/a4j"
                 template="layout/template.xhtml">
     <ui:define name="body">
-        <a:outputPanel  id="main" >
+        <a:outputPanel id="main">
             <h:form>
             <rich:panel>
             <f:facet name="header">
                 <h2>#{documentListAction.defaultRepository.name}</h2>
             </f:facet>
-           <table cellpadding="3">
+           <table cellpadding="3" width="100%">
                <tr>
                    <td>
                        <input type="text"   
@@ -32,6 +32,14 @@
                         <a:commandButton image="/img/newFolderHS.png" id="newFolder"
                             oncomplete="Richfaces.showModalPanel('newFolderPanel')"
                             reRender="newFolder" title="Create new folder" />
+                   </td>
+                   <td width="60%"  align="right">
+                        <a:status id="mainStatus"  >
+                  <f:facet id="StartStatus" name="start">
+                     <h:graphicImage id="SpinnerGif" value="/img/spinner.gif"/>
+                  </f:facet>
+               </a:status>
+
                    </td>
                </tr>
            </table>
@@ -51,21 +59,25 @@
                     <f:facet id="publicurl" name="header">Public URL</f:facet>
                     <a href="#{item.publicUrl}" target="_blank">#{item.publicUrl}</a>
                 </rich:column>
-                <rich:column id="column11">
-                    <f:facet id="PasswordFacet" name="header">Password</f:facet>
-                    #{item.password}
+                <rich:column id="column11" width="1%">
+                     <f:facet id="ActionFacet" name="header"></f:facet>
+                     <a:commandButton id="changeSecuritySetting"
+                                     value="Security Settings" action="#{updateSecurityAction.init(item.item)}"
+                             immediate="true"  oncomplete="Richfaces.showModalPanel('securityInfoPanel')"
+                            reRender="securityInfo" rendered="#{item.hasSecurity}" />
                 </rich:column>
-                <rich:column id="column5" width="1%" >
-                    <f:facet id="ActionFacet" name="header">Action</f:facet>
+                <rich:column id="column5"  width="1%" >
+                    <f:facet id="ActionFacet" name="header"></f:facet>
                     <a:commandButton id="delete" image="/img/delete.png"        
                                      value="Delete" action="#{documentListAction.delete(item)}"
-                            rendered="#{item.deletable}" reRender="main" immediate="true" 
-                            />
+                            rendered="#{item.deletable}" reRender="main" immediate="true" />
                 </rich:column>
-            </rich:dataTable>
+              </rich:dataTable>
+
         </rich:panel>
             </h:form>
-    </a:outputPanel>
+             </a:outputPanel>
+
         <rich:panel>
             <f:facet name="header">Upload new file</f:facet>
             <h:form id="uploadForm" enctype="multipart/form-data">
@@ -98,7 +110,7 @@
                 </s:validateAll>
             </h:form>
         </rich:panel>
-        <a:outputPanel  id="newFolder" >
+    <a:outputPanel  id="newFolder" >
         <rich:modalPanel id="newFolderPanel">
             <f:facet name="header">Create new folder here</f:facet>
             <h:form id="newFolderForm">
@@ -124,12 +136,42 @@
                                          reRender="main" id="newFolderButton"
                                          oncomplete="Richfaces.hideModalPanel('newFolderPanel')" />
                         <a:commandButton value="cancel"
-                                         reRender="main" id="cancelFolderButton"
+                                         id="cancelFolderButton"
                                          oncomplete="Richfaces.hideModalPanel('newFolderPanel')" />
                     </div>
                 </s:validateAll>
             </h:form>
         </rich:modalPanel>
-        </a:outputPanel>
-    </ui:define>
+    </a:outputPanel>
+
+    <a:outputPanel  id="securityInfo" >
+        <rich:modalPanel id="securityInfoPanel">
+            <h:form>
+            <f:facet name="header">Security Information For <b>#{updateSecurityAction.key}</b></f:facet>
+                <h:outputLabel>Security Mode:</h:outputLabel>
+                <h:selectOneMenu value="#{updateSecurityAction.securityMode}"
+                                         id="modeSelection"
+                                         required="true" validatorMessage="*" >
+                            <s:selectItems var="mode" value="#{securityModes}"
+                                   label="#{mode.longName}"
+                                   noSelectionLabel="--Please select security mode--"/>
+                             <s:convertEnum/>
+                            </h:selectOneMenu>
+                        <br /><br />
+                        <h:outputLabel for="password">Password:</h:outputLabel><br />
+                            <h:inputText id="password" value="#{updateSecurityAction.password}"/>
+                        <br /><br />
+                        <a:commandButton value="update"
+                                         action="#{updateSecurityAction.update()}"
+                                         reRender="securityInfo,main" id="updateSecurityButton"
+                                         oncomplete="Richfaces.hideModalPanel('securityInfoPanel')" />
+                        <a:commandButton value="close"
+                                          id="cancelUpdateSecurityButton"
+                                         oncomplete="Richfaces.hideModalPanel('securityInfoPanel')" />
+            <br />
+            </h:form>
+            <span>It is going to take a while to change the security settings for a file depending on the size of it.</span>
+          </rich:modalPanel>
+      </a:outputPanel>
+   </ui:define>
 </ui:composition>
