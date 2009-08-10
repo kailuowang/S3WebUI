@@ -13,21 +13,20 @@ import java.io.IOException;
 
 public class RestfulDownloadFilter implements Filter {
     private FilterConfig filterConfig;
+    private static final String PUBLIC_DOWNLOAD_SITE = "thoughtfiles.com";
 
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        if(req.getServerName().toLowerCase().indexOf("thoughtfiles.com") >= 0)
+        if(req.getServerName().toLowerCase().indexOf(PUBLIC_DOWNLOAD_SITE) >= 0)
         {
 
             final HttpServletRequest request = (HttpServletRequest) req;
             final HttpServletResponse response = (HttpServletResponse) resp;
-            String contextPath = filterConfig.getServletContext().getContextPath();
-            if(contextPath.length() > 1)
-             contextPath  = contextPath + "/";
-            String url = request.getRequestURL().toString().replace("thoughtfiles.com",
-                                                                                 "thoughtdocs.com");
+            String contextPath = filterConfig.getServletContext().getContextPath() + "/";
+            String url = request.getRequestURL().toString().replace(PUBLIC_DOWNLOAD_SITE,
+                                                                      "thoughtdocs.com");
             url = url.replace(request.getRequestURI(), contextPath + "documentPublicDownload.seam?key="
                                     + request.getRequestURI().replace(contextPath, ""));
 

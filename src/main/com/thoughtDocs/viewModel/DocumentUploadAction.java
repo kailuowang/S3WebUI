@@ -42,7 +42,6 @@ public class DocumentUploadAction implements Serializable {
         doc.setData(data);
         doc.setSecurityMode(securityMode);
         doc.save();
-
     }
 
 

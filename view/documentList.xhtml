@@ -43,11 +43,13 @@
                                       value="#{item.name}"
                                       action="#{documentListAction.openItem(item)}" reRender="main" immediate="true"/>
                     <a:commandLink id="open" value="#{item.name}"
-                            action="#{documentListAction.openItem(item)}" reRender="main" immediate="true" />
+                            action="#{documentListAction.openItem(item)}"
+                            reRender="main"
+                            immediate="true" />
                 </rich:column>
                 <rich:column id="column6">
                     <f:facet id="publicurl" name="header">Public URL</f:facet>
-                    #{item.publicUrl}
+                    <a href="#{item.publicUrl}" target="_blank">#{item.publicUrl}</a>
                 </rich:column>
                 <rich:column id="column11">
                     <f:facet id="PasswordFacet" name="header">Password</f:facet>
