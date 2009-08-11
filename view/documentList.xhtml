@@ -111,8 +111,8 @@
             </h:form>
         </rich:panel>
     <a:outputPanel  id="newFolder" >
-        <rich:modalPanel id="newFolderPanel">
-            <f:facet name="header">Create new folder here</f:facet>
+        <rich:modalPanel id="newFolderPanel" height="260">
+           <h4>Create new folder here</h4>
             <h:form id="newFolderForm">
                 <s:validateAll>
                     <div>
@@ -146,9 +146,9 @@
     </a:outputPanel>
 
     <a:outputPanel  id="securityInfo" >
-        <rich:modalPanel id="securityInfoPanel">
+        <rich:modalPanel id="securityInfoPanel"  height="260">
             <h:form>
-            <f:facet name="header">Security Information For <b>#{updateSecurityAction.key}</b></f:facet>
+            <h4>Security Information For <i>#{updateSecurityAction.key}</i></h4>
                 <h:outputLabel>Security Mode:</h:outputLabel>
                 <h:selectOneMenu value="#{updateSecurityAction.securityMode}"
                                          id="modeSelection"
@@ -169,8 +169,8 @@
                         <a:commandButton value="close"
                                           id="cancelUpdateSecurityButton"
                                          oncomplete="Richfaces.hideModalPanel('securityInfoPanel')" />
-            <br />
-            </h:form>
+
+                     </h:form>
             <span>It is going to take a while to change the security settings for a file depending on the size of it.</span>
           </rich:modalPanel>
       </a:outputPanel>
