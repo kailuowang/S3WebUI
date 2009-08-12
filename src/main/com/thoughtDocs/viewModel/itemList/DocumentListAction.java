@@ -5,6 +5,7 @@ import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Item;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.viewModel.ItemOpener;
+import com.thoughtDocs.viewModel.Events;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.*;
 import org.jboss.seam.annotations.async.Asynchronous;
@@ -60,7 +61,10 @@ public class DocumentListAction implements Serializable, ItemOpener {
     }
 
     @Factory
-    @Observer({"CurrentLocationChanged", "NewFolderCreated","ItemDeleted", "DocumentUploaded"})
+    @Observer({ Events.CurrentLocationChanged,
+                Events.NewFolderCreated,
+                Events.ItemDeleted,
+                Events.DocumentUploaded})
     public void getDisplayItems() throws IOException {
         List<DisplayItem> items = new ArrayList<DisplayItem>();
 
@@ -87,18 +91,18 @@ public class DocumentListAction implements Serializable, ItemOpener {
         goUpLevel();
     }
 
-    @RaiseEvent("CurrentLocationChanged")
+    @RaiseEvent(Events.CurrentLocationChanged)
     public void goUpLevel() throws IOException {
        open(getCurrentFolder().getParent());
 
     }
 
-    @RaiseEvent("CurrentLocationChanged")
+    @RaiseEvent(Events.CurrentLocationChanged)
     public void openItem(DisplayItem item) throws IOException {
         item.open(this);
     }
 
-    @RaiseEvent("ItemDeleted")
+    @RaiseEvent(Events.ItemDeleted)
     public void delete(DisplayItem item) throws IOException {
         item.getItem().delete();
         currentFolder = item.getItem().getParent();

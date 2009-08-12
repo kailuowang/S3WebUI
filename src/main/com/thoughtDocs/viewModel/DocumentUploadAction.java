@@ -34,7 +34,7 @@ public class DocumentUploadAction implements Serializable {
     @In
     private Folder currentFolder;
 
-    @RaiseEvent("DocumentUploaded")
+    @RaiseEvent(Events.DocumentUploaded)
     public void upload() throws IOException {
         Document doc = DocumentImpl.createTransientDocument(currentFolder, name);
         doc.setPassword(password);

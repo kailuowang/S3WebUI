@@ -36,7 +36,7 @@ public class NewFolderAction implements Serializable {
     private Folder currentFolder;
 
 
-    @RaiseEvent("NewFolderCreated")
+    @RaiseEvent(Events.NewFolderCreated)
     public void create() throws IOException {
         Folder newFolder = FolderImpl.createTransientFolder(currentFolder, name);
         newFolder.setSecurityMode(securityMode);
