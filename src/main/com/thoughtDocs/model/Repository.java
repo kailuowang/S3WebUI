@@ -17,4 +17,12 @@ public interface Repository  extends Serializable {
     List<Item> findItmes(String folderPath) throws IOException;
 
     Folder getRootFolder();
+
+    /**
+     * Search item using search term in file name
+     * @param term
+     * @return
+     * @throws java.io.IOException
+     */
+    List<Item> searchItmes(String term) throws IOException;
 }

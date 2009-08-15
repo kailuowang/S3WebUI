@@ -48,5 +48,11 @@ public class UpdateSecurityAction implements Serializable{
             item.save();
     }
 
+    public boolean getPasswordReadonly() throws IOException {
+        if(item != null)
+            return !item.getSecurityMode().getCanSetPassword();
+        return true;
+    }
+
 
 }

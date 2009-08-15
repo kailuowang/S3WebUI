@@ -55,12 +55,9 @@
         <taskdef name="groovyc"
             classname ="org.codehaus.groovy.ant.Groovyc"
             classpathref="build.classpath"/> <!-- really only the groovy jar is necessary -->
-        
-                
         <mkdir dir="${classes.model.dir}" />
         <mkdir dir="${classes.action.dir}" />
         <mkdir dir="${dist.dir}" />
-
         <condition property="is.debug" value="true">
             <istrue value="${debug}"/>
         </condition>
@@ -75,7 +72,6 @@
         <condition property="puJndiName" value="#{null}" else="java:comp/env/${project.name}/pu">
             <istrue value="${seamBootstrapsPu}"/>
         </condition>
-
         <filterset id="persistence">
             <filter token="transactionManagerLookupClass" value="${transactionManagerLookupClass}"/>
         </filterset>

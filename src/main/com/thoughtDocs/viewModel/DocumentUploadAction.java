@@ -44,7 +44,6 @@ public class DocumentUploadAction implements Serializable {
         doc.save();
     }
 
-
     public void setPassword(String password) {
         this.password = password;
     }

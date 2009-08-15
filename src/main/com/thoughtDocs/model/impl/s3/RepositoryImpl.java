@@ -36,13 +36,43 @@ public class RepositoryImpl implements Repository, Serializable {
         throw new NotImplementedException();
     }
 
+    /**
+     * Find items under a path
+     * @param folderPath
+     * @return
+     * @throws IOException
+     */
     public List<Item> findItmes(String folderPath) throws IOException {
-        List<S3Object> objects = bucket.getObjects();
         List<Item> retVal = new ArrayList<Item>();
-        for (S3Object obj : objects) {
+        for (S3Object obj : bucket.getObjects()) {
             String key = obj.getKey();
             Path p = new Path(key);
             if (p.getFolderPath().equals(folderPath))
+                retVal.add(AbstractItem.loadedFromRepository(this, obj.getKey()));
+        }
+        return retVal;
+    }
+
+    /**
+     * Search item using search term in file name
+     * @param term
+     * @return
+     * @throws IOException
+     */
+    public List<Item> searchItmes(String term) throws IOException {
+        String[] keywords = term.split(" ");
+        List<Item> retVal = new ArrayList<Item>();
+        for (S3Object obj : bucket.getObjects()) {
+            String itemName = new Path(obj.getKey()).getItemName();
+            boolean match = true;
+            for(String keyword :keywords){
+                if(itemName.indexOf(keyword)<0)
+                  {
+                      match = false;
+                      break;
+                  }
+            }
+            if(match)
                 retVal.add(AbstractItem.loadedFromRepository(this, obj.getKey()));
         }
         return retVal;

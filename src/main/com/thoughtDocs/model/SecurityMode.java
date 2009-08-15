@@ -54,4 +54,7 @@ public enum SecurityMode {
 
     public abstract String getLongName();
 
+    public boolean getCanSetPassword() {
+        return this == SPECIFIED_PASSWORD;
+    }
 }

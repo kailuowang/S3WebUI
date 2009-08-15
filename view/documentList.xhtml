@@ -151,8 +151,9 @@
             <h4>Security Information For <i>#{updateSecurityAction.key}</i></h4>
                 <h:outputLabel>Security Mode:</h:outputLabel>
                 <h:selectOneMenu value="#{updateSecurityAction.securityMode}"
-                                         id="modeSelection"
-                                         required="true" validatorMessage="*" >
+                                         id="modeSelection"  
+                                         required="true" validatorMessage="*"  >
+                    <a:support event="onchange" reRender="password"></a:support>
                             <s:selectItems var="mode" value="#{securityModes}"
                                    label="#{mode.longName}"
                                    noSelectionLabel="--Please select security mode--"/>
@@ -160,7 +161,8 @@
                             </h:selectOneMenu>
                         <br /><br />
                         <h:outputLabel for="password">Password:</h:outputLabel><br />
-                            <h:inputText id="password" value="#{updateSecurityAction.password}"/>
+                            <h:inputText id="password" value="#{updateSecurityAction.password}"
+                                         readonly="#{updateSecurityAction.passwordReadonly}"/>
                         <br /><br />
                         <a:commandButton value="update"
                                          action="#{updateSecurityAction.update()}"
@@ -171,7 +173,8 @@
                                          oncomplete="Richfaces.hideModalPanel('securityInfoPanel')" />
 
                      </h:form>
-            <span>It is going to take a while to change the security settings for a file depending on the size of it.</span>
+            <span>It is going to take a while to change the security settings for a file depending on the size of it.<br />
+            Therefore it's recommended to let the files use Folder Security and change folder security settings when needed.</span>
           </rich:modalPanel>
       </a:outputPanel>
    </ui:define>

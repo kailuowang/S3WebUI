@@ -141,4 +141,20 @@ abstract class AbstractItem implements Item {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AbstractItem that = (AbstractItem) o;
+
+        if (!s3Object.equals(that.s3Object)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return s3Object.hashCode();
+    }
 }
