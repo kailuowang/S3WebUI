@@ -1,7 +1,6 @@
 package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.Document;
-import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.SecurityMode;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
@@ -34,7 +33,7 @@ public class DocumentUploadAction implements Serializable {
     @In
     private Folder currentFolder;
 
-    @RaiseEvent(Events.DocumentUploaded)
+    @RaiseEvent(ViewEvents.DocumentUploaded)
     public void upload() throws IOException {
         Document doc = DocumentImpl.createTransientDocument(currentFolder, name);
         doc.setPassword(password);

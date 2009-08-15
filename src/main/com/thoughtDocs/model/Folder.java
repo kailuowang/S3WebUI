@@ -15,5 +15,11 @@ public interface Folder extends Item {
     List<Item> getItems() throws IOException;
 
     Repository getRepository();
+
+    /**
+     * Whether items can be created underneath it
+     * @return
+     */
+    boolean getAllowNewItem();
 }
                       

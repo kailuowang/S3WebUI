@@ -20,7 +20,7 @@
                    <td>
                        <input type="text"   
                               value="#{documentListAction.currentPath}"
-                              size="50" />
+                              size="50" readonly="true" />
                    </td>
                    <td>
                        <a:commandButton image="/img/upLevel.png" id="goUp"
@@ -31,9 +31,16 @@
                    <td>
                         <a:commandButton image="/img/newFolderHS.png" id="newFolder"
                             oncomplete="Richfaces.showModalPanel('newFolderPanel')"
-                            reRender="newFolder" title="Create new folder" />
+                            reRender="newFolder" title="Create new folder"
+                            rendered="#{documentListAction.currentFolder.allowNewItem}" />
                    </td>
-                   <td width="60%"  align="right">
+                   <td>
+                       <h:inputText id="searchTermInputText" value="#{documentListAction.searchTerm}"></h:inputText>
+                   </td>
+                   <td> <a:commandButton value="Search" action="#{documentListAction.search()}"
+                            reRender="main" title="Search files by term"/>
+                   </td>
+                   <td width="99%"  align="right">
                         <a:status id="mainStatus"  >
                   <f:facet id="StartStatus" name="start">
                      <h:graphicImage id="SpinnerGif" value="/img/spinner.gif"/>
@@ -76,9 +83,7 @@
 
         </rich:panel>
             </h:form>
-             </a:outputPanel>
-
-        <rich:panel>
+        <rich:panel id="panelUploadNewFile" rendered="#{documentListAction.currentFolder.allowNewItem}">
             <f:facet name="header">Upload new file</f:facet>
             <h:form id="uploadForm" enctype="multipart/form-data">
                 <s:validateAll>
@@ -110,6 +115,7 @@
                 </s:validateAll>
             </h:form>
         </rich:panel>
+        </a:outputPanel>
     <a:outputPanel  id="newFolder" >
         <rich:modalPanel id="newFolderPanel" height="260">
            <h4>Create new folder here</h4>

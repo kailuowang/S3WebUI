@@ -31,6 +31,10 @@ public class RootFolder implements Folder {
         return repository;
     }
 
+    public boolean getAllowNewItem() {
+        return true;
+    }
+
     public String getName() {
         return SUBITEMS_FOLDER_PATH;
     }

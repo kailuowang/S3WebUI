@@ -4,11 +4,12 @@ import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Item;
 import com.thoughtDocs.model.Repository;
+import com.thoughtDocs.model.impl.s3.SearchFolderImpl;
 import com.thoughtDocs.viewModel.ItemOpener;
-import com.thoughtDocs.viewModel.Events;
+import com.thoughtDocs.viewModel.ViewEvents;
 import org.jboss.seam.ScopeType;
+import org.jboss.seam.core.Events;
 import org.jboss.seam.annotations.*;
-import org.jboss.seam.annotations.async.Asynchronous;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
 import org.jboss.seam.faces.FacesManager;
@@ -19,7 +20,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
 import java.util.Collections;
 
 
@@ -45,6 +45,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
    
     @DataModelSelection
     private DisplayItem item;
+    private String searchTerm;
 
     public DocumentListAction() {
     }
@@ -61,10 +62,10 @@ public class DocumentListAction implements Serializable, ItemOpener {
     }
 
     @Factory
-    @Observer({ Events.CurrentLocationChanged,
-                Events.NewFolderCreated,
-                Events.ItemDeleted,
-                Events.DocumentUploaded})
+    @Observer({ ViewEvents.CurrentLocationChanged,
+                ViewEvents.NewFolderCreated,
+                ViewEvents.ItemDeleted,
+                ViewEvents.DocumentUploaded})
     public void getDisplayItems() throws IOException {
         List<DisplayItem> items = new ArrayList<DisplayItem>();
 
@@ -85,27 +86,28 @@ public class DocumentListAction implements Serializable, ItemOpener {
 
     public void open(Folder folder) throws IOException {
         currentFolder = folder;
+        Events.instance().raiseEvent(ViewEvents.CurrentLocationChanged);
     }
 
     public void open(BackToParentDisplayItem item) throws IOException {
         goUpLevel();
     }
 
-    @RaiseEvent(Events.CurrentLocationChanged)
+
     public void goUpLevel() throws IOException {
        open(getCurrentFolder().getParent());
 
     }
 
-    @RaiseEvent(Events.CurrentLocationChanged)
+
     public void openItem(DisplayItem item) throws IOException {
         item.open(this);
     }
 
-    @RaiseEvent(Events.ItemDeleted)
+    @RaiseEvent(ViewEvents.ItemDeleted)
     public void delete(DisplayItem item) throws IOException {
         item.getItem().delete();
-        currentFolder = item.getItem().getParent();
+       // currentFolder = item.getItem().getParent();  //TODO: reinspect if this sentence is stil needed.
     }
 
     public boolean getHasLevelAbove() throws IOException {
@@ -116,5 +118,21 @@ public class DocumentListAction implements Serializable, ItemOpener {
     public String getCurrentPath() throws IOException {
 
         return "/" + getCurrentFolder().getKey();
+    }
+
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
+    }
+
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+
+
+    public void search() throws IOException {
+        if(searchTerm != null && searchTerm.length() > 0)
+        {
+            open( new SearchFolderImpl(defaultRepository, searchTerm));
+        }
     }
 }

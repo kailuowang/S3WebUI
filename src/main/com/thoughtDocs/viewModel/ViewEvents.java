@@ -5,7 +5,7 @@ package com.thoughtDocs.viewModel;
  * Date: Aug 11, 2009
  * Time: 11:19:52 PM
  */
-public class Events {
+public class ViewEvents {
 
     public static final String CurrentLocationChanged = "Current Location Changed";
     public static final String NewFolderCreated = "New Folder Created";

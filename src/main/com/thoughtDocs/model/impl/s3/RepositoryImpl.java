@@ -55,22 +55,26 @@ public class RepositoryImpl implements Repository, Serializable {
 
     /**
      * Search item using search term in file name
-     * @param term
-     * @return
+     * @param term  term to use for search, can have multiple keywords
+     * @return empty results if the term is empty
      * @throws IOException
      */
-    public List<Item> searchItmes(String term) throws IOException {
-        String[] keywords = term.split(" ");
+    public List<Item> searchItems(String term) throws IOException {
+
         List<Item> retVal = new ArrayList<Item>();
+        if(term == null  || term.length() == 0)
+            return retVal;
+        String[] keywords = term.split(" ");
+
         for (S3Object obj : bucket.getObjects()) {
             String itemName = new Path(obj.getKey()).getItemName();
             boolean match = true;
             for(String keyword :keywords){
-                if(itemName.indexOf(keyword)<0)
-                  {
+                if(itemName.toLowerCase().indexOf(keyword.toLowerCase()) < 0 ) //TODO: improve the search algorithm here
+                {
                       match = false;
                       break;
-                  }
+                }
             }
             if(match)
                 retVal.add(AbstractItem.loadedFromRepository(this, obj.getKey()));

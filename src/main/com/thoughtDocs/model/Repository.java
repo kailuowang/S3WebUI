@@ -24,5 +24,5 @@ public interface Repository  extends Serializable {
      * @return
      * @throws java.io.IOException
      */
-    List<Item> searchItmes(String term) throws IOException;
+    List<Item> searchItems(String term) throws IOException;
 }

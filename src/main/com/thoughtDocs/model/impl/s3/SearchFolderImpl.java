@@ -24,11 +24,15 @@ public class SearchFolderImpl implements SearchFolder {
     }
 
     public List<Item> getItems() throws IOException {
-        return repository.searchItmes(getTerm());
+        return repository.searchItems(getTerm());
     }
 
     public Repository getRepository() {
         return this.repository;
+    }
+
+    public boolean getAllowNewItem() {
+        return false;
     }
 
     public String getName() {
@@ -36,7 +40,7 @@ public class SearchFolderImpl implements SearchFolder {
     }
 
     public String getKey() {
-        return null;
+        return getName();
     }
 
     public boolean isTransient() {
