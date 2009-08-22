@@ -4,13 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Jul 27, 2009
- * Time: 1:09:48 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public interface S3Bucket  extends Serializable {
     String getName();
 

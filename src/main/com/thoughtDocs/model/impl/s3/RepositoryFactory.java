@@ -4,46 +4,47 @@ import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.SecurityMode;
-import com.thoughtDocs.util.CredentialsConfig;
 import com.thoughtDocs.util.ThoughtDocsConfig;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
+import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.security.Identity;
 
 import java.io.IOException;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Jul 22, 2009
- * Time: 4:07:17 PM
- * To change this template use File | Settings | File Templates.
- */
-@Scope(ScopeType.APPLICATION)
+ 
+@Scope(ScopeType.SESSION)
 @Name("repositoryFactory")
 public class RepositoryFactory {
+
     Repository defaultRepository;
 
-    private S3Bucket defaultBucket;
 
-    public RepositoryFactory(S3Bucket defaultBucket) {
-        this.defaultBucket = defaultBucket;
-    }
+    @In
+    Identity identity;
 
-    public RepositoryFactory() {
-        this(new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
-                CredentialsConfig.getAWSSecretKey(),
-                CredentialsConfig.getAWSBucketName()));
-    }
+    @In(create = true)
+    UserS3Store userStore;
 
-    @Factory(autoCreate = true)
+
+
+    public RepositoryFactory() {}
+
+    @Factory(autoCreate = true , scope = ScopeType.SESSION)
     public Repository getDefaultRepository() throws IOException {
+        UserS3 user = userStore.find(identity.getCredentials().getUsername());
+        assert user != null;
+        S3Bucket bucket = new S3BucketImpl(user.getAwsAccessKeyId(),
+                user.getAwsSecretKey(),
+                user.getBucketName());
+
         if (defaultRepository == null)
             defaultRepository =
                     ThoughtDocsConfig.getRunOnMemoryBucket() ?
                             createTestRepository() :
-                            new RepositoryImpl(defaultBucket);
+                            new RepositoryImpl(bucket);
         return defaultRepository;
     }
 

@@ -6,13 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Jul 26, 2009
- * Time: 5:14:17 PM
- * To change this template use File | Settings | File Templates.
- */
+
 class S3BucketImpl implements S3Bucket {
     private AWSAuthConnection awsAuthConnection;
     private QueryStringAuthGenerator queryStringGenerator;
