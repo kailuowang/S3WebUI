@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: ThoughtWorks
- * Date: Jul 27, 2009
- * Time: 11:28:12 PM
  * a bucket implementation that uses memory to store objects basically for testing purpose
  */
 public class MemoryBucketImpl implements S3Bucket {
@@ -27,13 +23,13 @@ public class MemoryBucketImpl implements S3Bucket {
     }
 
     public void saveObject(S3Object obj) throws IOException {
-        S3Object toRemove = findByKey(obj.getKey());
+        S3Object toRemove = findByKey(obj.getKey(), objects);
         if (toRemove != null)
             objects.remove(obj);
         objects.add(obj);
     }
 
-    private S3Object findByKey(String key) {
+    private S3Object findByKey(String key, List<S3Object> objects) {
         for (S3Object object : objects)
             if (object.getKey().equals(key))
                 return object;
@@ -41,14 +37,17 @@ public class MemoryBucketImpl implements S3Bucket {
     }
 
     public void removeObject(S3Object obj) throws IOException {
-        objects.remove(findByKey(obj.getKey()));
+        objects.remove(findByKey(obj.getKey(), objects));
     }
 
     public List<S3Object> getObjects() throws IOException {
 
         List<S3Object> retVal = new ArrayList<S3Object>();
         for (S3Object obj : objects) {
-            retVal.add(S3Object.loadedFromServer(this, obj.getKey()));
+            S3Object returnObj = S3Object.loadedFromServer(this, obj.getKey());
+            returnObj.setSize(obj.getSize());
+            returnObj.setLastModified(obj.getLastModified());
+            retVal.add(returnObj);
         }
         return retVal;
     }
@@ -71,6 +70,10 @@ public class MemoryBucketImpl implements S3Bucket {
 
     public void updateObjectMeta(S3Object object) throws IOException {
         updateObject(object);
+    }
+
+    public S3Object find(String key) throws IOException {
+        return findByKey(key, getObjects());
     }
 
 

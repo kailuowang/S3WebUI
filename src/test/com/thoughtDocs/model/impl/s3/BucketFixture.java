@@ -85,7 +85,7 @@ public class BucketFixture extends FixtureBase {
         obj.setMeta(meta);
         obj.save();
 
-        obj = S3Object.loadedFromServer(bucket, obj.getKey());
+        obj = bucket.find(obj.getKey());
         obj.update();
         meta = obj.getMeta();
         List<String> list = meta.get("test");

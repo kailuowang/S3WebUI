@@ -1,6 +1,7 @@
 package com.thoughtDocs.model;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -28,4 +29,8 @@ public interface Document extends Item {
    
 
     String getPublicUrl();
+
+    Date getLastModified();
+
+    long getSize();
 }

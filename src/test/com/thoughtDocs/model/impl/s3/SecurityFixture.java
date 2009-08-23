@@ -50,7 +50,7 @@ public class SecurityFixture extends FixtureBase {
         Folder folder = FolderImpl.createTransientFolder(repository.getRootFolder(), randomString());
         folder.setSecurityMode(SecurityMode.UNPROTECTED);
         folder.save();
-        folder = FolderImpl.loadedFromRepository(repository, folder.getKey());
+        folder = FolderImpl.findFromRepository(repository, folder.getKey());
         Assert.assertEquals(folder.getSecurityMode(), SecurityMode.UNPROTECTED);
         folder.delete();
     }

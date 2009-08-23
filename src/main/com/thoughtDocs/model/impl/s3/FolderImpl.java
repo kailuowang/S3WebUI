@@ -42,8 +42,10 @@ public class FolderImpl extends AbstractItem implements Folder {
     }
 
 
-    public static Folder loadedFromRepository(Repository repo, String key) {
-        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), createS3ObjectKey(key));
+    public static Folder findFromRepository(Repository repo, String key) throws IOException {
+        S3Object obj = ((RepositoryImpl) repo).getBucket().find(createS3ObjectKey(key));
+        if(obj == null)
+            return null; 
         return loadedFromS3Object(repo, obj);
     }
 

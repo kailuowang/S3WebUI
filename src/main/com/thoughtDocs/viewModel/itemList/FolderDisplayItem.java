@@ -33,4 +33,12 @@ public class FolderDisplayItem extends AbstractDisplayItem implements Serializab
     public String getIconFile() {
         return "/img/folder.png";
     }
+
+    public String getSize() {
+        return "";
+    }
+
+    public String getLastModified() {
+        return "";
+    }
 }

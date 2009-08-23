@@ -19,4 +19,6 @@ public interface S3Bucket  extends Serializable {
     String getSignedUrl(S3Object object);
 
     void updateObjectMeta(S3Object object) throws IOException;
+
+    S3Object find(String key) throws IOException;
 }

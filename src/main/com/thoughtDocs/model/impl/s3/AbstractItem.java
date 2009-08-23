@@ -59,7 +59,7 @@ abstract class AbstractItem implements Item {
             return new RootFolder(repository);
         else {
             String folderKey = folderPath.substring(0, folderPath.length() - 1);
-            return FolderImpl.loadedFromRepository(repository, folderKey);
+            return FolderImpl.findFromRepository(repository, folderKey);
         }
     }
 
@@ -78,10 +78,10 @@ abstract class AbstractItem implements Item {
         return s3Object.isTransient();
     }
 
-    public static Item loadedFromRepository(Repository repo, String key) throws IOException {
-        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), key);
+  
+    public static Item loadedFromRepository(Repository repo, S3Object obj) throws IOException {
 
-        boolean isFolder = FolderImpl.isFolder(key);
+        boolean isFolder = FolderImpl.isFolder(obj.getKey());
         if (isFolder)
             return FolderImpl.loadedFromS3Object(repo, obj);
         else

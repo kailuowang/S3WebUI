@@ -8,6 +8,7 @@ import com.thoughtDocs.util.URLEncoder;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -44,9 +45,9 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
      * @throws IOException
      */
     public static Document findFromRepository(Repository repo, String key) throws IOException {
-        S3Object obj = S3Object.loadedFromServer(((RepositoryImpl) repo).getBucket(), key);
-        obj.updateMeta();
-        if (obj.isTransient())
+
+        S3Object obj = ((RepositoryImpl) repo).getBucket().find(key);
+        if(obj == null)
             return null;
         return loadedFromS3Object(repo, obj);
     }
@@ -72,6 +73,14 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
 
     public String getContentType() {
         return s3Object.getContentType();
+    }
+
+    public Date getLastModified(){
+        return s3Object.getLastModified();
+    }
+
+    public long getSize(){
+        return s3Object.getSize();
     }
 
     public void setContentType(String contentType) {

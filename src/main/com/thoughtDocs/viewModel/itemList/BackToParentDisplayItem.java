@@ -41,6 +41,14 @@ public class BackToParentDisplayItem implements DisplayItem {
         return "/img/upLevel.png";
     }
 
+    public String getSize() {
+        return "";
+    }
+
+    public String getLastModified() {
+        return "";
+    }
+
     public boolean getHasSecurity() {
         return false;
     }

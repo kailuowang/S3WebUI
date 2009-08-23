@@ -66,6 +66,14 @@
                     <f:facet id="publicurl" name="header">Public URL</f:facet>
                     <a href="#{item.publicUrl}" target="_blank">#{item.publicUrl}</a>
                 </rich:column>
+                <rich:column id="columnSize">
+                    <f:facet id="headerSize" name="header">size</f:facet>
+                    #{item.size}
+                </rich:column>
+                <rich:column id="columnDate">
+                    <f:facet id="headerDate" name="header">last modified</f:facet>
+                    #{item.lastModified}
+                </rich:column>
                 <rich:column id="column11" width="1%">
                      <f:facet id="ActionFacet" name="header"></f:facet>
                      <a:commandButton id="changeSecuritySetting"

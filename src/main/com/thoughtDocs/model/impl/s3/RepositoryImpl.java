@@ -48,7 +48,7 @@ public class RepositoryImpl implements Repository, Serializable {
             String key = obj.getKey();
             Path p = new Path(key);
             if (p.getFolderPath().equals(folderPath))
-                retVal.add(AbstractItem.loadedFromRepository(this, obj.getKey()));
+                retVal.add(AbstractItem.loadedFromRepository(this, obj));
         }
         return retVal;
     }
@@ -77,7 +77,7 @@ public class RepositoryImpl implements Repository, Serializable {
                 }
             }
             if(match)
-                retVal.add(AbstractItem.loadedFromRepository(this, obj.getKey()));
+                retVal.add(AbstractItem.loadedFromRepository(this, obj));
         }
         return retVal;
     }

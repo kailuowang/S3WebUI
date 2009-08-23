@@ -4,6 +4,9 @@ import com.thoughtDocs.model.Document;
 import com.thoughtDocs.viewModel.ItemOpener;
 
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
+import java.util.Date;
 
 /**
  * Created by Kailuo "Kai" Wang
@@ -34,4 +37,28 @@ public class DocumentDisplayItem extends AbstractDisplayItem {
     public String getIconFile() {
         return "/img/document.png";
     }
+
+    public String getSize() {
+        long size = getDocument().getSize();
+       final long KB = 1024;
+       final long MB = 1024 * KB;
+       final long GB = 1024 * MB;
+       DecimalFormat format = new DecimalFormat("#,###.##");
+
+       if(size > GB )
+            return format.format( size / GB ) + "GB";
+       if(size > MB )
+            return format.format( size / MB ) + "MB";
+       if(size > KB )
+            return format.format( size / KB ) + "KB";
+        return
+                format.format(size) + "Byte";
+    }
+
+    public String getLastModified(){
+
+        Date date = getDocument().getLastModified();
+        return date != null ? date.toString():"N/A";
+    }
+    
 }

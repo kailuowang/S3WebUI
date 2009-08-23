@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,6 +23,7 @@ class S3Object implements Serializable {
     private boolean isTransient;
     private String contentType;
     private long size;
+    private Date lastModified;
 
 
     public String getContentType() {
@@ -151,5 +153,13 @@ class S3Object implements Serializable {
     @Override
     public int hashCode() {
         return key.hashCode();
+    }
+
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 }
