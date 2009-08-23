@@ -8,6 +8,7 @@ package com.thoughtDocs.util;
  * To change this template use File | Settings | File Templates.
  */
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -56,5 +57,10 @@ public class CredentialsConfig {
 
     public static String getDefaultPassword() {
         return getProperty("defaultPassword");
+    }
+
+
+    public static String getInvitationCode() {
+        return getProperty("invitationCode");
     }
 }

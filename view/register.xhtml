@@ -1,0 +1,60 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="registerForm">
+
+        <rich:panel>
+            <f:facet name="header">Register</f:facet>
+
+            <p>Please enter your information here</p>
+
+            <div class="dialog">
+                <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
+                    <h:outputLabel for="invitationCode">Invitation code</h:outputLabel>
+                    <h:inputText id="invitationCode"
+                              value="#{registerAction.invitationCode}"/>
+                    <h:outputLabel for="username">Username</h:outputLabel>
+                    <h:inputText id="username"   required="true"
+                              value="#{registeringUser.username}"/>
+                    <h:outputLabel for="password">Password</h:outputLabel>
+                    <h:inputSecret id="password"    required="true"
+                                value="#{registeringUser.password}"/>
+                    <h:outputLabel for="passwordCheck">Type password again</h:outputLabel>
+                    <h:inputSecret id="passwordCheck"    required="true"
+                                value="#{registerAction.passwordCheck}"/>
+                    <h:outputLabel for="awsKey">Amazon Web Service Access Key ID </h:outputLabel>
+                    <h:inputText id="awsKey"        required="true"
+                              value="#{registeringUser.awsAccessKeyId}"/>
+                    <h:outputLabel for="awsSecretKey">Amazon Web Service Secret Access Key </h:outputLabel>
+                    <h:inputSecret id="awsSecretKey"     required="true"
+                              value="#{registeringUser.awsSecretKey}"/>
+                     <h:outputLabel for="bucketname">Amazon S3 Bucket Name </h:outputLabel>
+                    <h:inputText id="bucketname"        required="true"
+                              value="#{registeringUser.bucketName}"/>
+
+                </h:panelGrid>
+            </div>
+
+            <p>
+              <i>Note - </i> You may login with the username 'admin' and a blank password.
+            </p>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+            <h:commandButton id="submit" value="Register" action="#{registerAction.register()}"/>
+        </div>
+
+    </h:form>
+
+ </ui:define>
+</ui:composition>
