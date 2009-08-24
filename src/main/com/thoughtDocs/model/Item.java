@@ -56,4 +56,10 @@ public interface Item extends Serializable{
      * @throws IOException
      */
     void save() throws IOException;
+
+    /**
+     * update settings to server
+     * @throws IOException
+     */
+    void update() throws IOException;
 }

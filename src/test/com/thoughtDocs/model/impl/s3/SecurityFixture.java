@@ -38,7 +38,7 @@ public class SecurityFixture extends FixtureBase {
         Repository repository = createTestRepo();
         Document doc = DocumentImpl.createTransientDocument(repository.getRootFolder(), randomString());
         doc.setData(TEST_DATA.getBytes());
-
+       doc.setPassword("initialPass");
         doc.save();
         doc = DocumentImpl.findFromRepository(repository, doc.getKey());
         String pass = randomString();

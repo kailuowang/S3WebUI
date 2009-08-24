@@ -45,7 +45,7 @@ public class UpdateSecurityAction implements Serializable{
     }
 
     public void update() throws IOException {
-            item.save();
+            item.update();
     }
 
     public boolean getPasswordReadonly() throws IOException {
