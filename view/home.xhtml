@@ -1,32 +1,192 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
-
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a="http://richfaces.org/a4j"
+                template="layout/template.xhtml">
     <ui:define name="body">
+        <a:outputPanel id="main">
+            <h:form>
+            <rich:panel>
+            <f:facet name="header">
+                <h2>#{documentListAction.defaultRepository.name}</h2>
+            </f:facet>
+           <table cellpadding="3" width="100%">
+               <tr>
+                   <td>
+                       <input type="text"   
+                              value="#{documentListAction.currentPath}"
+                              size="50" readonly="true" />
+                   </td>
+                   <td>
+                       <a:commandButton image="/img/upLevel.png" id="goUp"
+                                   rendered="#{documentListAction.hasLevelAbove}"
+                                   action="#{documentListAction.goUpLevel()}"
+                                   reRender="main"  title="Go up to parent folder"  />
+                   </td>
+                   <td>
+                        <a:commandButton image="/img/newFolderHS.png" id="newFolder"
+                            oncomplete="Richfaces.showModalPanel('newFolderPanel')"
+                            reRender="newFolder" title="Create new folder"
+                            rendered="#{documentListAction.currentFolder.allowNewItem}" />
+                   </td>
+                   <td>
+                       <h:inputText id="searchTermInputText" value="#{documentListAction.searchTerm}"></h:inputText>
+                   </td>
+                   <td> <a:commandButton value="Search" action="#{documentListAction.search()}"
+                            reRender="main" title="Search files by term"/>
+                   </td>
+                   <td width="99%"  align="right">
+                        <a:status id="mainStatus"  >
+                  <f:facet id="StartStatus" name="start">
+                     <h:graphicImage id="SpinnerGif" value="/img/spinner.gif"/>
+                  </f:facet>
+               </a:status>
 
-        <h1>Welcome to ThoughtWorks File Sharing System!</h1>
-        <rich:panel>
-            <h:panelGrid columns="2">
+                   </td>
+               </tr>
+           </table>
+            <rich:dataTable id="itemsTable" value="#{displayItems}"  border="0"
+                         var="item" rendered="#{displayItems != null and displayItems.size > 0 }">
+                <rich:column id="column1">
+                    <f:facet id="NameFacet" name="header">Name</f:facet>
+                    <a:commandButton  image="#{item.iconFile}" alt="#{item.name}"
+                                      value="#{item.name}"
+                                      action="#{documentListAction.openItem(item)}" reRender="main" immediate="true"/>
+                    <a:commandLink id="open" value="#{item.name}"
+                            action="#{documentListAction.openItem(item)}"
+                            reRender="main"
+                            immediate="true" />
+                </rich:column>
+                <rich:column id="column6">
+                    <f:facet id="publicurl" name="header">Public URL</f:facet>
+                    <a href="#{item.publicUrl}" target="_blank">#{item.publicUrl}</a>
+                </rich:column>
+                <rich:column id="columnSize">
+                    <f:facet id="headerSize" name="header">size</f:facet>
+                    #{item.size}
+                </rich:column>
+                <rich:column id="columnDate">
+                    <f:facet id="headerDate" name="header">last modified</f:facet>
+                    #{item.lastModified}
+                </rich:column>
+                <rich:column id="column11" width="1%">
+                     <f:facet id="ActionFacet" name="header"></f:facet>
+                     <a:commandButton id="changeSecuritySetting"
+                                     value="Security Settings" action="#{updateSecurityAction.init(item.item)}"
+                             immediate="true"  oncomplete="Richfaces.showModalPanel('securityInfoPanel')"
+                            reRender="securityInfo" rendered="#{item.hasSecurity}" />
+                </rich:column>
+                <rich:column id="column5"  width="1%" >
+                    <f:facet id="ActionFacet" name="header"></f:facet>
+                    <a:commandButton id="delete" image="/img/delete.png"        
+                                     value="Delete" action="#{documentListAction.delete(item)}"
+                            rendered="#{item.deletable}" reRender="main" immediate="true" />
+                </rich:column>
+              </rich:dataTable>
 
-                <s:div styleClass="info">
-                    <h:graphicImage value="/img/ThoughtWorksLogo.png" alt="ThoughtWorks logo"/>     <br/>
-                    <p><strong>This is an internal site for ThoughtWorkers to share files</strong> Here are some of the features this project provides:</p>
-                    <ul class="bullets">
-                        <li>Passwords protected file sharing</li>
-                        <li>Public file sharing</li>
-                        <li>Unlimited space</li>
-                        <li>Folder management</li>
-
-                    </ul>
-                </s:div>
-            </h:panelGrid>
         </rich:panel>
+            </h:form>
+        <rich:panel id="panelUploadNewFile" rendered="#{documentListAction.currentFolder.allowNewItem}">
+            <f:facet name="header">Upload new file</f:facet>
+            <h:form id="uploadForm" enctype="multipart/form-data">
+                <s:validateAll>
+                    <fieldset>
+                        <legend>Enter file to upload</legend>
+                        <div>
+                            <s:fileUpload id="newFile"
+                                          data="#{documentUploadAction.data}" accept="image/*"
+                                          contentType="#{documentUploadAction.contentType}"
+                                          fileName="#{documentUploadAction.name}"
+                                          size="80" maxlength="80" required="true"/>
+                        </div>
+                        <div>
+                            <br />
+                            <h:selectOneMenu value="#{documentUploadAction.securityMode}" required="true">
+                                <s:selectItems var="mode" value="#{securityModes}"
+                                               label="#{mode.longName}" noSelectionLabel="--Please select security mode--"/>
+                                <s:convertEnum/>
+                            </h:selectOneMenu>
+                            <h:outputLabel for="password"> &nbsp;&nbsp;Password:</h:outputLabel>
+                            <h:inputText id="password" value="#{documentUploadAction.password}"/>
+                        </div>
+                        <div>
+                            <h:commandButton value="Upload"
+                                             action="#{documentUploadAction.upload}"
+                                             reRender="itemsPanel" id="uploadButton"/>
+                        </div>
+                    </fieldset>
+                </s:validateAll>
+            </h:form>
+        </rich:panel>
+        </a:outputPanel>
+    <a:outputPanel  id="newFolder" >
+        <rich:modalPanel id="newFolderPanel" height="260">
+           <h4>Create new folder here</h4>
+            <h:form id="newFolderForm">
+                <s:validateAll>
+                    <div>
+                        <h:outputLabel for="folderName">Folder Name:</h:outputLabel>
+                        <h:inputText id="folderName" value="#{newFolderAction.name}" size="32"/>
+                        <br /><br />
+                        <h:selectOneMenu value="#{newFolderAction.securityMode}"
+                                         id="modeSelection"
+                                         required="true" validatorMessage="*" >
+                            <s:selectItems var="mode" value="#{securityModes}"
+                                   label="#{mode.longName}"
+                                   noSelectionLabel="--Please select security mode--"/>
+                             <s:convertEnum/>
+                            </h:selectOneMenu>
+                        <br /><br />
+                        <h:outputLabel for="password">Password:</h:outputLabel>
+                            <h:inputText id="password" value="#{newFolderAction.password}"/>
+                        <br /><br />
+                        <a:commandButton value="create"   
+                                         action="#{newFolderAction.create()}"
+                                         reRender="main" id="newFolderButton"
+                                         oncomplete="Richfaces.hideModalPanel('newFolderPanel')" />
+                        <a:commandButton value="cancel"
+                                         id="cancelFolderButton"
+                                         oncomplete="Richfaces.hideModalPanel('newFolderPanel')" />
+                    </div>
+                </s:validateAll>
+            </h:form>
+            <span>Please avoid using special characters as folder name. Try stick with letter, digit, dot, _ and - </span>
+        </rich:modalPanel>
+    </a:outputPanel>
 
-    </ui:define>
+    <a:outputPanel  id="securityInfo" >
+        <rich:modalPanel id="securityInfoPanel"  height="260">
+            <h:form>
+            <h4>Security Information For <i>#{updateSecurityAction.key}</i></h4>
+                <h:outputLabel>Security Mode:</h:outputLabel>
+                <h:selectOneMenu value="#{updateSecurityAction.securityMode}"
+                                         id="modeSelection"  
+                                         required="true" validatorMessage="*"  >
+                    <a:support event="onchange" reRender="password"></a:support>
+                            <s:selectItems var="mode" value="#{securityModes}"
+                                   label="#{mode.longName}"
+                                   noSelectionLabel="--Please select security mode--"/>
+                             <s:convertEnum/>
+                            </h:selectOneMenu>
+                        <br /><br />
+                        <h:outputLabel for="password">Password:</h:outputLabel><br />
+                            <h:inputText id="password" value="#{updateSecurityAction.password}"
+                                         readonly="#{updateSecurityAction.passwordReadonly}"/>
+                        <br /><br />
+                        <a:commandButton value="update"
+                                         action="#{updateSecurityAction.update()}"
+                                         reRender="securityInfo,main" id="updateSecurityButton"
+                                         oncomplete="Richfaces.hideModalPanel('securityInfoPanel')" />
+                        <a:commandButton value="close"
+                                          id="cancelUpdateSecurityButton"
+                                         oncomplete="Richfaces.hideModalPanel('securityInfoPanel')" />
+                     </h:form>
+          </rich:modalPanel>
+      </a:outputPanel>
+   </ui:define>
 </ui:composition>

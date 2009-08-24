@@ -1,0 +1,61 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="accountForm">
+
+        <rich:panel>
+            <f:facet name="header">Account Information</f:facet>
+
+            <p>Your account information to ThoughtDocs.com: </p>
+
+
+
+            <div class="dialog">
+                <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
+                    <h:outputLabel for="oldPassword">Old password</h:outputLabel>
+                    <h:inputSecret id="oldPassword"
+                                value="#{accountAction.oldPassword}"/>
+                    <h:outputLabel for="password">New password</h:outputLabel>
+                    <h:inputSecret id="password"
+                                value="#{accountAction.newPassword}"/>
+                    <h:outputLabel for="passwordCheck">Type new password again</h:outputLabel>
+                    <h:inputSecret id="passwordCheck"
+                                value="#{accountAction.newPasswordCheck}"/>
+                    <h:outputLabel for="awsKey">Amazon Web Service Access Key ID </h:outputLabel>
+                    <h:inputText id="awsKey"
+                              value="#{currentUser.awsAccessKeyId}"/>
+                    <h:outputLabel for="awsSecretKey">Amazon Web Service Secret Access Key </h:outputLabel>
+                    <h:inputSecret id="awsSecretKey" redisplay="true"    
+                              value="#{currentUser.awsSecretKey}"/>
+                     <h:outputLabel for="bucketname">Amazon S3 Bucket Name </h:outputLabel>
+                    <h:inputText id="bucketname"  
+                              value="#{currentUser.bucketName}"/>
+
+                </h:panelGrid>
+            </div>
+
+            <p>
+              <i>Note - </i> You can leave the "Amazon S3 Bucket Name" blank if you don't know it.
+                ThoughtDocs.com will create one for you.
+            </p>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+            <h:commandButton id="submit" value="Update" action="#{accountAction.update()}"/>
+            <h:commandButton onclick="return confirm('Are you sure you want to remove your account?')"
+                             id="remove" value="Remove Account" action="#{accountAction.remove()}"/>
+        </div>
+    </h:form>
+
+ </ui:define>
+</ui:composition>

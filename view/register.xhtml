@@ -15,7 +15,14 @@
         <rich:panel>
             <f:facet name="header">Register</f:facet>
 
-            <p>Please enter your information here</p>
+            <p>Welcome to ThoughtDocs.com. </p>
+            <p> If you don't have an Amazon S3 account yet, please go to
+                <a href="http://aws.amazon.com/s3/" target="_blank">http://aws.amazon.com/s3/</a> to sign up.
+                Then you may need to go
+                <a  target="_blank" href="http://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">
+                    here</a> to get your Amazon S3 access information.
+            </p>
+            <p>Please enter your information here:</p>
 
             <div class="dialog">
                 <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
@@ -38,14 +45,15 @@
                     <h:inputSecret id="awsSecretKey"     required="true"
                               value="#{registeringUser.awsSecretKey}"/>
                      <h:outputLabel for="bucketname">Amazon S3 Bucket Name </h:outputLabel>
-                    <h:inputText id="bucketname"        required="true"
+                    <h:inputText id="bucketname"  
                               value="#{registeringUser.bucketName}"/>
 
                 </h:panelGrid>
             </div>
 
             <p>
-              <i>Note - </i> You may login with the username 'admin' and a blank password.
+              <i>Note - </i> You can leave the "Amazon S3 Bucket Name" blank if you don't know it.
+                ThoughtDocs.com will create one for you.
             </p>
 
         </rich:panel>

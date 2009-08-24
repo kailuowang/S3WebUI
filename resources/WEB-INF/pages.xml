@@ -11,13 +11,17 @@
             <rule if-outcome="home">
                 <redirect view-id="/home.xhtml"/>
             </rule>
+            <rule if-outcome="login">
+                <redirect view-id="/login.xhtml"/>
+            </rule>
         </navigation>
-
-        
     </page>
-    <page name="documentList" view-id="/documentList.xhtml" redirect="true" back="enabled" >
+    <page name="home" view-id="/home.xhtml" redirect="true"  >
         <restrict>#{s:hasRole('admin')}</restrict>
         <begin-conversation join="true"  />
+    </page>
+    <page name="account" view-id="/account.xhtml" redirect="true" >
+        <restrict>#{s:hasRole('admin')}</restrict>
     </page>
     <page view-id="/documentPublicDownload.xhtml" >
        <action execute="#{documentPublicDownloadAction.checkFile}"/>

@@ -113,12 +113,12 @@ class S3Object implements Serializable {
     }
 
     /**
-     * update content from the s3 server
+     * refresh content from the s3 server
      *
      * @throws IOException
      */
-    public void update() throws IOException {
-        bucket.updateObject(this);
+    public void refresh() throws IOException {
+        bucket.refreshObject(this);
     }
 
     public void delete() throws IOException {
@@ -131,10 +131,15 @@ class S3Object implements Serializable {
     }
 
 
-    public void updateMeta() throws IOException {
-
+    /**
+     * update the current meta to the server
+     * data won't be updated.
+     * @throws IOException
+     */
+    public void update() throws IOException {
+        if(isTransient)
+            throw new UnsupportedOperationException("Transient object cannot be updated");
         bucket.updateObjectMeta(this);
-
     }
 
 
@@ -161,5 +166,9 @@ class S3Object implements Serializable {
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
+    }
+
+    public void refreshMeta() throws IOException {
+         bucket.refreshObjectMeta(this);
     }
 }

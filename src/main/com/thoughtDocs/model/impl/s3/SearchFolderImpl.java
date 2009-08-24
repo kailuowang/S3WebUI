@@ -35,6 +35,10 @@ public class SearchFolderImpl implements SearchFolder {
         return false;
     }
 
+    public void update() throws IOException {
+        throwReadonlyException();
+    }
+
     public String getName() {
         return "Search results for \"" + getTerm() + "" ;
     }

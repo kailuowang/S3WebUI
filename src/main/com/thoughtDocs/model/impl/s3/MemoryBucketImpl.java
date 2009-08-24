@@ -29,6 +29,11 @@ public class MemoryBucketImpl implements S3Bucket {
         objects.add(obj);
     }
 
+    public void updateObjectMeta(S3Object obj) throws IOException {
+        findByKey(obj.getKey(), objects).setMeta(obj.getMeta());
+    }
+
+
     private S3Object findByKey(String key, List<S3Object> objects) {
         for (S3Object object : objects)
             if (object.getKey().equals(key))
@@ -52,7 +57,7 @@ public class MemoryBucketImpl implements S3Bucket {
         return retVal;
     }
 
-    public void updateObject(S3Object object) throws IOException {
+    public void refreshObject(S3Object object) throws IOException {
         for (S3Object obj : objects) {
             if (obj.getKey().equals(object.getKey())) {
                 object.setMeta(obj.getMeta());
@@ -68,8 +73,8 @@ public class MemoryBucketImpl implements S3Bucket {
         return "http://localhost:8080/thoughtDocs/memoryDL/" + object.getKey();
     }
 
-    public void updateObjectMeta(S3Object object) throws IOException {
-        updateObject(object);
+    public void refreshObjectMeta(S3Object object) throws IOException {
+        refreshObject(object);
     }
 
     public S3Object find(String key) throws IOException {

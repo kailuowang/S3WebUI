@@ -35,6 +35,10 @@ public class RootFolder implements Folder {
         return true;
     }
 
+    public void update() throws IOException {
+        throw new UnsupportedOperationException("root folder's cannot be updated.");
+    }
+
     public String getName() {
         return SUBITEMS_FOLDER_PATH;
     }

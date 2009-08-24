@@ -26,6 +26,15 @@ public class AWSAuthConnection {
     public static final String LOCATION_EU = "EU";
 
     private String awsAccessKeyId;
+
+    public String getAwsAccessKeyId() {
+        return awsAccessKeyId;
+    }
+
+    public String getAwsSecretAccessKey() {
+        return awsSecretAccessKey;
+    }
+
     private String awsSecretAccessKey;
     private boolean isSecure;
     private String server;
@@ -232,6 +241,7 @@ public class AWSAuthConnection {
         headers.put("x-amz-metadata-directive", Arrays.asList(new String[]{"COPY"}));
         return verifyCopy(put(destinationBucket, destinationKey, object, headers));
     }
+
 
     /**
      * Creates a copy of an existing S3 Object.  In this signature, we will replace the

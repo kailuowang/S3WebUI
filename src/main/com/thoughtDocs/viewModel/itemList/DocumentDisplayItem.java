@@ -8,11 +8,7 @@ import java.text.NumberFormat;
 import java.text.DecimalFormat;
 import java.util.Date;
 
-/**
- * Created by Kailuo "Kai" Wang
- * Date: Jul 30, 2009
- * Time: 10:10:13 PM
- */
+
 public class DocumentDisplayItem extends AbstractDisplayItem {
 
     public DocumentDisplayItem(Document item) {
@@ -39,10 +35,10 @@ public class DocumentDisplayItem extends AbstractDisplayItem {
     }
 
     public String getSize() {
-        long size = getDocument().getSize();
-       final long KB = 1024;
-       final long MB = 1024 * KB;
-       final long GB = 1024 * MB;
+       float size = getDocument().getSize();
+       final float KB = 1024;
+       final float MB = 1024 * KB;
+       final float GB = 1024 * MB;
        DecimalFormat format = new DecimalFormat("#,###.##");
 
        if(size > GB )
@@ -51,12 +47,10 @@ public class DocumentDisplayItem extends AbstractDisplayItem {
             return format.format( size / MB ) + "MB";
        if(size > KB )
             return format.format( size / KB ) + "KB";
-        return
-                format.format(size) + "Byte";
+       return format.format(size) + "Byte";
     }
 
     public String getLastModified(){
-
         Date date = getDocument().getLastModified();
         return date != null ? date.toString():"N/A";
     }

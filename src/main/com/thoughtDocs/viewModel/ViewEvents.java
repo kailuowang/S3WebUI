@@ -11,4 +11,5 @@ public class ViewEvents {
     public static final String NewFolderCreated = "New Folder Created";
     public static final String ItemDeleted = "Item Deleted";
     public static final String DocumentUploaded = "File Uploaded";
+    public static final String BucketChanged = "Bucket Changed";
 }

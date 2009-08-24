@@ -2,7 +2,6 @@ package com.thoughtDocs.viewModel;
 
 import com.thoughtDocs.model.impl.s3.UserS3;
 import com.thoughtDocs.model.impl.s3.UserS3Store;
-import com.thoughtDocs.util.CredentialsConfig;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
@@ -11,6 +10,7 @@ import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.international.StatusMessages;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -29,6 +29,7 @@ public class RegisterAction {
     @In
     private StatusMessages statusMessages;
     private String invitationCode;
+    private String awsSecretKey;
 
     @Factory(autoCreate = true)
     public UserS3 getRegisteringUser() {
@@ -44,17 +45,15 @@ public class RegisterAction {
     }
 
     public String register() throws IOException {
-        if (CredentialsConfig.getInvitationCode().equals(invitationCode)) {
-            if (passwordCheck.equals(user.getPassword())) {
-                if (userStore.find(user.getUsername()) == null) {
-                    userStore.add(user);
-                    return "login";
-                } else
-                    statusMessages.add("Your password does not match.");
-            } else
-                statusMessages.add("Your password does not match.");
-        } else
-            statusMessages.add("incorrect invitation code");
+        List<String> validationErrors = userStore.validateNewUser(user, invitationCode, passwordCheck);
+        if (validationErrors == null || validationErrors.size() == 0) {
+            user.persist(userStore);
+            statusMessages.add("You have successfully registered. Please login now.");
+            return "/login.xhtml";
+        }
+
+        for (String err : validationErrors)
+            statusMessages.add(err);
         return null;
     }
 
@@ -65,5 +64,13 @@ public class RegisterAction {
 
     public String getInvitationCode() {
         return invitationCode;
+    }
+
+    public void setAwsSecretKey(String awsSecretKey) {
+        this.awsSecretKey = awsSecretKey;
+    }
+
+    public String getAwsSecretKey() {
+        return awsSecretKey;
     }
 }

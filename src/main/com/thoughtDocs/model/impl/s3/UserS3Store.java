@@ -11,9 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -24,11 +22,10 @@ public class UserS3Store implements Serializable {
 
     File file;
     Set<UserS3> users;
-    UserS3 defaultUser;
 
     public UserS3Store() throws IOException {
 
-        defaultUser = loadDefaultUser();
+
 
         file = new File("users.yml");
         users = new HashSet<UserS3>();
@@ -38,6 +35,9 @@ public class UserS3Store implements Serializable {
                 users.add((UserS3) user);
             }
         }
+        if(users.size() == 0)
+            persist(loadDefaultUser());
+
     }
 
     private static Collection loadUsers(File ymlFile) throws FileNotFoundException {
@@ -62,28 +62,55 @@ public class UserS3Store implements Serializable {
                 CredentialsConfig.getAWSBucketName());
     }
 
-    public void add(UserS3 user) throws IOException {
-        users.add(user);
+    void persist(UserS3 user) throws IOException {
+        if(!users.contains(user))
+            users.add(user);
         persist();
     }
 
-    private void persist() throws IOException {
+    public void persist() throws IOException {
         if (!file.exists())
             file.createNewFile();
         Yaml.dump(users, file);
     }
 
     public int size() {
-        return users.size() + 1;
+        return users.size();
     }
 
     public UserS3 find(String username) {
-        if (defaultUser.getUsername().equals(username))
-            return defaultUser;
+
         for (UserS3 user : users) {
             if (user.getUsername().equals(username))
                 return user;
         }
         return null;
+    }
+
+    public void remove(UserS3 user) throws IOException {
+        if(users.remove(user)) {
+            persist();
+        }
+    }
+
+    /**
+     * validate
+     *
+     * @return validation errors, empty if there is no validation error
+     */
+    public List<String> validateNewUser(UserS3 user, String invitationCode, String passwordCheck) {
+        if (!CredentialsConfig.getInvitationCode().equals(invitationCode)) {
+            return Arrays.asList("incorrect invitation code");
+        }
+
+        if (!passwordCheck.equals(user.getPassword())) {
+            return Arrays.asList("Your password does not match.");
+        }
+        
+        if (find(user.getUsername()) != null) {
+            return Arrays.asList("Username " + user.getUsername() + " is already taken.");
+        }
+
+        return user.validate();
     }
 }

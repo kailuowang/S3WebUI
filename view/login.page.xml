@@ -8,5 +8,4 @@
          <redirect view-id="/home.xhtml"/>
       </rule>
    </navigation>
-
 </page>

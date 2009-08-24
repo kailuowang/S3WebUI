@@ -5,7 +5,8 @@ import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.SecurityMode;
 import com.thoughtDocs.util.CredentialsConfig;
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -27,19 +28,40 @@ public class SecurityFixture extends FixtureBase {
         doc.setPassword(pass);
         doc.save();
         doc = DocumentImpl.findFromRepository(repository, doc.getKey());
-        Assert.assertEquals(doc.getPassword(), pass);
-        Assert.assertEquals(new String(doc.getData()), TEST_DATA);
+        assertEquals(doc.getPassword(), pass);
+        assertEquals(new String(doc.getData()), TEST_DATA);
         doc.delete();
     }
+
+    @Test
+    public void shouldNotLoseDataWhenUpdateSecurity() throws IOException {
+        Repository repository = createTestRepo();
+        Document doc = DocumentImpl.createTransientDocument(repository.getRootFolder(), randomString());
+        doc.setData(TEST_DATA.getBytes());
+
+        doc.save();
+        doc = DocumentImpl.findFromRepository(repository, doc.getKey());
+        String pass = randomString();
+        doc.setPassword(pass);
+        doc.update();
+
+        doc = DocumentImpl.findFromRepository(repository, doc.getKey());
+        assertEquals(doc.getPassword(), pass);
+        assertEquals(new String(doc.getData()), TEST_DATA);
+        doc.delete();
+    }
+
 
     @Test
     public void testDocumentSecurityMode() throws IOException {
         Repository repository = createTestRepo();
         Document doc = DocumentImpl.createTransientDocument(repository.getRootFolder(), randomString());
         doc.setSecurityMode(SecurityMode.INHERITED);
+        doc.setData(TEST_DATA.getBytes());
         doc.save();
         doc = DocumentImpl.findFromRepository(repository, doc.getKey());
-        Assert.assertEquals(doc.getSecurityMode(), SecurityMode.INHERITED);
+        assertEquals(doc.getSecurityMode(), SecurityMode.INHERITED);
+
         doc.delete();
     }
 
@@ -51,7 +73,7 @@ public class SecurityFixture extends FixtureBase {
         folder.setSecurityMode(SecurityMode.UNPROTECTED);
         folder.save();
         folder = FolderImpl.findFromRepository(repository, folder.getKey());
-        Assert.assertEquals(folder.getSecurityMode(), SecurityMode.UNPROTECTED);
+        assertEquals(folder.getSecurityMode(), SecurityMode.UNPROTECTED);
         folder.delete();
     }
 
@@ -67,7 +89,7 @@ public class SecurityFixture extends FixtureBase {
         doc.setPassword("lalalal"); //this password should be used by default        
         doc.save();
 
-        Assert.assertEquals(doc.getUsingPassword(), CredentialsConfig.getDefaultPassword());
+        assertEquals(doc.getUsingPassword(), CredentialsConfig.getDefaultPassword());
     }
 
     @Test
@@ -79,7 +101,7 @@ public class SecurityFixture extends FixtureBase {
         doc.setSecurityMode(SecurityMode.SPECIFIED_PASSWORD);
         doc.save();
 
-        Assert.assertEquals(doc.getUsingPassword(), testPassword);
+        assertEquals(doc.getUsingPassword(), testPassword);
     }
 
     @Test
@@ -90,7 +112,7 @@ public class SecurityFixture extends FixtureBase {
         doc.setPassword(testPassword);
         doc.setSecurityMode(SecurityMode.UNPROTECTED);
         doc.save();
-        Assert.assertNull(doc.getUsingPassword());
+        assertNull(doc.getUsingPassword());
     }
 
     @Test
@@ -105,7 +127,7 @@ public class SecurityFixture extends FixtureBase {
         Document doc = DocumentImpl.createTransientDocument(folder, randomString());
         doc.setSecurityMode(SecurityMode.INHERITED);
         doc.save();
-        Assert.assertEquals(doc.getUsingPassword(), testPassword);
+        assertEquals(doc.getUsingPassword(), testPassword);
 
     }
 }

@@ -5,11 +5,9 @@ import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.SecurityMode;
 import com.thoughtDocs.util.ThoughtDocsConfig;
+import com.thoughtDocs.viewModel.ViewEvents;
 import org.jboss.seam.ScopeType;
-import org.jboss.seam.annotations.Factory;
-import org.jboss.seam.annotations.In;
-import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.annotations.*;
 import org.jboss.seam.security.Identity;
 
 import java.io.IOException;
@@ -21,31 +19,38 @@ public class RepositoryFactory {
 
     Repository defaultRepository;
 
-
     @In
     Identity identity;
 
     @In(create = true)
     UserS3Store userStore;
 
-
-
     public RepositoryFactory() {}
 
     @Factory(autoCreate = true , scope = ScopeType.SESSION)
     public Repository getDefaultRepository() throws IOException {
-        UserS3 user = userStore.find(identity.getCredentials().getUsername());
-        assert user != null;
-        S3Bucket bucket = new S3BucketImpl(user.getAwsAccessKeyId(),
-                user.getAwsSecretKey(),
-                user.getBucketName());
 
         if (defaultRepository == null)
-            defaultRepository =
-                    ThoughtDocsConfig.getRunOnMemoryBucket() ?
-                            createTestRepository() :
-                            new RepositoryImpl(bucket);
+        {
+            defaultRepository =  ThoughtDocsConfig.getRunOnMemoryBucket() ?
+                                     createTestRepository()
+                                    : createRepoFromUser();
+
+        }
         return defaultRepository;
+    }
+
+    @Observer( ViewEvents.BucketChanged)
+    public void reloadRepository(){
+        defaultRepository = null;
+
+    }
+
+    private Repository createRepoFromUser() {
+        UserS3 user = userStore.find(identity.getCredentials().getUsername());
+        assert user != null;
+
+        return new RepositoryImpl( user.bucket());
     }
 
     private Repository createTestRepository() throws IOException {

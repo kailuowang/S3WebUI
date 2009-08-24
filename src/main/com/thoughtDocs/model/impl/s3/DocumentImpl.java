@@ -83,6 +83,8 @@ public class DocumentImpl extends AbstractItem implements Document, Serializable
         return s3Object.getSize();
     }
 
+    
+
     public void setContentType(String contentType) {
         s3Object.setContentType(contentType);
     }

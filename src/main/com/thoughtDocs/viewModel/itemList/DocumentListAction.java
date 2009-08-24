@@ -5,8 +5,10 @@ import com.thoughtDocs.model.Folder;
 import com.thoughtDocs.model.Item;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.SearchFolderImpl;
+import com.thoughtDocs.model.impl.s3.RepositoryFactory;
 import com.thoughtDocs.viewModel.ItemOpener;
 import com.thoughtDocs.viewModel.ViewEvents;
+import com.thoughtDocs.exception.RepositoryUnavailableException;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.core.Events;
 import org.jboss.seam.annotations.*;
@@ -33,8 +35,8 @@ public class DocumentListAction implements Serializable, ItemOpener {
     @In
     private StatusMessages statusMessages;
 
-    @In
-    private Repository defaultRepository;
+    @In(create = true)
+    private RepositoryFactory repositoryFactory;
 
 
     private Folder currentFolder;
@@ -51,13 +53,17 @@ public class DocumentListAction implements Serializable, ItemOpener {
     }
 
     public Repository getDefaultRepository() {
-        return defaultRepository;
+        try {
+            return repositoryFactory.getDefaultRepository();
+        } catch (IOException e) {
+            throw  new RepositoryUnavailableException(e);
+        }
     }
 
     @Out
     public Folder getCurrentFolder() {
         if (currentFolder == null)
-            currentFolder = defaultRepository.getRootFolder();
+            currentFolder = getDefaultRepository().getRootFolder();
         return currentFolder;
     }
 
@@ -65,7 +71,8 @@ public class DocumentListAction implements Serializable, ItemOpener {
     @Observer({ ViewEvents.CurrentLocationChanged,
                 ViewEvents.NewFolderCreated,
                 ViewEvents.ItemDeleted,
-                ViewEvents.DocumentUploaded})
+                ViewEvents.DocumentUploaded,
+                ViewEvents.BucketChanged })
     public void getDisplayItems() throws IOException {
         List<DisplayItem> items = new ArrayList<DisplayItem>();
 
@@ -132,7 +139,7 @@ public class DocumentListAction implements Serializable, ItemOpener {
     public void search() throws IOException {
         if(searchTerm != null && searchTerm.length() > 0)
         {
-            open( new SearchFolderImpl(defaultRepository, searchTerm));
+            open( new SearchFolderImpl(getDefaultRepository(), searchTerm));
         }
     }
 }

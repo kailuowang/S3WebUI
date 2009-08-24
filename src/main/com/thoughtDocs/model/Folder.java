@@ -21,5 +21,7 @@ public interface Folder extends Item {
      * @return
      */
     boolean getAllowNewItem();
+    void update() throws IOException;
+    
 }
                       

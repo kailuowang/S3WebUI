@@ -14,10 +14,14 @@ public class BucketFactory {
     public static S3Bucket getTestS3Bucket() {
 
         return TestConfig.getTestAgainstRealS3Service() ?
-                new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
-                        CredentialsConfig.getAWSSecretKey(),
-                        CredentialsConfig.getAWSBucketName()):
+                getTestS3BucketForReal() :
                 new MemoryBucketImpl("test");
 
+    }
+
+    public static S3BucketImpl getTestS3BucketForReal() {
+        return new S3BucketImpl(CredentialsConfig.getAWSAccessKey(),
+                CredentialsConfig.getAWSSecretKey(),
+                CredentialsConfig.getAWSBucketName());
     }
 }

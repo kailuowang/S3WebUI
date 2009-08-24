@@ -34,7 +34,7 @@ public class BucketFixture extends FixtureBase {
         int oldSize = bucket.getObjects().size();
         S3Object obj = createRandomTestObj(bucket);
         Assert.assertEquals(bucket.getObjects().size(), oldSize + 1);
-        obj.update();
+        obj.refresh();
         Assert.assertEquals(new String(obj.getData()), TEST_DATA);
         deleteAfterTest(obj);
     }
@@ -46,7 +46,7 @@ public class BucketFixture extends FixtureBase {
         int oldSize = bucket.getObjects().size();
         S3Object obj = createRandomTestObj(bucket);
         Assert.assertEquals(bucket.getObjects().size(), oldSize + 1);
-        obj.update();
+        obj.refresh();
         Assert.assertEquals(new String(obj.getData()), TEST_DATA);
         obj.delete();
         Assert.assertEquals(bucket.getObjects().size(), oldSize);
@@ -63,7 +63,7 @@ public class BucketFixture extends FixtureBase {
         obj.setData(TEST_DATA.getBytes());
         obj.save();
 
-        obj.update();
+        obj.refresh();
         meta = obj.getMeta();
 
         List<String> list = meta.get("test");
@@ -86,7 +86,7 @@ public class BucketFixture extends FixtureBase {
         obj.save();
 
         obj = bucket.find(obj.getKey());
-        obj.update();
+        obj.refresh();
         meta = obj.getMeta();
         List<String> list = meta.get("test");
         Assert.assertEquals(list.size(), 1);

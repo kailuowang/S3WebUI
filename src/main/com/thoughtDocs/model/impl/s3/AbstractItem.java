@@ -28,16 +28,21 @@ abstract class AbstractItem implements Item {
 
     protected Map<String, List<String>> getMeta() throws IOException {
         if (!isTransient() && !metaUpdated) {
-            updateMeta();
+            refreshMeta();
         }
         return s3Object.getMeta();
     }
 
-    protected void updateMeta() throws IOException {
-        s3Object.updateMeta();
+    protected void refreshMeta() throws IOException {
+        s3Object.refreshMeta();
         if (!isTransient())
             metaUpdated = true;
     }
+
+     public void update() throws IOException {
+         s3Object.update();
+    }
+
 
     public String getName() {
         return getPath().getItemName();
@@ -71,7 +76,7 @@ abstract class AbstractItem implements Item {
     }
 
     public void refresh() throws IOException {
-        s3Object.update();
+        s3Object.refresh();
     }
 
     public boolean isTransient() {

@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * Created by Kailuo "Kai" Wang
- * Date: Jul 30, 2009
- * Time: 10:31:30 PM
+ * data item to be displayed in the document list grid
  */
 public interface DisplayItem extends Serializable , Comparable {
     String getName();

@@ -1,5 +1,10 @@
 package com.thoughtDocs.model.impl.s3;
 
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.io.IOException;
+
 /**
  * User who uses s3 for back-end storage.
  */
@@ -88,5 +93,51 @@ public class UserS3 {
 
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
+    }
+
+    public boolean specifiedBucket() {
+        return bucketName != null && bucketName.length() > 0;
+    }
+
+    public String getUsingBucketName() {
+        return specifiedBucket() ? bucketName : buildAutoCreatedBucketName();
+    }
+
+
+    /**
+     * build a name for the bucket auto created by application when user does not specify bucket
+     * @return
+     */
+    private String buildAutoCreatedBucketName() {
+          return "thoughtdocs-com-bucket-" + username.toLowerCase();
+    }
+
+     /**
+     * validate against Amazon s3 service
+     * @return validation errors, empty if there is no validation error
+     */
+    public List<String> validate() {
+         S3BucketImpl bucket = (S3BucketImpl) bucket();
+         if(!bucket.canConnect()) {
+             return Arrays.asList("The Amazon Web Service Access Information is incorrect.");
+         }
+         if(specifiedBucket() && !bucket.exists())
+            return Arrays.asList("The specified bucket " + bucketName + " does not exist.");
+         return new ArrayList();
+    }
+
+    public S3Bucket bucket(){
+        return new S3BucketImpl(getAwsAccessKeyId(),
+                getAwsSecretKey(),
+                getUsingBucketName() );
+    }
+
+    public void persist(UserS3Store store) throws IOException {
+        if(!specifiedBucket()){
+            S3BucketImpl bucket = (S3BucketImpl) bucket();
+            bucket.ensureBucketOnServer();
+            setBucketName(bucket.getName());
+        }
+        store.persist(this);
     }
 }

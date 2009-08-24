@@ -33,4 +33,6 @@ public interface Document extends Item {
     Date getLastModified();
 
     long getSize();
+
+    void update() throws IOException;
 }

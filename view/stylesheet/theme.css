@@ -89,14 +89,17 @@ select {
 .name {
 	vertical-align: top;
 	font-weight: bold;
-	width: 115px;
+	width: 135px;
 	float: left;
 	padding: 5px;
 	margin-top: 3px;
 	clear: left;
+
 }
 
 .value {
+    vertical-align: top;
+    margin-top: 3px;
 	float: left;
 	padding: 5px;
 }
