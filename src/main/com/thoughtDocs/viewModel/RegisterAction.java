@@ -48,7 +48,7 @@ public class RegisterAction {
 
     public String register() throws IOException {
         List<String> validationErrors = new ArrayList() ;
-        if(password.equals(passwordCheck))
+        if(!password.equals(passwordCheck))
           validationErrors.add("Password does not match.");  
         else
            validationErrors = userStore.validateNewUser(user, invitationCode);

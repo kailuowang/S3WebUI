@@ -3,6 +3,9 @@ package com.thoughtDocs.viewModel;
 import com.thoughtDocs.model.Document;
 import com.thoughtDocs.model.Repository;
 import com.thoughtDocs.model.impl.s3.DocumentImpl;
+import com.thoughtDocs.model.impl.s3.RepositoryFactory;
+import com.thoughtDocs.model.impl.s3.UserS3Store;
+import com.thoughtDocs.model.impl.s3.UserS3;
 import com.thoughtDocs.viewModel.itemList.DocumentListAction;
 import com.thoughtDocs.exception.DocumentNotFoundException;
 import org.jboss.seam.ScopeType;
@@ -27,16 +30,23 @@ public class DocumentPublicDownloadAction implements Serializable {
 
     @RequestParameter
     private String key;
+    @RequestParameter
+    private String username;
+
     @Logger
     private Log log;
+
+    @In(create = true)
+    UserS3Store userStore;
 
     @In
     private StatusMessages statusMessages;
 
     private Document doc;
 
-    @In
-    private Repository defaultRepository;
+    
+     @In(create = true)
+    private RepositoryFactory repositoryFactory;
 
     private String password;
 
@@ -53,9 +63,12 @@ public class DocumentPublicDownloadAction implements Serializable {
     }
 
     public void checkFile() throws IOException {
-        if(doc == null)
-            doc = DocumentImpl.findFromRepository(defaultRepository, key);
-        if(doc == null)
+        UserS3 user = userStore.find(username);
+
+        if(doc == null && user != null) {
+            doc = DocumentImpl.findFromRepository(repositoryFactory.createRepoFromUser(user), key);
+        }
+        if(doc == null || user == null )
         {
             throw new DocumentNotFoundException(key);
         }else if(doc.getUsingPassword() == null)

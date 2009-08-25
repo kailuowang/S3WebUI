@@ -12,7 +12,7 @@ import org.jboss.seam.security.Identity;
 
 import java.io.IOException;
 
- 
+
 @Scope(ScopeType.SESSION)
 @Name("repositoryFactory")
 public class RepositoryFactory {
@@ -25,32 +25,31 @@ public class RepositoryFactory {
     @In(create = true)
     UserS3Store userStore;
 
-    public RepositoryFactory() {}
+    public RepositoryFactory() {
+    }
 
-    @Factory(autoCreate = true , scope = ScopeType.SESSION)
+    @Factory(autoCreate = true, scope = ScopeType.SESSION)
     public Repository getDefaultRepository() throws IOException {
 
-        if (defaultRepository == null)
-        {
-            defaultRepository =  ThoughtDocsConfig.getRunOnMemoryBucket() ?
-                                     createTestRepository()
-                                    : createRepoFromUser();
-
+        if (defaultRepository == null) {
+            defaultRepository = createRepoFromUser(userStore.find(identity.getCredentials().getUsername()));
         }
         return defaultRepository;
     }
 
-    @Observer( ViewEvents.BucketChanged)
-    public void reloadRepository(){
+    @Observer(ViewEvents.BucketChanged)
+    public void reloadRepository() {
         defaultRepository = null;
 
     }
 
-    private Repository createRepoFromUser() {
-        UserS3 user = userStore.find(identity.getCredentials().getUsername());
+    public Repository createRepoFromUser(UserS3 user) throws IOException {
+
         assert user != null;
 
-        return new RepositoryImpl( user.bucket());
+        return ThoughtDocsConfig.getRunOnMemoryBucket() ?
+                createTestRepository()
+                : new RepositoryImpl(user.bucket());
     }
 
     private Repository createTestRepository() throws IOException {

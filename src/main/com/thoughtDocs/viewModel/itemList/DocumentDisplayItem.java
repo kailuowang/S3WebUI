@@ -1,6 +1,8 @@
 package com.thoughtDocs.viewModel.itemList;
 
 import com.thoughtDocs.model.Document;
+import com.thoughtDocs.model.impl.s3.UserS3;
+import com.thoughtDocs.model.impl.s3.UserS3Store;
 import com.thoughtDocs.viewModel.ItemOpener;
 
 import java.io.IOException;
@@ -8,8 +10,12 @@ import java.text.NumberFormat;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+import org.jboss.seam.annotations.In;
+import org.jboss.seam.Component;
+
 
 public class DocumentDisplayItem extends AbstractDisplayItem {
+
 
     public DocumentDisplayItem(Document item) {
         super(item);
@@ -21,7 +27,17 @@ public class DocumentDisplayItem extends AbstractDisplayItem {
     }
 
     public String getPublicUrl() {
-        return getDocument().getPublicUrl();
+        return "http://"+getCurrentUsernamePrefix() + getDocument().getPublicUrl();
+    }
+
+    private String getCurrentUsernamePrefix() {
+
+        UserS3 currentUser = (UserS3) Component.getInstance("currentUser");
+        String username = currentUser.getUsername();
+        if(username.equals(UserS3Store.DEFAULT_USERNAME))
+            return "";
+        else
+            return  username + ".";
     }
 
 

@@ -22,6 +22,7 @@ public class UserS3Store implements Serializable {
 
     File file;
     Set<UserS3> users;
+    public static final String DEFAULT_USERNAME = "admin";
 
     public UserS3Store() throws IOException {
 
@@ -55,7 +56,7 @@ public class UserS3Store implements Serializable {
 
     private UserS3 loadDefaultUser() {
 
-        UserS3 user = new UserS3("admin",
+        UserS3 user = new UserS3(DEFAULT_USERNAME,
                 "",
                 CredentialsConfig.getAWSAccessKey(),
                 CredentialsConfig.getAWSSecretKey(),
