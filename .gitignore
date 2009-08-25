@@ -4,6 +4,7 @@ classes/*
 test-output/*
 test-build
 test-output
+keyset
 dist
 exploded-archives
 resources/credentials.properties

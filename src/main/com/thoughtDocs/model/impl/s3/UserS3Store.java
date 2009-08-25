@@ -55,11 +55,13 @@ public class UserS3Store implements Serializable {
 
     private UserS3 loadDefaultUser() {
 
-        return new UserS3("admin",
-                CredentialsConfig.getAdminPassword(),
+        UserS3 user = new UserS3("admin",
+                "",
                 CredentialsConfig.getAWSAccessKey(),
                 CredentialsConfig.getAWSSecretKey(),
                 CredentialsConfig.getAWSBucketName());
+        user.changePassword(CredentialsConfig.getAdminPassword());
+        return user;
     }
 
     void persist(UserS3 user) throws IOException {
@@ -98,14 +100,12 @@ public class UserS3Store implements Serializable {
      *
      * @return validation errors, empty if there is no validation error
      */
-    public List<String> validateNewUser(UserS3 user, String invitationCode, String passwordCheck) {
+    public List<String> validateNewUser(UserS3 user, String invitationCode) {
         if (!CredentialsConfig.getInvitationCode().equals(invitationCode)) {
             return Arrays.asList("incorrect invitation code");
         }
 
-        if (!passwordCheck.equals(user.getPassword())) {
-            return Arrays.asList("Your password does not match.");
-        }
+        
         
         if (find(user.getUsername()) != null) {
             return Arrays.asList("Username " + user.getUsername() + " is already taken.");

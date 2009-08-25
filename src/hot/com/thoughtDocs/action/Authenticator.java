@@ -1,6 +1,5 @@
 package com.thoughtDocs.action;
 
-import com.thoughtDocs.util.CredentialsConfig;
 import com.thoughtDocs.model.impl.s3.UserS3;
 import com.thoughtDocs.model.impl.s3.UserS3Store;
 import org.jboss.seam.annotations.In;
@@ -10,7 +9,6 @@ import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
-import org.jboss.seam.faces.FacesMessages;
 
 @Name("authenticator")
 public class Authenticator {
@@ -33,7 +31,7 @@ public class Authenticator {
         //successful, false otherwise
         UserS3 user = getCurrentUser();
         if ( user != null && 
-                user.getPassword().equals(credentials.getPassword())) {
+                user.checkPassword(credentials.getPassword())) {
             identity.addRole("admin");
             return true;
         }

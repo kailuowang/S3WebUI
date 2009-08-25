@@ -1,5 +1,7 @@
 package com.thoughtDocs.model.impl.s3;
 
+import com.thoughtDocs.util.Hash;
+
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.io.IOException;
  */
 public class UserS3 {
     private String username;
-    private String password;
+    private String hashedPassword;
     private String awsAccessKeyId;
     private String awsSecretKey;
     private String bucketName;
@@ -23,18 +25,25 @@ public class UserS3 {
         this.username = username; 
     }
 
-    public String getPassword() {
-        return password;
+    public String getHashedPassword() {
+        return hashedPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
 
     public String getAwsAccessKeyId() {
         return awsAccessKeyId;
     }
 
+    public void changePassword(String password){
+        setHashedPassword(Hash.instance().hash(password));
+    }
+
+    public boolean checkPassword(String testPassword){
+         return Hash.instance().hash(testPassword).equals(getHashedPassword());
+    }
     public void setAwsAccessKeyId(String awsAccessKeyId) {
         this.awsAccessKeyId = awsAccessKeyId;
     }
@@ -51,13 +60,15 @@ public class UserS3 {
     public UserS3() {
     }
 
-    public UserS3(String username, String password, String awsAccessKeyId, String awsSecretKey, String bucketName) {
+    public UserS3(String username, String hashedPassword, String awsAccessKeyId, String awsSecretKey, String bucketName) {
         this.username = username;
-        this.password = password;
+        this.hashedPassword = hashedPassword;
         this.awsAccessKeyId = awsAccessKeyId;
         this.awsSecretKey = awsSecretKey;
         this.bucketName = bucketName;
     }
+
+     
 
 
 
@@ -72,7 +83,7 @@ public class UserS3 {
             return false;
         if (awsSecretKey != null ? !awsSecretKey.equals(userS3.awsSecretKey) : userS3.awsSecretKey != null)
             return false;
-        if (password != null ? !password.equals(userS3.password) : userS3.password != null) return false;
+        if (hashedPassword != null ? !hashedPassword.equals(userS3.hashedPassword) : userS3.hashedPassword != null) return false;
         if (username != null ? !username.equals(userS3.username) : userS3.username != null) return false;
 
         return true;
@@ -81,7 +92,7 @@ public class UserS3 {
     @Override
     public int hashCode() {
         int result = username != null ? username.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (hashedPassword != null ? hashedPassword.hashCode() : 0);
         result = 31 * result + (awsAccessKeyId != null ? awsAccessKeyId.hashCode() : 0);
         result = 31 * result + (awsSecretKey != null ? awsSecretKey.hashCode() : 0);
         return result;

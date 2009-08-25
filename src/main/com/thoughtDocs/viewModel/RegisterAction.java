@@ -11,6 +11,7 @@ import org.jboss.seam.international.StatusMessages;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,6 +31,7 @@ public class RegisterAction {
     private StatusMessages statusMessages;
     private String invitationCode;
     private String awsSecretKey;
+    private String password;
 
     @Factory(autoCreate = true)
     public UserS3 getRegisteringUser() {
@@ -45,8 +47,13 @@ public class RegisterAction {
     }
 
     public String register() throws IOException {
-        List<String> validationErrors = userStore.validateNewUser(user, invitationCode, passwordCheck);
+        List<String> validationErrors = new ArrayList() ;
+        if(password.equals(passwordCheck))
+          validationErrors.add("Password does not match.");  
+        else
+           validationErrors = userStore.validateNewUser(user, invitationCode);
         if (validationErrors == null || validationErrors.size() == 0) {
+            user.changePassword(password);
             user.persist(userStore);
             statusMessages.add("You have successfully registered. Please login now.");
             return "/login.xhtml";
@@ -72,5 +79,13 @@ public class RegisterAction {
 
     public String getAwsSecretKey() {
         return awsSecretKey;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

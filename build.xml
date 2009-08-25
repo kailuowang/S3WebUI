@@ -47,9 +47,7 @@
         <fileset refid="lib" />
     </path>
 
-    <!-- Import GlassFish deployment targets -->
-    <import file="${basedir}/glassfish-build.xml"/>
-
+ 
     <target name="init" description="Initialize the build">
 
         <taskdef name="groovyc"

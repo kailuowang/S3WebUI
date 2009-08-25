@@ -49,7 +49,7 @@ public class AccountAction {
             return;
         }
         if (newPassword != null && newPassword.length() > 0)
-            currentUser.setPassword(newPassword);
+            currentUser.setHashedPassword(newPassword);
 
         statusMessages.add("Account information updated.");
         currentUser.persist(userStore);
@@ -59,7 +59,7 @@ public class AccountAction {
     private List<String> validate() {
 
         if (newPassword != null && newPassword.length() > 0) {
-            if (!currentUser.getPassword().equals(oldPassword)) {
+            if (!currentUser.getHashedPassword().equals(oldPassword)) {
                 return Arrays.asList("old password isn't entered correctly");
             }
             if (!newPassword.equals(newPasswordCheck)) {
